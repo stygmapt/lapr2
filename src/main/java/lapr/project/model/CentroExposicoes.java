@@ -21,5 +21,39 @@ public class CentroExposicoes {
         this.m_regUtilizadores = new RegistoUtilizadores();
     }
      
+    
+    public boolean registaUtilizador(Utilizador u){
+        if(validaUtilizador(u)){
+            m_lUtilizadoresNConfirmados.add(u);
+            return true;
+        }
+        return false;
+    }
+    
+    private boolean validaUtilizador(Utilizador u){
+        return !m_regUtilizadores.getLista().contains(u);
+    }
+    
+  
+    public List<Utilizador> getUtilizadoresRegistados()
+    {
+        return this.m_regUtilizadores.getLista();
+    }
+
+    public List<Utilizador> getUtilizadoresNaoConfirmados() {
+        return this.m_lUtilizadoresNConfirmados;
+    }
+    
+    public Utilizador getUtilizadorByUsername(String uId){
+        for(Utilizador u : m_regUtilizadores.getLista())
+            if (uId.equalsIgnoreCase(u.getUsername()))
+                return u;
+        return null;
+    }
+
+    public void confirmaRegistoUtilizador(Utilizador u) {
+        this.m_regUtilizadores.addUtilizador(u);
+        this.m_lUtilizadoresNConfirmados.remove(u);
+    }
      
 }
