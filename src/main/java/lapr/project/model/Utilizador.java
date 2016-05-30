@@ -20,6 +20,7 @@ public class Utilizador {
 	}
 
 	public Utilizador(String sNome, String sEmail, String pw) {
+                this.m_sNome=sNome;
 		this.m_sEmail = sEmail;
 		this.m_sUserName = sNome;
 		this.m_sPassword = pw;

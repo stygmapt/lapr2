@@ -22,8 +22,11 @@ public class LoginController {
 	}
 
 	public boolean tryLogin(String nome, String pw) {
+                if(m_centro.getUtilizadoresRegistados().getLista().isEmpty()){System.out.println("Esta vazia");}
+                
 		for (Utilizador u : m_centro.getUtilizadoresRegistados().getLista()) {
-			if (u.getUsername() == nome && u.getPassword() == pw) {
+                        System.out.println("Ut -- "+ u.toString());
+			if (nome.equalsIgnoreCase(u.getUsername()) && pw.equalsIgnoreCase(u.getPassword())) {
 				m_utlizador = u;
 				return true;
 			}

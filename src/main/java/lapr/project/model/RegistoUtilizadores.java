@@ -27,8 +27,8 @@ public class RegistoUtilizadores {
     public Utilizador novoUtilizador(){
         return new Utilizador();
     }
+    
     public boolean addUtilizador(Utilizador u){
         return this.lista.add(u);
     }
-    
 }

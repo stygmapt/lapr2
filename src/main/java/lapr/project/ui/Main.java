@@ -24,10 +24,6 @@ class Main {
 //		CalculatorExample calculatorExample = new CalculatorExample();
 //		System.out.println(calculatorExample.sum(3, 5));
 		CentroExposicoes centro = new CentroExposicoes();
-		Utilizador u = new Utilizador("tiago", "tiago", "tiago");
-
-		centro.registaUtilizador(u);
-		centro.confirmaRegistoUtilizador(u);
 
 		LoginGUI j = new LoginGUI(centro);
 	}
