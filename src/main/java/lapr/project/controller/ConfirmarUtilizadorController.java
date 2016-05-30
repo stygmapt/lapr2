@@ -26,7 +26,7 @@ public class ConfirmarUtilizadorController {
     }
     
     public Utilizador getUtilizadorInfo(String uId){
-        m_utilizadorAConfirmar = m_ce.getUtilizadorByUsername(uId);
+        m_utilizadorAConfirmar = m_ce.getUtilizadorByUsernameListNConf(uId);
         return m_utilizadorAConfirmar;
     }
     

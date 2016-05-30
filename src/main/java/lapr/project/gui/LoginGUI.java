@@ -23,17 +23,13 @@ public class LoginGUI extends javax.swing.JFrame {
 	 * Creates new form LoginGUI
 	 */
 	public LoginGUI(CentroExposicoes centro) {
-
             
-		this.m_CentroExposicoes = centro;
-                Utilizador u = new Utilizador("tiago", "tiago", "tiago");
-
-		m_CentroExposicoes.registaUtilizador(u);
-		m_CentroExposicoes.confirmaRegistoUtilizador(u);
-		m_reController = new LoginController(m_CentroExposicoes);
+            this.m_CentroExposicoes = centro;
                 
-		initComponents();
-		setVisible(true);
+            m_reController = new LoginController(m_CentroExposicoes);
+                
+            initComponents();
+            setVisible(true);
 	}
 
 	/**
@@ -73,6 +69,11 @@ public class LoginGUI extends javax.swing.JFrame {
         });
 
         jButton1.setText("registar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -163,6 +164,12 @@ public class LoginGUI extends javax.swing.JFrame {
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JanelaRegistarUtilizador janela = new JanelaRegistarUtilizador(m_CentroExposicoes);
+        dispose();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

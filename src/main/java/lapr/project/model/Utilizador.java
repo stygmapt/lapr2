@@ -39,7 +39,11 @@ public class Utilizador {
 	}
 
 	public void setNome(String nome) {
+            if(nome != null){
 		this.m_sNome = nome;
+            }else{
+                throw new IllegalArgumentException("O nome inserido é nulo");           
+            }
 	}
 
 	public String getEmail() {
@@ -47,7 +51,11 @@ public class Utilizador {
 	}
 
 	public void setEmail(String email) {
+            if(email != null){
 		this.m_sEmail = email;
+            }else{
+                throw new IllegalArgumentException("O e-mail inserido é nulo.");           
+            }
 	}
 
 	public String getUsername() {
@@ -55,7 +63,11 @@ public class Utilizador {
 	}
 
 	public void setUsername(String username) {
+            if(username != null){
 		this.m_sUserName = username;
+            }else{
+                throw new IllegalArgumentException("O user name inserido é nulo.");           
+            }
 	}
 
 	public String getPassword() {
@@ -63,7 +75,11 @@ public class Utilizador {
 	}
 
 	public void setPassword(String password) {
+            if(password != null){
 		this.m_sPassword = password;
+            }else{
+                throw new IllegalArgumentException("A password inserida é nula.");           
+            }    
 	}
 
 	@Override

@@ -50,7 +50,16 @@ public class CentroExposicoes {
 		}
 		return null;
 	}
-
+        
+        public Utilizador getUtilizadorByUsernameListNConf(String uId) {
+		for (Utilizador u : m_lUtilizadoresNConfirmados) {
+			if (uId.equalsIgnoreCase(u.getUsername())) {
+				return u;
+			}
+		}
+		return null;
+	}
+        
 	public void confirmaRegistoUtilizador(Utilizador u) {
 		this.m_regUtilizadores.addUtilizador(u);
 		this.m_lUtilizadoresNConfirmados.remove(u);
