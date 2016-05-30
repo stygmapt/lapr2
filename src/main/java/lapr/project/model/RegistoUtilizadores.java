@@ -31,4 +31,13 @@ public class RegistoUtilizadores {
     public boolean addUtilizador(Utilizador u){
         return this.lista.add(u);
     }
+    
+    public Utilizador getUtilizadorByUserName(String usr){
+        for (Utilizador u : lista) {
+			if (usr.equalsIgnoreCase(u.getUsername())) {
+				return u;
+			}
+		}
+		return null;
+    }
 }
