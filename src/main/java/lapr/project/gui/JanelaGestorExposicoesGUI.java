@@ -53,10 +53,10 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem1.setText("Listar U..................");
+        jMenuItem1.setText("Listar Utilizadores Não confirmados");
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setText("Listar.......");
+        jMenuItem2.setText("Listar Utilizadores Registados");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);

@@ -31,7 +31,7 @@ public class CentroExposicoes {
 	}
 
 	private boolean validaUtilizador(Utilizador u) {
-		return !m_regUtilizadores.getLista().contains(u);
+		return !m_regUtilizadores.getLista().contains(u)&&!m_lUtilizadoresNConfirmados.contains(u);
 	}
 
 	public RegistoUtilizadores getUtilizadoresRegistados() {
