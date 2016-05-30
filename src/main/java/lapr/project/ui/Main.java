@@ -1,6 +1,8 @@
 package lapr.project.ui;
 
-import lapr.project.model.CalculatorExample;
+import lapr.project.gui.LoginGUI;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Utilizador;
 
 /**
  * @author Nuno Bettencourt <nmb@isep.ipp.pt> on 24/05/16.
@@ -10,7 +12,7 @@ class Main {
 	/**
 	 * Private constructor to hide implicit public one.
 	 */
-	private Main(){
+	private Main() {
 
 	}
 
@@ -19,8 +21,15 @@ class Main {
 	 */
 	public static void main(String[] args) {
 
-		CalculatorExample calculatorExample = new CalculatorExample();
-		System.out.println(calculatorExample.sum(3, 5));
+//		CalculatorExample calculatorExample = new CalculatorExample();
+//		System.out.println(calculatorExample.sum(3, 5));
+		CentroExposicoes centro = new CentroExposicoes();
+		Utilizador u = new Utilizador("tiago", "tiago", "tiago");
+
+		centro.registaUtilizador(u);
+		centro.confirmaRegistoUtilizador(u);
+
+		LoginGUI j = new LoginGUI(centro);
 	}
 
 }

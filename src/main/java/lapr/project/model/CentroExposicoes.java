@@ -13,47 +13,47 @@ import java.util.List;
  * @author Gabriel
  */
 public class CentroExposicoes {
-     private final List<Utilizador> m_lUtilizadoresNConfirmados;
-     private final RegistoUtilizadores m_regUtilizadores;
 
-    public CentroExposicoes() {
-        this.m_lUtilizadoresNConfirmados = new ArrayList<>();
-        this.m_regUtilizadores = new RegistoUtilizadores();
-    }
-     
-    
-    public boolean registaUtilizador(Utilizador u){
-        if(validaUtilizador(u)){
-            m_lUtilizadoresNConfirmados.add(u);
-            return true;
-        }
-        return false;
-    }
-    
-    private boolean validaUtilizador(Utilizador u){
-        return !m_regUtilizadores.getLista().contains(u);
-    }
-    
-  
-    public List<Utilizador> getUtilizadoresRegistados()
-    {
-        return this.m_regUtilizadores.getLista();
-    }
+	private final List<Utilizador> m_lUtilizadoresNConfirmados;
+	private final RegistoUtilizadores m_regUtilizadores;
 
-    public List<Utilizador> getUtilizadoresNaoConfirmados() {
-        return this.m_lUtilizadoresNConfirmados;
-    }
-    
-    public Utilizador getUtilizadorByUsername(String uId){
-        for(Utilizador u : m_regUtilizadores.getLista())
-            if (uId.equalsIgnoreCase(u.getUsername()))
-                return u;
-        return null;
-    }
+	public CentroExposicoes() {
+		this.m_lUtilizadoresNConfirmados = new ArrayList<>();
+		this.m_regUtilizadores = new RegistoUtilizadores();
+	}
 
-    public void confirmaRegistoUtilizador(Utilizador u) {
-        this.m_regUtilizadores.addUtilizador(u);
-        this.m_lUtilizadoresNConfirmados.remove(u);
-    }
-     
+	public boolean registaUtilizador(Utilizador u) {
+		if (validaUtilizador(u)) {
+			m_lUtilizadoresNConfirmados.add(u);
+			return true;
+		}
+		return false;
+	}
+
+	private boolean validaUtilizador(Utilizador u) {
+		return !m_regUtilizadores.getLista().contains(u);
+	}
+
+	public RegistoUtilizadores getUtilizadoresRegistados() {
+		return this.m_regUtilizadores;
+	}
+
+	public List<Utilizador> getUtilizadoresNaoConfirmados() {
+		return this.m_lUtilizadoresNConfirmados;
+	}
+
+	public Utilizador getUtilizadorByUsername(String uId) {
+		for (Utilizador u : m_regUtilizadores.getLista()) {
+			if (uId.equalsIgnoreCase(u.getUsername())) {
+				return u;
+			}
+		}
+		return null;
+	}
+
+	public void confirmaRegistoUtilizador(Utilizador u) {
+		this.m_regUtilizadores.addUtilizador(u);
+		this.m_lUtilizadoresNConfirmados.remove(u);
+	}
+
 }

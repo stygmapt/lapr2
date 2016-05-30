@@ -10,80 +10,78 @@ package lapr.project.model;
  * @author Gabriel
  */
 public class Utilizador {
-    private String m_sNome;
-    private String m_sEmail;
-    private String m_sUserName;
-    private String m_sPassword;
-    
-    public Utilizador()
-    {
-    }
-    
-    public Utilizador(String sNome, String sEmail, String pw)
-    {
-        this.m_sNome = sNome;
-        this.m_sEmail = sEmail;
-        this.m_sUserName = sEmail;
-        this.m_sPassword=pw;
-    }
-   
-    public boolean hasID(String strId)
-    {
-        return m_sUserName.equalsIgnoreCase(strId);
-    }
-    
-    public String getID()
-    {
-        return m_sUserName;
-    }
 
-    public String getNome() {
-        return m_sNome;
-    }
+	private String m_sNome;
+	private String m_sEmail;
+	private String m_sUserName;
+	private String m_sPassword;
 
-    public void setNome(String nome) {
-        this.m_sNome = nome;
-    }
+	public Utilizador() {
+	}
 
-    public String getEmail() {
-        return m_sEmail;
-    }
+	public Utilizador(String sNome, String sEmail, String pw) {
+		this.m_sEmail = sEmail;
+		this.m_sUserName = sNome;
+		this.m_sPassword = pw;
+	}
 
-    public void setEmail(String email) {
-        this.m_sEmail = email;
-    }
+	public boolean hasID(String strId) {
+		return m_sUserName.equalsIgnoreCase(strId);
+	}
 
-    public String getUsername() {
-        return m_sUserName;
-    }
+	public String getID() {
+		return m_sUserName;
+	}
 
-    public void setUsername(String username) {
-        this.m_sUserName = username;
-    }
+	public String getNome() {
+		return m_sNome;
+	}
 
-    public String getPassword() {
-        return m_sPassword;
-    }
+	public void setNome(String nome) {
+		this.m_sNome = nome;
+	}
 
-    public void setPassword(String password) {
-        this.m_sPassword = password;
-    }
+	public String getEmail() {
+		return m_sEmail;
+	}
 
-    @Override
-    public String toString(){
-        return String.format("[%s, %s, %s]", m_sNome, m_sEmail, m_sUserName, m_sPassword);
-    }
+	public void setEmail(String email) {
+		this.m_sEmail = email;
+	}
 
-    public boolean valida(){
-        return true;
-    }
+	public String getUsername() {
+		return m_sUserName;
+	}
 
-    public boolean equals(Utilizador u)
-    {
-        if (this == u)
-            return true;
-        if (u != null)
-            return hasID(u.m_sUserName);
-        return false;
-    }
+	public void setUsername(String username) {
+		this.m_sUserName = username;
+	}
+
+	public String getPassword() {
+		return m_sPassword;
+	}
+
+	public void setPassword(String password) {
+		this.m_sPassword = password;
+	}
+
+	@Override
+	public String toString() {
+		return String.
+			format("[%s, %s, %s]", m_sNome, m_sEmail, m_sUserName, m_sPassword);
+	}
+
+	public boolean valida() {
+		return true;
+	}
+
+	public boolean equals(Utilizador u) {
+		if (this == u) {
+			return true;
+		}
+		if (u != null) {
+			return hasID(u.m_sUserName);
+		}
+		return false;
+	}
 }

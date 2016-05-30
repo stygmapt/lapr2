@@ -1,24 +1,24 @@
 package lapr.project.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-
 /**
  * Class to demonstrate a Candidatura simple example.
+ *
  * @author Nuno Bettencourt [nmb@isep.ipp.pt] on 29/05/16.
  */
 public class CandidaturaExampleTest {
+
 	@Test
 	public void ensureAddKeywordIsWorking() throws Exception {
 		List<KeywordExample> expectedKeywordExampleList = new ArrayList<>();
@@ -29,23 +29,24 @@ public class CandidaturaExampleTest {
 
 		List<KeywordExample> resultList = candidatura.getKeywordList();
 
-		assertArrayEquals(expectedKeywordExampleList.toArray(), resultList.toArray());
+		assertArrayEquals(expectedKeywordExampleList.toArray(), resultList.
+						  toArray());
 
 	}
 
 	@Test
 	public void ensureXMLElementExportToStringIsValid() throws Exception {
-		String expected = "<candidatura>\n" +
-				"<description>MyCandidatura</description>\n" +
-				"<keywords>\n" +
-				"<keyword>\n" +
-				"<value>Doors</value>\n" +
-				"</keyword>\n" +
-				"<keyword>\n" +
-				"<value>Windows</value>\n" +
-				"</keyword>\n" +
-				"</keywords>\n" +
-				"</candidatura>\n";
+		String expected = "<candidatura>\n"
+			+ "<description>MyCandidatura</description>\n"
+			+ "<keywords>\n"
+			+ "<keyword>\n"
+			+ "<value>Doors</value>\n"
+			+ "</keyword>\n"
+			+ "<keyword>\n"
+			+ "<value>Windows</value>\n"
+			+ "</keyword>\n"
+			+ "</keywords>\n"
+			+ "</candidatura>\n";
 
 		List<KeywordExample> keywordList = new ArrayList<>();
 		keywordList.add(new KeywordExample("Doors"));
@@ -63,8 +64,8 @@ public class CandidaturaExampleTest {
 
 		CandidaturaExample expected = new CandidaturaExample("MyCandidatura", keywordExampleList);
 
-		DocumentBuilderFactory factory =
-				DocumentBuilderFactory.newInstance();
+		DocumentBuilderFactory factory
+			= DocumentBuilderFactory.newInstance();
 
 		//Create document builder
 		DocumentBuilder builder = factory.newDocumentBuilder();
@@ -175,6 +176,5 @@ public class CandidaturaExampleTest {
 		assertEquals(expected, result);
 
 	}
-
 
 }
