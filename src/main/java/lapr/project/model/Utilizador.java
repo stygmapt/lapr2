@@ -15,15 +15,17 @@ public class Utilizador {
 	private String m_sEmail;
 	private String m_sUserName;
 	private String m_sPassword;
+	private Boolean m_register;
 
 	public Utilizador() {
 	}
 
 	public Utilizador(String sNome, String sEmail, String pw) {
-                this.m_sNome=sNome;
+		this.m_sNome = sNome;
 		this.m_sEmail = sEmail;
 		this.m_sUserName = sNome;
 		this.m_sPassword = pw;
+		this.m_register = false;
 	}
 
 	public boolean hasID(String strId) {
@@ -39,11 +41,11 @@ public class Utilizador {
 	}
 
 	public void setNome(String nome) {
-            if(nome != null){
-		this.m_sNome = nome;
-            }else{
-                throw new IllegalArgumentException("O nome inserido é nulo");           
-            }
+		if (nome != null) {
+			this.m_sNome = nome;
+		} else {
+			throw new IllegalArgumentException("O nome inserido é nulo");
+		}
 	}
 
 	public String getEmail() {
@@ -51,23 +53,31 @@ public class Utilizador {
 	}
 
 	public void setEmail(String email) {
-            if(email != null){
-		this.m_sEmail = email;
-            }else{
-                throw new IllegalArgumentException("O e-mail inserido é nulo.");           
-            }
+		if (email != null) {
+			this.m_sEmail = email;
+		} else {
+			throw new IllegalArgumentException("O e-mail inserido é nulo.");
+		}
 	}
 
 	public String getUsername() {
 		return m_sUserName;
 	}
 
+	public Boolean getM_register() {
+		return m_register;
+	}
+
+	public void setM_register(Boolean m_register) {
+		this.m_register = m_register;
+	}
+
 	public void setUsername(String username) {
-            if(username != null){
-		this.m_sUserName = username;
-            }else{
-                throw new IllegalArgumentException("O user name inserido é nulo.");           
-            }
+		if (username != null) {
+			this.m_sUserName = username;
+		} else {
+			throw new IllegalArgumentException("O user name inserido é nulo.");
+		}
 	}
 
 	public String getPassword() {
@@ -75,11 +85,11 @@ public class Utilizador {
 	}
 
 	public void setPassword(String password) {
-            if(password != null){
-		this.m_sPassword = password;
-            }else{
-                throw new IllegalArgumentException("A password inserida é nula.");           
-            }    
+		if (password != null) {
+			this.m_sPassword = password;
+		} else {
+			throw new IllegalArgumentException("A password inserida é nula.");
+		}
 	}
 
 	@Override
