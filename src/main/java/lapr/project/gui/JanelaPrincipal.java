@@ -23,6 +23,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         this.utilizador_logado=u;
         initComponents();
         setVisible(true);
+        setLocationRelativeTo(null);
     }
 
     /**

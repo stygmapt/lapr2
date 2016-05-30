@@ -64,6 +64,11 @@ public class JanelaRegistarUtilizador extends javax.swing.JFrame {
         jLabel5.setText("Insira os dados do novo Utilizador:");
 
         jTextField1.setText("jTextField1");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jTextField2.setText("jTextField2");
 
@@ -174,6 +179,10 @@ public class JanelaRegistarUtilizador extends javax.swing.JFrame {
 		LoginGUI janela = new LoginGUI(centro);
 		dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

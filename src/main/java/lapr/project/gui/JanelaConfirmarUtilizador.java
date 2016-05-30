@@ -32,6 +32,7 @@ public class JanelaConfirmarUtilizador extends javax.swing.JFrame {
 		controller = new ConfirmarUtilizadorController(centro);
 		fillList();
 		setVisible(true);
+                setLocationRelativeTo(null);
 	}
 
 	/**
