@@ -30,12 +30,12 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        accoesMenu = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        listagensMenu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
 
@@ -48,10 +48,10 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
             }
         });
 
-        jMenu1.setText("Acções");
-        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+        accoesMenu.setText("Acções");
+        accoesMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
+                accoesMenuActionPerformed(evt);
             }
         });
 
@@ -61,10 +61,10 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
                 jMenuItem3ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        accoesMenu.add(jMenuItem3);
 
         jMenuItem4.setText("Criar Exposição");
-        jMenu1.add(jMenuItem4);
+        accoesMenu.add(jMenuItem4);
 
         jMenuItem5.setText("Definir Recurso");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -72,17 +72,17 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
                 jMenuItem5ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem5);
+        accoesMenu.add(jMenuItem5);
 
         jMenuItem6.setText("Definir Tipo de Conflito");
-        jMenu1.add(jMenuItem6);
+        accoesMenu.add(jMenuItem6);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(accoesMenu);
 
-        jMenu2.setText("Listagens");
+        listagensMenu.setText("Listagens");
 
         jMenuItem1.setText("Listar Utilizadores Não confirmados");
-        jMenu2.add(jMenuItem1);
+        listagensMenu.add(jMenuItem1);
 
         jMenuItem2.setText("Listar Utilizadores Registados");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -90,9 +90,9 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        listagensMenu.add(jMenuItem2);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(listagensMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -116,9 +116,9 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+    private void accoesMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accoesMenuActionPerformed
 
-    }//GEN-LAST:event_jMenu1ActionPerformed
+    }//GEN-LAST:event_accoesMenuActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
 		// TODO add your handling code here:
@@ -140,9 +140,8 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu accoesMenu;
     private javax.swing.JButton jButton1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -150,6 +149,7 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenu listagensMenu;
     // End of variables declaration//GEN-END:variables
 
 }
