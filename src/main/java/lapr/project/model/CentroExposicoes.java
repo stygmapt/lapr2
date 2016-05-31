@@ -45,8 +45,12 @@ public class CentroExposicoes {
         }
         
 	private boolean validaUtilizador(Utilizador u) {
-		return !m_regUtilizadores.getLista().contains(u)&&!m_lUtilizadoresNConfirmados.contains(u);
-	}
+            if(m_regUtilizadores.getLista().contains(u)||m_lUtilizadoresNConfirmados.contains(u)){
+                throw new IllegalArgumentException("já existe esse utilizador no sistema.");
+            }
+		
+            return true;
+        }
 
 	public RegistoUtilizadores getUtilizadoresRegistados() {
 		return this.m_regUtilizadores;

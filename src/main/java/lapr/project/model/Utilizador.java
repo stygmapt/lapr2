@@ -5,6 +5,9 @@
  */
 package lapr.project.model;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author Gabriel
@@ -41,11 +44,10 @@ public class Utilizador {
 	}
 
 	public void setNome(String nome) {
-		if (nome != null) {
-			this.m_sNome = nome;
-		} else {
-			throw new IllegalArgumentException("O nome inserido é nulo");
-		}
+            if (nome == null || nome.trim().isEmpty()) {
+                    throw new IllegalArgumentException("Insira o nome!");
+            }
+            this.m_sNome = nome;
 	}
 
 	public String getEmail() {
@@ -53,11 +55,11 @@ public class Utilizador {
 	}
 
 	public void setEmail(String email) {
-		if (email != null) {
-			this.m_sEmail = email;
-		} else {
-			throw new IllegalArgumentException("O e-mail inserido é nulo.");
-		}
+            if ((email == null) || (!verificarPadraoMail(email))) {
+                throw new IllegalArgumentException("Email incorreto!");
+            }
+            this.m_sEmail = email;
+		
 	}
 
 	public String getUsername() {
@@ -73,29 +75,27 @@ public class Utilizador {
 	}
 
 	public void setUsername(String username) {
-		if (username != null) {
-			this.m_sUserName = username;
-		} else {
-			throw new IllegalArgumentException("O user name inserido é nulo.");
-		}
+		if (username == null || username.trim().isEmpty()) {
+                    throw new IllegalArgumentException("Insira o username!");
+                }
+                this.m_sUserName = username;
 	}
-
+        
 	public String getPassword() {
 		return m_sPassword;
 	}
 
 	public void setPassword(String password) {
-		if (password != null) {
-			this.m_sPassword = password;
-		} else {
-			throw new IllegalArgumentException("A password inserida é nula.");
-		}
-	}
+            if (password == null || password.trim().isEmpty()) {
+                throw new IllegalArgumentException("insira a password!");
+            }
+            this.m_sPassword = password;
+        }
 
 	@Override
 	public String toString() {
 		return String.
-			format("[%s, %s, %s]", m_sNome, m_sEmail, m_sUserName, m_sPassword);
+			format("[%s,%s, %s, %s]", m_sNome, m_sEmail, m_sUserName, m_sPassword);
 	}
 
 	public boolean valida() {
@@ -111,4 +111,16 @@ public class Utilizador {
 		}
 		return false;
 	}
+        
+        /**
+     * Verifica se um determinado email é ou não válido
+     * @param email 
+     * @return true se for valido false se nao for
+     */
+    private static boolean verificarPadraoMail(String email) {
+        String padraoValido = "\\b(^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@([A-Za-z0-9-])+(\\.[A-Za-z0-9-]+)*((\\.[A-Za-z0-9]{2,})|(\\.[A-Za-z0-9]{2,}\\.[A-Za-z0-9]{2,}))$)\\b";
+        Pattern p = Pattern.compile(padraoValido, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = p.matcher(email);
+        return matcher.matches();
+    }
 }

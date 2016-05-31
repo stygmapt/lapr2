@@ -5,6 +5,7 @@
  */
 package lapr.project.gui;
 
+import javax.swing.JOptionPane;
 import lapr.project.controller.RegistarUtilizadorController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
@@ -171,7 +172,8 @@ public class JanelaRegistarUtilizador extends javax.swing.JFrame {
 			}
 			LoginGUI janela = new LoginGUI(centro);
 			dispose();
-		} catch (Exception e) {
+		} catch (IllegalArgumentException e) {
+                    JOptionPane.showMessageDialog(this, e.toString(), "Erro",JOptionPane.ERROR_MESSAGE);
 		}
     }//GEN-LAST:event_jButton1ActionPerformed
 
