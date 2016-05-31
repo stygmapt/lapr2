@@ -23,7 +23,7 @@ class Main {
 
 //		CalculatorExample calculatorExample = new CalculatorExample();
 //		System.out.println(calculatorExample.sum(3, 5));
-                Utilizador u = new Utilizador("tiago", "tiago", "tiago");
+                Utilizador u = new Utilizador("tiago", "tiago", "tiago","Tiago");
 
 		
 		CentroExposicoes centro = new CentroExposicoes();

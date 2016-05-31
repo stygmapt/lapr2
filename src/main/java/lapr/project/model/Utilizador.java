@@ -18,42 +18,37 @@ public class Utilizador {
 	private String m_sEmail;
 	private String m_sUserName;
 	private String m_sPassword;
-	private Boolean m_register;
 
 	public Utilizador() {
 	}
 
-	public Utilizador(String sNome, String sEmail, String pw) {
+	public Utilizador(String sNome, String userName,String sEmail, String pw) {
 		this.m_sNome = sNome;
 		this.m_sEmail = sEmail;
-		this.m_sUserName = sNome;
+		this.m_sUserName = userName;
 		this.m_sPassword = pw;
-		this.m_register = false;
 	}
 
 	public boolean hasID(String strId) {
 		return m_sUserName.equalsIgnoreCase(strId);
 	}
-
-	public String getID() {
-		return m_sUserName;
-	}
-
+        
 	public String getNome() {
 		return m_sNome;
 	}
 
-	public void setNome(String nome) {
-            if (nome == null || nome.trim().isEmpty()) {
-                    throw new IllegalArgumentException("Insira o nome!");
-            }
-            this.m_sNome = nome;
+	public String getUsername() {
+		return m_sUserName;
 	}
 
 	public String getEmail() {
 		return m_sEmail;
 	}
-
+ 
+	public String getPassword() {
+		return m_sPassword;
+	}
+        
 	public void setEmail(String email) {
             if ((email == null) || (!verificarPadraoMail(email))) {
                 throw new IllegalArgumentException("Email incorreto!");
@@ -62,16 +57,11 @@ public class Utilizador {
 		
 	}
 
-	public String getUsername() {
-		return m_sUserName;
-	}
-
-	public Boolean getM_register() {
-		return m_register;
-	}
-
-	public void setM_register(Boolean m_register) {
-		this.m_register = m_register;
+        public void setNome(String nome) {
+            if (nome == null || nome.trim().isEmpty()) {
+                    throw new IllegalArgumentException("Insira o nome!");
+            }
+            this.m_sNome = nome;
 	}
 
 	public void setUsername(String username) {
@@ -80,10 +70,7 @@ public class Utilizador {
                 }
                 this.m_sUserName = username;
 	}
-        
-	public String getPassword() {
-		return m_sPassword;
-	}
+       
 
 	public void setPassword(String password) {
             if (password == null || password.trim().isEmpty()) {
@@ -95,7 +82,7 @@ public class Utilizador {
 	@Override
 	public String toString() {
 		return String.
-			format("[%s,%s, %s, %s]", m_sNome, m_sEmail, m_sUserName, m_sPassword);
+			format("[%s,%s,%s,%s]", m_sNome, m_sEmail, m_sUserName, m_sPassword);
 	}
 
 	public boolean valida() {

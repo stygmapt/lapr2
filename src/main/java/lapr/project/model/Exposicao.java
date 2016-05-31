@@ -21,25 +21,25 @@ public class Exposicao {
 	private Date dataFimRealização;
 	private Date dataInicioSubmissão;
 	private Date dataFimSubmissão;
+	private Date dataLimiteAvaliacoes;
 	private String local;
-	private List<Organizador> listaOrganizador;
-	private List<FAE> listaFae;
-	private Organizador organizador;
+	private ListaOrganizadores listaOrganizador;
 
 	private Exposicao(String titulo, String desc, Date dataInicio, Date dataFim,
-					  Date DataInicioSub, Date dataFimsub, String local) {
+					  Date DataInicioSub, Date dataFimsub, String local, Date dataAvaliacoes) {
 		this.titulo = titulo;
 		this.descricao = desc;
 		this.dataInicioRealização = dataInicio;
 		this.dataFimRealização = dataFim;
 		this.dataInicioSubmissão = DataInicioSub;
 		this.dataFimSubmissão = dataFimsub;
+                this.dataLimiteAvaliacoes=dataAvaliacoes;
 		this.local = local;
+                this.listaOrganizador = new ListaOrganizadores();
 	}
 
 	public Exposicao() {
-		this.listaFae = new ArrayList<>();
-		this.listaOrganizador = new ArrayList<>();
+		this.listaOrganizador = new ListaOrganizadores();
 	}
 
 	public String getTitulo() {
@@ -62,32 +62,32 @@ public class Exposicao {
 		return dataInicioRealização;
 	}
 
-	public void setDataInicioRealização(Date dataInicioRealização) {
-		this.dataInicioRealização = dataInicioRealização;
-	}
-
-	public Date getDataFimRealização() {
+        public Date getDataFimRealização() {
 		return dataFimRealização;
 	}
-
-	public void setDataFimRealização(Date dataFimRealização) {
-		this.dataFimRealização = dataFimRealização;
+        
+	public void setDatasRealização(Date dataInicioRealização, Date dataFimRealização) {
+            if(dataInicioRealização.after(dataFimRealização) || dataFimRealização.equals(dataInicioRealização)){
+                throw new IllegalArgumentException("A data de fim de exposição tem de ser posterior á data de inicio.");
+            }
+		this.dataInicioRealização = dataInicioRealização;
+                this.dataFimRealização=dataFimRealização;
 	}
 
 	public Date getDataInicioSubmissão() {
 		return dataInicioSubmissão;
 	}
 
-	public void setDataInicioSubmissão(Date dataInicioSubmissão) {
-		this.dataInicioSubmissão = dataInicioSubmissão;
-	}
-
-	public Date getDataFimSubmissão() {
+        public Date getDataFimSubmissão() {
 		return dataFimSubmissão;
 	}
-
-	public void setDataFimSubmissão(Date dataFimSubmissão) {
-		this.dataFimSubmissão = dataFimSubmissão;
+        
+	public void setPeriodoSubmissão(Date dataInicioSubmissão,Date dataFimSubmissão) {
+            if(dataInicioSubmissão.after(dataFimSubmissão) || dataFimSubmissão.equals(dataInicioSubmissão)){
+                throw new IllegalArgumentException("A data limite de submissão de candidaturas tem de ser posterior á data de inicio.");
+            }
+            this.dataInicioSubmissão = dataInicioSubmissão;
+            this.dataFimSubmissão=dataFimSubmissão;
 	}
 
 	public String getLocal() {
@@ -95,21 +95,27 @@ public class Exposicao {
 	}
 
 	public void setLocal(String local) {
-		this.local = local;
+            if (local == null || local.trim().isEmpty()) {
+                    throw new IllegalArgumentException("O local da exposição nao pode ser vazio.!");
+            }
+            this.local = local;
 	}
 
-	public List<Organizador> getListaOrganizador() {
+        public void setDataLimiteAvaliacoes(Date dataLimiteAvaliacoes) {
+            this.dataLimiteAvaliacoes = dataLimiteAvaliacoes;
+        }
+
+        public Date getDataLimiteAvaliacoes() {
+            return dataLimiteAvaliacoes;
+        }
+
+	public ListaOrganizadores getListaOrganizador() {
 		return listaOrganizador;
 	}
 
-	public Organizador addOrganizador(Utilizador u) {
-		this.organizador = new Organizador();
-		this.organizador.setUtilizador(u);
-		listaOrganizador.add(organizador);
-		return this.organizador;
-	}
 
 	public Boolean valida() {
-		return !this.getTitulo().isEmpty();
+		return true;
 	}
+        
 }

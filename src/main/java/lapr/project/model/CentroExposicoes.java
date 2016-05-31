@@ -17,11 +17,14 @@ public class CentroExposicoes {
 	private final List<Utilizador> m_lUtilizadoresNConfirmados;
 	private final RegistoUtilizadores m_regUtilizadores;
         private final RegistoRecursos m_regRecursos;
+        private final RegistoExposicoes m_regExposicoes;
+        
 
 	public CentroExposicoes() {
 		this.m_lUtilizadoresNConfirmados = new ArrayList<>();
 		this.m_regUtilizadores = new RegistoUtilizadores();
                 this.m_regRecursos= new RegistoRecursos();
+                this.m_regExposicoes = new RegistoExposicoes();
 	}
 
 	public boolean registaUtilizador(Utilizador u) {
@@ -35,6 +38,11 @@ public class CentroExposicoes {
         public RegistoRecursos getM_regRecursos() {
             return m_regRecursos;
         }
+
+    public RegistoExposicoes getRegistoExposicoes() {
+        return m_regExposicoes;
+    }
+        
         
         public boolean adicionaRecurso(String dscRecurso){
             if(this.m_regRecursos.registaRecurso(dscRecurso)){
