@@ -37,14 +37,14 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        UtilizadorMenu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        editMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("Utilizador");
+        UtilizadorMenu.setText("Utilizador");
 
         jMenuItem1.setText("Alterar Utilizador");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -52,7 +52,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        UtilizadorMenu.add(jMenuItem1);
 
         jMenuItem2.setText("Log Out");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -60,12 +60,12 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        UtilizadorMenu.add(jMenuItem2);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(UtilizadorMenu);
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        editMenu.setText("Edit");
+        jMenuBar1.add(editMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -94,8 +94,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu UtilizadorMenu;
+    private javax.swing.JMenu editMenu;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
