@@ -24,8 +24,9 @@ public class Exposicao {
 	private Date dataLimiteAvaliacoes;
 	private String local;
 	private ListaOrganizadores listaOrganizador;
-        private ListaFAE listaFae;
+	private ListaFAE listaFae;
 	private ExposicaoState m_state;
+	private ListaDemonstracao listaDemonstracao;
 
 	private Exposicao(String titulo, String desc, Date dataInicio, Date dataFim,
 					  Date DataInicioSub, Date dataFimsub, String local,
@@ -39,13 +40,14 @@ public class Exposicao {
 		this.dataLimiteAvaliacoes = dataAvaliacoes;
 		this.local = local;
 		this.listaOrganizador = new ListaOrganizadores();
-                this.listaFae=new ListaFAE();
-
+		this.listaFae = new ListaFAE();
+		this.listaDemonstracao = new ListaDemonstracao();
 	}
 
 	public Exposicao() {
-                this.listaFae = new ListaFAE();
+		this.listaFae = new ListaFAE();
 		this.listaOrganizador = new ListaOrganizadores();
+		this.listaDemonstracao = new ListaDemonstracao();
 		this.m_state = new ExposicaoStateCriada(this);
 	}
 
@@ -129,20 +131,18 @@ public class Exposicao {
 		return dataLimiteAvaliacoes;
 	}
 
-        public ListaFAE getListaFae() {
-            return listaFae;
-        }
+	public ListaFAE getListaFae() {
+		return listaFae;
+	}
 
-        
 	public ListaOrganizadores getListaOrganizador() {
 		return listaOrganizador;
 	}
 
-        public ExposicaoState getM_state() {
-            return m_state;
-        }
+	public ExposicaoState getM_state() {
+		return m_state;
+	}
 
-        
 	public void setState(ExposicaoState state) {
 		this.m_state = state;
 	}
@@ -173,6 +173,10 @@ public class Exposicao {
 		} else {
 			return false;
 		}
+	}
+
+	public ListaDemonstracao getListaDemonstracao() {
+		return listaDemonstracao;
 	}
 
 }

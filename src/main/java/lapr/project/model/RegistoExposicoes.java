@@ -14,31 +14,31 @@ import java.util.List;
  */
 public class RegistoExposicoes {
 
-    private final List<Exposicao> listaExposições;
+	private final List<Exposicao> listaExposições;
 
-    public RegistoExposicoes() {
-        listaExposições = new ArrayList<>();
-    }
+	public RegistoExposicoes() {
+		listaExposições = new ArrayList<>();
+	}
 
-    public Exposicao novaExposição() {
-        return new Exposicao();
-    }
+	public Exposicao novaExposição() {
+		return new Exposicao();
+	}
 
-    public boolean registaExposição(Exposicao e) {
-        if (validaExposição(e)) {
-            return addExposição(e);
-        } else {
-            return false;
-        }
-    }
+	public boolean registaExposição(Exposicao e) {
+		if (validaExposição(e)) {
+			return addExposição(e);
+		} else {
+			return false;
+		}
+	}
 
-    public boolean validaExposição(Exposicao e) {
-        return e.valida();
-    }
+	public boolean validaExposição(Exposicao e) {
+		return e.valida();
+	}
 
-    public List<Exposicao> getListaExposições() {
-        return this.listaExposições;
-    }
+	public List<Exposicao> getListaExposições() {
+		return this.listaExposições;
+	}
 
 //    public List<Exposicao> getListaExposições(FAE fae) {
 //        List<Exposicao> list = new ArrayList<>();
@@ -51,8 +51,24 @@ public class RegistoExposicoes {
 //        }
 //        return list;
 //    }
+	public boolean addExposição(Exposicao exp) {
+		return this.listaExposições.add(exp);
+	}
 
-    public boolean addExposição(Exposicao exp) {
-        return this.listaExposições.add(exp);
-    }
+	public List<Exposicao> getListaExposicoesDoOrganizador(Utilizador user) {
+		List<Exposicao> listaExpoOrg = new ArrayList<>();
+		for (Exposicao exposicao : listaExposições) {
+			if (exposicao.isInCriada() || exposicao.isInFAESemDemonstracao()) {
+				for (Organizador org : exposicao.getListaOrganizador().
+					getLista()) {
+					if (org.getUtilizador().getUsername().equalsIgnoreCase(org.
+						getUtilizador().getUsername())) {
+						System.out.println("entrou");
+						listaExpoOrg.add(exposicao);
+					}
+				}
+			}
+		}
+		return listaExpoOrg;
+	}
 }
