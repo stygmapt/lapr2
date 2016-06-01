@@ -6,6 +6,7 @@
 package lapr.project.gui;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import lapr.project.controller.CriarExposicaoController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
@@ -18,6 +19,7 @@ public class JanelaCriarExposicao2 extends javax.swing.JFrame {
     private final CentroExposicoes centro;
     private final CriarExposicaoController controller;
     private DefaultListModel dlmRegistpUtilizadores;
+    private DefaultListModel dlmOrganizadoresInseridos;
     /**
      * Creates new form JanelaCriarExposicao2
      * @param c
@@ -27,6 +29,7 @@ public class JanelaCriarExposicao2 extends javax.swing.JFrame {
         this.centro=c;
         this.controller=cont;
         dlmRegistpUtilizadores =new DefaultListModel();
+        dlmOrganizadoresInseridos = new DefaultListModel();
         initComponents();
         loadListaUtilizadores();
         setVisible(true);
@@ -63,16 +66,21 @@ public class JanelaCriarExposicao2 extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jList1);
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(jList2);
 
         jButton2.setText("Confirmar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Cancelar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Lista de Utilizadores:");
 
@@ -124,12 +132,31 @@ public class JanelaCriarExposicao2 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try{
+           Utilizador utSelect= (Utilizador)jList1.getSelectedValue();
            
-//            controller.addOrganizador();
+           controller.addOrganizador(utSelect);
+           loadListaUtilizadores();
+           loadListaOrganizadoresInseridos();
         }catch(IllegalArgumentException e){
             
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        JanelaGestorExposicoesGUI j = new JanelaGestorExposicoesGUI(centro);
+        dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            controller.confirmarRegistoExposicao();
+            JOptionPane.showMessageDialog(this, "Inseriu com sucesso a Exposição!");
+            dispose();
+            JanelaGestorExposicoesGUI j=new JanelaGestorExposicoesGUI(centro);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this, e.toString());
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -137,16 +164,25 @@ public class JanelaCriarExposicao2 extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
+    private javax.swing.JList<Utilizador> jList1;
+    private javax.swing.JList<Utilizador> jList2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 
     private void loadListaUtilizadores() {
+        dlmRegistpUtilizadores.clear();
         for(Utilizador u:this.controller.getRegistoUtilizadores()){
             dlmRegistpUtilizadores.addElement(u);
         }
         jList1.setModel(dlmRegistpUtilizadores);
+    }
+
+    private void loadListaOrganizadoresInseridos() {
+        dlmOrganizadoresInseridos.clear();;
+        for(Utilizador u:controller.getOrganizadoresInseridos()){
+            dlmOrganizadoresInseridos.addElement(u);
+        }
+        jList2.setModel(dlmOrganizadoresInseridos);
     }
 }

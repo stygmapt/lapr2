@@ -19,6 +19,9 @@ public class ListaOrganizadores {
         this.lista=new ArrayList<>();
     }
     
+    public List<Organizador> getLista(){
+        return this.lista;
+    }
     public void addOrganizador(Utilizador u){
         Organizador newOrga = new Organizador();
         newOrga.setUtilizador(u);

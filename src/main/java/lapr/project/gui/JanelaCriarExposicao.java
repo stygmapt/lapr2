@@ -234,6 +234,7 @@ public class JanelaCriarExposicao extends javax.swing.JFrame {
             controller.setDados(jTextField1.getText(), jTextField2.getText(), dInicio, dFim, dInicioSubm, dFimSubm, jTextField8.getText(), dLimiteAvalia);
             
             JanelaCriarExposicao2 j = new JanelaCriarExposicao2(centro,controller);
+            dispose();
         }catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(this, e.toString());
         } catch (ParseException ex) {
