@@ -6,6 +6,7 @@
 package lapr.project.model;
 
 import java.util.Date;
+import lapr.project.states.ExposicaoState;
 
 /**
  *
@@ -22,18 +23,20 @@ public class Exposicao {
 	private Date dataLimiteAvaliacoes;
 	private String local;
 	private ListaOrganizadores listaOrganizador;
+	private ExposicaoState m_state;
 
 	private Exposicao(String titulo, String desc, Date dataInicio, Date dataFim,
-					  Date DataInicioSub, Date dataFimsub, String local, Date dataAvaliacoes) {
+					  Date DataInicioSub, Date dataFimsub, String local,
+					  Date dataAvaliacoes) {
 		this.titulo = titulo;
 		this.descricao = desc;
 		this.dataInicioRealização = dataInicio;
 		this.dataFimRealização = dataFim;
 		this.dataInicioSubmissão = DataInicioSub;
 		this.dataFimSubmissão = dataFimsub;
-                this.dataLimiteAvaliacoes=dataAvaliacoes;
+		this.dataLimiteAvaliacoes = dataAvaliacoes;
 		this.local = local;
-                this.listaOrganizador = new ListaOrganizadores();
+		this.listaOrganizador = new ListaOrganizadores();
 	}
 
 	public Exposicao() {
@@ -60,32 +63,34 @@ public class Exposicao {
 		return dataInicioRealização;
 	}
 
-        public Date getDataFimRealização() {
+	public Date getDataFimRealização() {
 		return dataFimRealização;
 	}
-        
-	public void setDatasRealização(Date dataInicioRealização, Date dataFimRealização) {
-            if(dataInicioRealização.after(dataFimRealização) || dataFimRealização.equals(dataInicioRealização)){
-                throw new IllegalArgumentException("A data de fim de exposição tem de ser posterior á data de inicio.");
-            }
+
+	public void setDatasRealização(Date dataInicioRealização,
+								   Date dataFimRealização) {
+		if (dataInicioRealização.after(dataFimRealização) || dataFimRealização.
+			equals(dataInicioRealização)) {
+			throw new IllegalArgumentException("A data de fim de exposição tem de ser posterior á data de inicio.");
+		}
 		this.dataInicioRealização = dataInicioRealização;
-                this.dataFimRealização=dataFimRealização;
+		this.dataFimRealização = dataFimRealização;
 	}
 
 	public Date getDataInicioSubmissão() {
 		return dataInicioSubmissão;
 	}
 
-        public Date getDataFimSubmissão() {
+	public Date getDataFimSubmissão() {
 		return dataFimSubmissão;
 	}
-        
+
 	public void setPeriodoSubmissão(Date dataInicioSubmissão,Date dataFimSubmissão) {
-            if(dataInicioSubmissão.after(dataFimSubmissão) || dataFimSubmissão.equals(dataInicioSubmissão)){
-                throw new IllegalArgumentException("A data limite de submissão de candidaturas tem de ser posterior á data de inicio.");
-            }
-            this.dataInicioSubmissão = dataInicioSubmissão;
-            this.dataFimSubmissão=dataFimSubmissão;
+		if (dataInicioSubmissão.after(dataFimSubmissão) || dataFimSubmissão.equals(dataInicioSubmissão)) {
+			throw new IllegalArgumentException("A data limite de submissão de candidaturas tem de ser posterior á data de inicio.");
+		}
+		this.dataInicioSubmissão = dataInicioSubmissão;
+		this.dataFimSubmissão = dataFimSubmissão;
 	}
 
 	public String getLocal() {
@@ -93,10 +98,10 @@ public class Exposicao {
 	}
 
 	public void setLocal(String local) {
-            if (local == null || local.trim().isEmpty()) {
-                    throw new IllegalArgumentException("O local da exposição nao pode ser vazio.!");
-            }
-            this.local = local;
+		if (local == null || local.trim().isEmpty()) {
+			throw new IllegalArgumentException("O local da exposição nao pode ser vazio.!");
+		}
+		this.local = local;
 	}
 
         public void setDataLimiteAvaliacoes(Date dataLimiteAvaliacoes) {
@@ -106,17 +111,20 @@ public class Exposicao {
             this.dataLimiteAvaliacoes = dataLimiteAvaliacoes;
         }
 
-        public Date getDataLimiteAvaliacoes() {
-            return dataLimiteAvaliacoes;
-        }
+	public Date getDataLimiteAvaliacoes() {
+		return dataLimiteAvaliacoes;
+	}
 
 	public ListaOrganizadores getListaOrganizador() {
 		return listaOrganizador;
 	}
 
+	public void setState(ExposicaoState state) {
+		this.m_state = state;
+	}
 
 	public Boolean valida() {
 		return true;
 	}
-        
+
 }
