@@ -131,6 +131,9 @@ public class JanelaCriarExposicao2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(jList1.getSelectedValue()==null){
+            throw new IllegalArgumentException("Tem que selecionar um utilizador.");
+        }
         try{
            Utilizador utSelect= (Utilizador)jList1.getSelectedValue();
            
