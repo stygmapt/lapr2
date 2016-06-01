@@ -149,9 +149,6 @@ public class JanelaDefinirFAE2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(jList1.getSelectedValue()==null){
-            throw  new IllegalArgumentException("Tem que selecionar um utilizador.");
-        }
         try {
             controller.addOrganizadorFAE(jList1.getSelectedValue());
             loadListFaeInseridos();
