@@ -26,8 +26,8 @@ public class Organizador {
     }
 
     public String toString() {
-        String str = "Organizador:\n";
-        str += "\tUser: " + this.utilizador.getUsername() + "\n";
+        String str = "Organizador:";
+        str += "\tUser: " + this.utilizador.getUsername();
 
         return str;
     }

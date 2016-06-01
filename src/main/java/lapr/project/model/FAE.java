@@ -31,8 +31,8 @@ public class FAE {
     }
 
     public String toString() {
-        String str = "FAE:\n";
-        str += "\tUser: " + this.utilizador.getUsername() + "\n";
+        String str = "FAE:";
+        str += "\tUser: " + this.utilizador.getUsername();
 
         return str;
     }

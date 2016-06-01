@@ -32,6 +32,7 @@ public class LoginGUI extends javax.swing.JFrame {
             initComponents();
             setVisible(true);
             setLocationRelativeTo(null);
+            
 	}
 
 	/**

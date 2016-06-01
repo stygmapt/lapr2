@@ -138,7 +138,7 @@ public class JanelaCriarExposicao2 extends javax.swing.JFrame {
            loadListaUtilizadores();
            loadListaOrganizadoresInseridos();
         }catch(IllegalArgumentException e){
-            
+            JOptionPane.showMessageDialog(this, e.toString());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
