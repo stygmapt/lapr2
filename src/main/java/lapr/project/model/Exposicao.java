@@ -100,6 +100,9 @@ public class Exposicao {
 	}
 
         public void setDataLimiteAvaliacoes(Date dataLimiteAvaliacoes) {
+            if(dataLimiteAvaliacoes.before(this.dataFimSubmissão)){
+                throw new IllegalArgumentException("A data limite de avaliação de candidaturas tem de ser posterior á data limite de submissão.");
+            }
             this.dataLimiteAvaliacoes = dataLimiteAvaliacoes;
         }
 

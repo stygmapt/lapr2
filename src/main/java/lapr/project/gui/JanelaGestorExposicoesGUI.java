@@ -64,6 +64,11 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
         accoesMenu.add(jMenuItem3);
 
         jMenuItem4.setText("Criar Exposição");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         accoesMenu.add(jMenuItem4);
 
         jMenuItem5.setText("Definir Recurso");
@@ -138,6 +143,11 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
         LoginGUI j=new LoginGUI(centro);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        JanelaCriarExposicao j = new JanelaCriarExposicao(this.centro);
+        dispose();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu accoesMenu;
