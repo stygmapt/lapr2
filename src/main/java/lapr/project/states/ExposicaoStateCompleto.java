@@ -11,22 +11,22 @@ import lapr.project.model.Exposicao;
  *
  * @author Eduardo
  */
-public class ExposicaoStateCriada implements ExposicaoState {
+public class ExposicaoStateCompleto implements ExposicaoState {
 
 	private Exposicao m_expo;
 
-	public ExposicaoStateCriada(Exposicao e) {
-		m_expo = e;
+	public ExposicaoStateCompleto(Exposicao e) {
+		this.m_expo = e;
 	}
 
 	@Override
 	public boolean valida() {
-		return m_expo.valida();
+		return this.m_expo.valida();
 	}
 
 	@Override
 	public boolean setCriada() {
-		return true;
+		return false;
 	}
 
 	@Override
@@ -36,17 +36,12 @@ public class ExposicaoStateCriada implements ExposicaoState {
 
 	@Override
 	public boolean setDemonstracaoSemFAE() {
-		if (valida()) {
-			this.m_expo.setState(new ExposicaoStateDemonstracaoSemFAE(m_expo));
-		} else {
-			return false;
-		}
 		return false;
 	}
 
 	@Override
 	public boolean setCompleta() {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -77,10 +72,6 @@ public class ExposicaoStateCriada implements ExposicaoState {
 	@Override
 	public boolean setCandidaturaAvaliada() {
 		return false;
-	}
-
-	public String toString() {
-		return this.getClass().getSimpleName();
 	}
 
 }

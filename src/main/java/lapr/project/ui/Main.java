@@ -23,12 +23,11 @@ class Main {
 
 //		CalculatorExample calculatorExample = new CalculatorExample();
 //		System.out.println(calculatorExample.sum(3, 5));
-                Utilizador u = new Utilizador("tiago", "tiago", "tiago","Tiago");
+		Utilizador u = new Utilizador("tiago", "tiago", "tiago", "Tiago");
 
-		
 		CentroExposicoes centro = new CentroExposicoes();
-                centro.registaUtilizador(u);
-                centro.confirmaRegistoUtilizador(u);
+		centro.registaUtilizador(u);
+		centro.confirmaRegistoUtilizador(u);
 		LoginGUI j = new LoginGUI(centro);
 	}
 

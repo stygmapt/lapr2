@@ -31,12 +31,12 @@ public class ExposicaoStateDemonstracaoSemFAE implements ExposicaoState {
 
 	@Override
 	public boolean setFAESemDemonstracao() {
-		return true;
+		return false;
 	}
 
 	@Override
 	public boolean setDemonstracaoSemFAE() {
-		return false;
+		return true;
 	}
 
 	@Override

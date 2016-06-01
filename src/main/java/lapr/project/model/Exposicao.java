@@ -7,6 +7,7 @@ package lapr.project.model;
 
 import java.util.Date;
 import lapr.project.states.ExposicaoState;
+import lapr.project.states.ExposicaoStateCriada;
 
 /**
  *
@@ -37,10 +38,12 @@ public class Exposicao {
 		this.dataLimiteAvaliacoes = dataAvaliacoes;
 		this.local = local;
 		this.listaOrganizador = new ListaOrganizadores();
+
 	}
 
 	public Exposicao() {
 		this.listaOrganizador = new ListaOrganizadores();
+		this.m_state = new ExposicaoStateCriada(this);
 	}
 
 	public String getTitulo() {
@@ -48,7 +51,7 @@ public class Exposicao {
 	}
 
 	public void setTitulo(String titulo) {
-                if (titulo == null || titulo.trim().isEmpty()) {
+		if (titulo == null || titulo.trim().isEmpty()) {
 			throw new IllegalArgumentException("O titulo da exposição nao pode ser vazio.!");
 		}
 		this.titulo = titulo;
@@ -59,7 +62,7 @@ public class Exposicao {
 	}
 
 	public void setDescricao(String descricao) {
-            if (descricao == null || descricao.trim().isEmpty()) {
+		if (descricao == null || descricao.trim().isEmpty()) {
 			throw new IllegalArgumentException("A descrição da exposição nao pode ser vazio.!");
 		}
 		this.descricao = descricao;
@@ -91,8 +94,10 @@ public class Exposicao {
 		return dataFimSubmissão;
 	}
 
-	public void setPeriodoSubmissão(Date dataInicioSubmissão,Date dataFimSubmissão) {
-		if (dataInicioSubmissão.after(dataFimSubmissão) || dataFimSubmissão.equals(dataInicioSubmissão)) {
+	public void setPeriodoSubmissão(Date dataInicioSubmissão,
+									Date dataFimSubmissão) {
+		if (dataInicioSubmissão.after(dataFimSubmissão) || dataFimSubmissão.
+			equals(dataInicioSubmissão)) {
 			throw new IllegalArgumentException("A data limite de submissão de candidaturas tem de ser posterior á data de inicio.");
 		}
 		this.dataInicioSubmissão = dataInicioSubmissão;
@@ -110,12 +115,12 @@ public class Exposicao {
 		this.local = local;
 	}
 
-        public void setDataLimiteAvaliacoes(Date dataLimiteAvaliacoes) {
-            if(dataLimiteAvaliacoes.before(this.dataFimSubmissão)){
-                throw new IllegalArgumentException("A data limite de avaliação de candidaturas tem de ser posterior á data limite de submissão.");
-            }
-            this.dataLimiteAvaliacoes = dataLimiteAvaliacoes;
-        }
+	public void setDataLimiteAvaliacoes(Date dataLimiteAvaliacoes) {
+		if (dataLimiteAvaliacoes.before(this.dataFimSubmissão)) {
+			throw new IllegalArgumentException("A data limite de avaliação de candidaturas tem de ser posterior á data limite de submissão.");
+		}
+		this.dataLimiteAvaliacoes = dataLimiteAvaliacoes;
+	}
 
 	public Date getDataLimiteAvaliacoes() {
 		return dataLimiteAvaliacoes;
@@ -131,6 +136,30 @@ public class Exposicao {
 
 	public Boolean valida() {
 		return true;
+	}
+
+	public Boolean isInFAESemDemonstracao() {
+		return this.m_state.setFAESemDemonstracao();
+	}
+
+	public Boolean isInCriada() {
+		return this.m_state.setCriada();
+	}
+
+	public Boolean isDemonstracaoSemFAE() {
+		return this.m_state.setDemonstracaoSemFAE();
+	}
+
+	public Boolean isCompleta() {
+		return this.m_state.setCompleta();
+	}
+
+	public Boolean vereficaEstado() {
+		if (this.isDemonstracaoSemFAE() || this.isInFAESemDemonstracao()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
