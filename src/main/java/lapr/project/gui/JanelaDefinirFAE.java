@@ -6,7 +6,9 @@
 package lapr.project.gui;
 
 import javax.swing.DefaultListModel;
+import lapr.project.controller.DefiniFAEController;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Exposicao;
 import lapr.project.model.Utilizador;
 
 /**
@@ -14,16 +16,22 @@ import lapr.project.model.Utilizador;
  * @author Gabriel
  */
 public class JanelaDefinirFAE extends javax.swing.JFrame {
+    /*Centro de exposições*/   
     private final CentroExposicoes centro;
     private final Utilizador utilizadorLogado;
-    private DefaultListModel dlmListExpos;
+    private final DefaultListModel dlmListExpos;
+    private final DefiniFAEController controller;
     /**
      * Creates new form JanelaDefinirFAE
+     * @param c
+     * @param u
      */
     public JanelaDefinirFAE(CentroExposicoes c,Utilizador u) {
         this.centro=c;
         this.utilizadorLogado=u;
+        this.controller = new DefiniFAEController(this.centro);
         dlmListExpos = new DefaultListModel();
+      
         
         initComponents();
         loadListExpos();
@@ -52,6 +60,11 @@ public class JanelaDefinirFAE extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         jButton1.setText("Selecionar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -100,19 +113,29 @@ public class JanelaDefinirFAE extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        JanelaPrincipal j = new JanelaPrincipal(centro, utilizadorLogado);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        controller.selectExpo(jList1.getSelectedValue());
+        JanelaDefinirFAE2 j=new JanelaDefinirFAE2(centro,controller,utilizadorLogado);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<Exposicao> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
     private void loadListExpos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        dlmListExpos.clear();
+        for(Exposicao e:controller.getListExposicoesByOrganizador(this.utilizadorLogado)){
+            dlmListExpos.addElement(e);
+        }    
+        jList1.setModel(dlmListExpos);
     }
 }

@@ -5,6 +5,9 @@
  */
 package lapr.project.gui;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import lapr.project.controller.DefiniFAEController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
 
@@ -13,14 +16,23 @@ import lapr.project.model.Utilizador;
  * @author Gabriel
  */
 public class JanelaDefinirFAE2 extends javax.swing.JFrame {
-    private CentroExposicoes centro;
+   private final CentroExposicoes centro;
+    private final Utilizador utilizadorLogado;
+    private DefaultListModel dlmListUtilizadores;
+    private DefaultListModel dlmListFAEInseridos;
+    private DefiniFAEController controller;
     /**
      * Creates new form JanelaDefinirFAE2
      * @param c
      */
-    public JanelaDefinirFAE2(CentroExposicoes c) {
+    public JanelaDefinirFAE2(CentroExposicoes c,DefiniFAEController control,Utilizador u) {
         this.centro=c;
+        this.controller=control;
+        this.utilizadorLogado=u;
+        dlmListFAEInseridos = new DefaultListModel();
+        dlmListUtilizadores = new DefaultListModel();
         initComponents();
+        loadListUtilizadores();
         setVisible(true);
         setLocationRelativeTo(null);
     }
@@ -66,7 +78,7 @@ public class JanelaDefinirFAE2 extends javax.swing.JFrame {
 
         jLabel2.setText("Lista de FAE selecionados:");
 
-        jButton1.setText("Adicionar Organizador");
+        jButton1.setText("Adicionar FAE");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -120,7 +132,15 @@ public class JanelaDefinirFAE2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+        try {
+            controller.confirmar();
+            JOptionPane.showMessageDialog(this, "Inseriu com sucesso os FAE");
+            JanelaPrincipal j =new JanelaPrincipal(centro, utilizadorLogado);
+            dispose();
+            
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this, e.toString());
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -129,7 +149,12 @@ public class JanelaDefinirFAE2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        try {
+            controller.addOrganizadorFAE(jList1.getSelectedValue());
+            loadListFaeInseridos();
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this, e.toString());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -143,4 +168,20 @@ public class JanelaDefinirFAE2 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
+
+    private void loadListUtilizadores() {
+        dlmListUtilizadores.clear();
+        for(Utilizador u : controller.getRegistoUtilizadores()){
+            dlmListUtilizadores.addElement(u);
+        }
+        jList1.setModel(dlmListUtilizadores);
+    }
+
+    private void loadListFaeInseridos() {
+        dlmListFAEInseridos.clear();
+        for(Utilizador u:controller.getFAEInseridos()){
+            dlmListFAEInseridos.addElement(u);
+        }
+        jList2.setModel(dlmListFAEInseridos);
+    }
 }

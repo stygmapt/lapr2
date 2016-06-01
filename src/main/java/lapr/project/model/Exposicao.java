@@ -24,6 +24,7 @@ public class Exposicao {
 	private Date dataLimiteAvaliacoes;
 	private String local;
 	private ListaOrganizadores listaOrganizador;
+        private ListaFAE listaFae;
 	private ExposicaoState m_state;
 
 	private Exposicao(String titulo, String desc, Date dataInicio, Date dataFim,
@@ -38,10 +39,12 @@ public class Exposicao {
 		this.dataLimiteAvaliacoes = dataAvaliacoes;
 		this.local = local;
 		this.listaOrganizador = new ListaOrganizadores();
+                this.listaFae=new ListaFAE();
 
 	}
 
 	public Exposicao() {
+                this.listaFae = new ListaFAE();
 		this.listaOrganizador = new ListaOrganizadores();
 		this.m_state = new ExposicaoStateCriada(this);
 	}
@@ -126,10 +129,20 @@ public class Exposicao {
 		return dataLimiteAvaliacoes;
 	}
 
+        public ListaFAE getListaFae() {
+            return listaFae;
+        }
+
+        
 	public ListaOrganizadores getListaOrganizador() {
 		return listaOrganizador;
 	}
 
+        public ExposicaoState getM_state() {
+            return m_state;
+        }
+
+        
 	public void setState(ExposicaoState state) {
 		this.m_state = state;
 	}
