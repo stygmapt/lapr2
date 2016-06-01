@@ -38,6 +38,7 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
         listagensMenu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,6 +97,9 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
             }
         });
         listagensMenu.add(jMenuItem2);
+
+        jMenuItem7.setText("Listar Exposições");
+        listagensMenu.add(jMenuItem7);
 
         jMenuBar1.add(listagensMenu);
 
@@ -159,6 +163,7 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenu listagensMenu;
     // End of variables declaration//GEN-END:variables
 
