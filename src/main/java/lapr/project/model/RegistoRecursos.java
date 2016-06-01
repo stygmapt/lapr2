@@ -13,24 +13,29 @@ import java.util.List;
  * @author Gabriel
  */
 public class RegistoRecursos {
-    private List<Recurso> lista;
 
-    public RegistoRecursos() {
-        lista = new ArrayList<>();
-    }
-    
-    public boolean registaRecurso(String dsc){
-        Recurso r = new Recurso(dsc);
-        if(validaRecurso(r)){
-            lista.add(r);
-            return true;
-        }else{
-            throw new IllegalArgumentException("já existe um recurso com essa descrição");
-        }
-    }
+	private List<Recurso> lista;
 
-    private boolean validaRecurso(Recurso r) {
-        return !this.lista.contains(r);
-    }
+	public RegistoRecursos() {
+		lista = new ArrayList<>();
+	}
+
+	public boolean registaRecurso(String dsc) {
+		Recurso r = new Recurso(dsc);
+		if (validaRecurso(r)) {
+			lista.add(r);
+			return true;
+		} else {
+			throw new IllegalArgumentException("já existe um recurso com essa descrição");
+		}
+	}
+
+	private boolean validaRecurso(Recurso r) {
+		return !this.lista.contains(r);
+	}
+
+	public List<Recurso> getListaRecursos() {
+		return this.lista;
+	}
 
 }
