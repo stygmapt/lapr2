@@ -5,6 +5,9 @@
  */
 package lapr.project.model;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -72,17 +75,25 @@ public class Utilizador {
 	}
        
 
-	public void setPassword(String password) {
+	public void setPassword(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
             if (password == null || password.trim().isEmpty()) {
                 throw new IllegalArgumentException("insira a password!");
             }
-            this.m_sPassword = password;
+            MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
+            byte messageDigest[] = algorithm.digest(password.getBytes("UTF-8"));
+            
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : messageDigest) {
+                hexString.append(String.format("%02X", 0xFF & b));
+            }
+            String senha = hexString.toString();
+            this.m_sPassword = senha;
         }
 
 	@Override
 	public String toString() {
 		return String.
-			format("[%s,%s,%s,%s]", m_sNome, m_sEmail, m_sUserName, m_sPassword);
+			format("[%s,%s,%s]", m_sNome, m_sEmail, m_sUserName);
 	}
 
 	public boolean valida() {

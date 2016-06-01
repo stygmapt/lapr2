@@ -5,6 +5,10 @@
  */
 package lapr.project.gui;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import lapr.project.controller.RegistarUtilizadorController;
 import lapr.project.model.CentroExposicoes;
@@ -167,7 +171,11 @@ public class JanelaRegistarUtilizador extends javax.swing.JFrame {
 			dispose();
 		} catch (IllegalArgumentException e) {
                     JOptionPane.showMessageDialog(this, e.toString(), "Erro",JOptionPane.ERROR_MESSAGE);
-		}
+		} catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(JanelaRegistarUtilizador.class.getName()).log(Level.SEVERE, null, ex.toString());
+            } catch (UnsupportedEncodingException ex) {
+                Logger.getLogger(JanelaRegistarUtilizador.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_confirmarButtonActionPerformed
 
     private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
