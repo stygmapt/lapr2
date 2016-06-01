@@ -6,6 +6,7 @@
 package lapr.project.controller;
 
 import java.util.Date;
+import java.util.List;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.RegistoExposicoes;
@@ -46,6 +47,10 @@ public class CriarExposicaoController {
     
     public void confirmarRegistoExposicao(){
         this.registo.addExposição(this.expo);
+    }
+    
+    public List<Utilizador> getRegistoUtilizadores(){
+        return this.m_ce.getUtilizadoresRegistados().getLista();
     }
 }
 

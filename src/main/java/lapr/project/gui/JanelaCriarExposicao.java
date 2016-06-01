@@ -5,8 +5,11 @@
  */
 package lapr.project.gui;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import lapr.project.controller.CriarExposicaoController;
 import lapr.project.model.CentroExposicoes;
@@ -84,7 +87,11 @@ public class JanelaCriarExposicao extends javax.swing.JFrame {
 
         jLabel8.setText("Local:");
 
-        jTextField1.setText("jTextField1");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,19 +211,33 @@ public class JanelaCriarExposicao extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        SimpleDateFormat format = new SimpleDateFormat("dd-mm-yyyy");
+            
         try {
             controller.novaExposicao();
-            Date dInicio = new SimpleDateFormat("dd-mm-yyyy").parse(jTextField3.getText());
-            Date dFim =  new SimpleDateFormat("dd-mm-yyyy").parse(jTextField4.getText());
-            Date dInicioSubm =  new SimpleDateFormat("dd-mm-yyyy").parse(jTextField5.getText());
-            Date dFimSubm =  new SimpleDateFormat("dd-mm-yyyy").parse(jTextField6.getText());
-            Date dLimiteAvalia =  new SimpleDateFormat("dd-mm-yyyy").parse(jTextField7.getText());
+            
+            Date  dInicio=format.parse(jTextField3.getText());
+            Date dFim=format.parse(jTextField4.getText());
+            Date dInicioSubm = format.parse(jTextField5.getText());
+            Date dFimSubm = format.parse(jTextField6.getText());
+            Date dLimiteAvalia= format.parse(jTextField7.getText());
+            
+        System.out.println(jTextField1.getText());
+        System.out.println(jTextField2.getText());
+        System.out.println(dInicio.toGMTString());
+        System.out.println(dFim.toGMTString());
+        System.out.println(dInicioSubm.toGMTString());
+        System.out.println(dFimSubm.toGMTString());
+        System.out.println(dLimiteAvalia.toGMTString());
+        System.out.println(jTextField8.getText());
+            
             controller.setDados(jTextField1.getText(), jTextField2.getText(), dInicio, dFim, dInicioSubm, dFimSubm, jTextField8.getText(), dLimiteAvalia);
-            JanelaCriarExposicao2 j = new JanelaCriarExposicao2(this.centro,this.controller);
-        } catch (IllegalArgumentException e) {
+            
+            JanelaCriarExposicao2 j = new JanelaCriarExposicao2(centro,controller);
+        }catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(this, e.toString());
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(this, ex.toString());
+        } catch (ParseException ex) {
+            Logger.getLogger(JanelaCriarExposicao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -232,6 +253,10 @@ public class JanelaCriarExposicao extends javax.swing.JFrame {
         JanelaGestorExposicoesGUI j = new JanelaGestorExposicoesGUI(this.centro);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

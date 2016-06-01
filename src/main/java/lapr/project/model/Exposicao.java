@@ -48,6 +48,9 @@ public class Exposicao {
 	}
 
 	public void setTitulo(String titulo) {
+                if (titulo == null || titulo.trim().isEmpty()) {
+			throw new IllegalArgumentException("O titulo da exposição nao pode ser vazio.!");
+		}
 		this.titulo = titulo;
 	}
 
@@ -56,6 +59,9 @@ public class Exposicao {
 	}
 
 	public void setDescricao(String descricao) {
+            if (descricao == null || descricao.trim().isEmpty()) {
+			throw new IllegalArgumentException("A descrição da exposição nao pode ser vazio.!");
+		}
 		this.descricao = descricao;
 	}
 
