@@ -5,6 +5,10 @@
  */
 package lapr.project.gui;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import lapr.project.controller.AlterarUtilizadorController;
 import lapr.project.model.CentroExposicoes;
@@ -52,6 +56,7 @@ public class JanelaAlterarUtilizador extends javax.swing.JFrame {
         passwordTextField = new javax.swing.JTextField();
         confirmarButton = new javax.swing.JButton();
         cancelarButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +90,8 @@ public class JanelaAlterarUtilizador extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Se não pretender alterar a password deixe em branco.");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,30 +102,35 @@ public class JanelaAlterarUtilizador extends javax.swing.JFrame {
                 .addGap(48, 48, 48))
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(confirmarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cancelarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(nomeLabel)
-                        .addGap(32, 32, 32)
-                        .addComponent(nomeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(confirmarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cancelarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(passwordLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(passwordTextField)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(nomeLabel)
+                                .addGap(32, 32, 32)
+                                .addComponent(nomeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(userLabel)
-                                    .addComponent(emailLabel))
-                                .addGap(29, 29, 29))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(passwordLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(passwordTextField)
-                            .addComponent(userTextField)
-                            .addComponent(emailTextField))))
-                .addContainerGap(37, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(userLabel)
+                                        .addGap(39, 39, 39))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(emailLabel)
+                                        .addGap(24, 24, 24)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(userTextField)
+                                    .addComponent(emailTextField))))))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,10 +146,12 @@ public class JanelaAlterarUtilizador extends javax.swing.JFrame {
                     .addComponent(userLabel)
                     .addComponent(userTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(emailLabel)
-                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emailLabel))
+                .addGap(14, 14, 14)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passwordLabel, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -145,7 +159,7 @@ public class JanelaAlterarUtilizador extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(confirmarButton)
                     .addComponent(cancelarButton))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -162,12 +176,16 @@ public class JanelaAlterarUtilizador extends javax.swing.JFrame {
             utilizador.setNome(nomeTextField.getText());
             utilizador.setUsername(userTextField.getText());
             utilizador.setEmail(emailTextField.getText());
-            utilizador.setPassword(passwordTextField.getText());
+            if(!passwordTextField.getText().isEmpty()){
+                utilizador.setPassword(passwordTextField.getText());
+            }
             JOptionPane.showMessageDialog(this, "A alteração dos dados de utilizador foram alteradas com sucesso.", "Alteraçao bem sucedida", JOptionPane.INFORMATION_MESSAGE);
             JanelaPrincipal j=new JanelaPrincipal(centro, utilizador);
             dispose();
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(this, e.toString(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
+            Logger.getLogger(JanelaAlterarUtilizador.class.getName()).log(Level.SEVERE, null, ex.toString());
         }
     }//GEN-LAST:event_confirmarButtonActionPerformed
 
@@ -180,6 +198,7 @@ public class JanelaAlterarUtilizador extends javax.swing.JFrame {
     private javax.swing.JButton confirmarButton;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTextField;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel nomeLabel;
     private javax.swing.JTextField nomeTextField;
@@ -193,6 +212,5 @@ public class JanelaAlterarUtilizador extends javax.swing.JFrame {
         nomeTextField.setText(utilizador.getNome());
         userTextField.setText(utilizador.getUsername());
         emailTextField.setText(utilizador.getEmail());
-        passwordTextField.setText(utilizador.getPassword());
     }
 }

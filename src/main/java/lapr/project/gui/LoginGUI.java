@@ -5,7 +5,11 @@
  */
 package lapr.project.gui;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import lapr.project.controller.LoginController;
 import lapr.project.model.CentroExposicoes;
@@ -52,7 +56,7 @@ public class LoginGUI extends javax.swing.JFrame {
         registarButton = new javax.swing.JButton();
         cancelarButton = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
 
         jTextField3.setText("jTextField2");
 
@@ -114,8 +118,8 @@ public class LoginGUI extends javax.swing.JFrame {
                                     .addComponent(jLabel1))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField4)
-                                    .addComponent(jTextField2))))))
+                                    .addComponent(jTextField2)
+                                    .addComponent(jTextField1))))))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -128,17 +132,16 @@ public class LoginGUI extends javax.swing.JFrame {
                     .addComponent(userLabel)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(loginButton)
-                            .addComponent(cancelarButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(registarButton))
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(loginButton)
+                    .addComponent(cancelarButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(registarButton)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -146,19 +149,24 @@ public class LoginGUI extends javax.swing.JFrame {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
 		String username = jTextField2.getText();
-		String passString = jTextField4.getText();
+		String passString = jTextField1.getText();
 		
+            try {
                 if (m_reController.tryLogin(username, passString)) {
-			JanelaPrincipal janela = new JanelaPrincipal(m_CentroExposicoes, m_reController.getUtilizadorLogado());
-                        dispose();
-		} else if(username.equalsIgnoreCase("admin") && passString.equalsIgnoreCase("admin")){
+                    JanelaPrincipal janela = new JanelaPrincipal(m_CentroExposicoes, m_reController.getUtilizadorLogado());
+                    dispose();
+                } else if(username.equalsIgnoreCase("admin") && passString.equalsIgnoreCase("admin")){
                     JanelaGestorExposicoesGUI janela = new JanelaGestorExposicoesGUI(m_CentroExposicoes);
                     dispose();
                 }else{
                     JOptionPane.showMessageDialog(rootPane, "Insira os dados corretamente!");
-			                 System.out.println("");
-		
-    }
+                    System.out.println("");
+                    
+                }       } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(LoginGUI.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (UnsupportedEncodingException ex) {
+                Logger.getLogger(LoginGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
@@ -178,9 +186,9 @@ public class LoginGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelarButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel loginLabel;
     private javax.swing.JButton registarButton;

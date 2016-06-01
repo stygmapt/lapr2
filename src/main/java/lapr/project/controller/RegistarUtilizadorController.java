@@ -5,6 +5,8 @@
  */
 package lapr.project.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
 
@@ -26,7 +28,7 @@ public class RegistarUtilizadorController {
         return new Utilizador();
     }
     
-    public void setDados(String nome,String mail,String m){
+    public void setDados(String nome,String mail,String m) throws NoSuchAlgorithmException, UnsupportedEncodingException{
         m_novoUt.setNome(nome);
         m_novoUt.setEmail(mail);
         m_novoUt.setUsername(mail);
