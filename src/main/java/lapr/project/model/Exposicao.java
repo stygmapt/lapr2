@@ -178,5 +178,13 @@ public class Exposicao {
 	public ListaDemonstracao getListaDemonstracao() {
 		return listaDemonstracao;
 	}
+        public String toString() {
+        String str = "Exposiçao:";
+        str += "\tTitulo: " + this.titulo;
+        str+="\tDescrição: "+this.descricao;
+
+        return str;
+    }
+        
 
 }

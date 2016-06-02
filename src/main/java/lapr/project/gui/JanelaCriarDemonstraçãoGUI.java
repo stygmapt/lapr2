@@ -30,7 +30,7 @@ public class JanelaCriarDemonstraçãoGUI extends javax.swing.JFrame {
 		this.m_centro = centro;
 		this.m_user = user;
 		this.m_cController = new CriarDemonstracaoController(centro);
-		setVisible(true);
+		
 		this.dlm = new DefaultListModel();
 		initComponents();
 		for (Exposicao exposicao : this.m_cController.
@@ -38,6 +38,8 @@ public class JanelaCriarDemonstraçãoGUI extends javax.swing.JFrame {
 			dlm.addElement(exposicao);
 		}
 		jList1.setModel(dlm);
+                setVisible(true);
+                setLocationRelativeTo(null);
 	}
 
 	/**
@@ -57,11 +59,6 @@ public class JanelaCriarDemonstraçãoGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jList1.setModel(new javax.swing.AbstractListModel<Object>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(jList1);
 
         jLabel1.setText("Lista de Exposições a qual pode Criar uma Demonstração");
@@ -105,7 +102,7 @@ public class JanelaCriarDemonstraçãoGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pack();

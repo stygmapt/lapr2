@@ -53,11 +53,17 @@ public class CriarDemonstracaoController {
 		m_demonstraçao.getListaRecurso().adicionaRecurso(recurso);
 	}
 
+        public List<Recurso> getRecursosSelecionados(){
+            return this.m_demonstraçao.getListaRecurso().getListaRecursos();
+        }
 	public Boolean RegistaDemonstracao(Demonstracao demonstraçao) {
 		this.m_demonstraçao = demonstraçao;
 		if (this.m_demonstraçao.valida()) {
 			this.m_exposicao.getListaDemonstracao().
 				adicionarDemonstracao(demonstraçao);
+                        for(Recurso r:this.m_centro.getM_regRecursos().getListaRecursos()){
+                            System.out.println(r.toString());
+                        }
 			return true;
 		} else {
 			return false;
