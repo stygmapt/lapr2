@@ -36,6 +36,7 @@ public class CriarExposicaoController {
     public void setDados(String titulo, String desc, Date dataInicio, Date dataFim,
 					  Date DataInicioSub, Date dataFimsub, String local, Date dataAvaliacoes){
         this.expo.setTitulo(titulo);
+        this.expo.setDescricao(desc);
         this.expo.setDatasRealização(dataInicio, dataFim);
         this.expo.setPeriodoSubmissão(DataInicioSub, dataFimsub);
         this.expo.setLocal(local);

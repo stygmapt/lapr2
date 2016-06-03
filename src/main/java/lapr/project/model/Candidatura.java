@@ -5,6 +5,9 @@
  */
 package lapr.project.model;
 
+import lapr.project.states.CandidaturaState;
+import lapr.project.states.CandidaturaStateNaoAvaliada;
+
 /**
  *
  * @author Gabriel
@@ -18,6 +21,7 @@ public class Candidatura {
     private int qtd_convites;
     private float area_Empresa;
     private ListaProdutos lista_produtos;
+    private CandidaturaState estado_candidatura;
 
     public Candidatura() {
     }
@@ -30,6 +34,7 @@ public class Candidatura {
         this.qtd_convites = qtd_convites;
         this.area_Empresa = area_Empresa;
         this.lista_produtos = lista_produtos;
+        this.estado_candidatura = new CandidaturaStateNaoAvaliada();
     }
 
     public Utilizador getRepresentante() {

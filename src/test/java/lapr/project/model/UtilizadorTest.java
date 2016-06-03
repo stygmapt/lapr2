@@ -5,6 +5,8 @@
  */
 package lapr.project.model;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -133,7 +135,7 @@ public class UtilizadorTest {
      * Test of getPassword method, of class Utilizador.
      */
     @Test
-    public void testGetPassword() {
+    public void testGetPassword() throws NoSuchAlgorithmException, UnsupportedEncodingException {
         System.out.println("getPassword");
         Utilizador instance = new Utilizador();
         instance.setPassword("pww");
@@ -146,7 +148,7 @@ public class UtilizadorTest {
      * Test of setPassword method, of class Utilizador.
      */
     @Test
-    public void testSetPassword() {
+    public void testSetPassword() throws NoSuchAlgorithmException, UnsupportedEncodingException {
         System.out.println("setPassword");
         String password = "pass";
         Utilizador instance = new Utilizador();
