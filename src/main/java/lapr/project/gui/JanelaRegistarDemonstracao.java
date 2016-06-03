@@ -19,22 +19,22 @@ import lapr.project.model.Utilizador;
  */
 public class JanelaRegistarDemonstracao extends javax.swing.JFrame {
 
-	private CriarDemonstracaoController m_controller;
-	private CentroExposicoes m_centro;
-	private DefaultListModel dlmRecursosExistentes;
-	private DefaultListModel dlmRecursosSelecionados;
-	private Demonstracao demonstracao;
-	private Utilizador m_utilizador;
+	private final CriarDemonstracaoController m_controller;
+	private final CentroExposicoes m_centro;
+	private final DefaultListModel dlmRecursosExistentes;
+	private final DefaultListModel dlmRecursosSelecionados;
+	private final Utilizador m_utilizador;
 
 	/**
 	 * Creates new form JanelaRegistarDemonstracao
+     * @param centro
+     * @param controller
+     * @param Demonstracao
+     * @param user
 	 */
-	public JanelaRegistarDemonstracao(CentroExposicoes centro,
-									  CriarDemonstracaoController controller,
-									  Demonstracao Demonstracao, Utilizador user) {
+	public JanelaRegistarDemonstracao(CentroExposicoes centro, CriarDemonstracaoController controller, Utilizador user) {
 		this.m_utilizador = user;
 		this.m_centro = centro;
-		this.demonstracao = Demonstracao;
 		this.m_controller = controller;
 		
 		dlmRecursosExistentes = new DefaultListModel();
@@ -159,11 +159,10 @@ public class JanelaRegistarDemonstracao extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 		try {
 			this.m_controller.setDados(jTextField1.getText());
-			this.m_controller.RegistaDemonstracao(demonstracao);
-			this.m_controller.ChangeState();
-			JanelaPrincipal j =new JanelaPrincipal(m_centro, m_utilizador);
+			this.m_controller.RegistaDemonstracao();
                         JOptionPane.showMessageDialog(this, "Introduziu a demonstração com sucesso.");
                         dispose();
+                        JanelaPrincipal j =new JanelaPrincipal(m_centro, m_utilizador);
 		} catch (IllegalArgumentException e) {
 			JOptionPane.showMessageDialog(this, e.toString());
 		}
@@ -171,9 +170,16 @@ public class JanelaRegistarDemonstracao extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-		Recurso recurso = (Recurso) jList1.getSelectedValue();
+		if(jList1.getSelectedValue()==null){
+                    throw new IllegalArgumentException("Selecione um recurso da lista");
+                }
+                try{
+                Recurso recurso = (Recurso) jList1.getSelectedValue();
 		this.m_controller.AdicionaRecurso(recurso);
                 loadReucrsosEscolhidos();
+                }catch(IllegalArgumentException e){
+                    JOptionPane.showMessageDialog(this, e.toString());
+                }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -199,10 +205,10 @@ public class JanelaRegistarDemonstracao extends javax.swing.JFrame {
     }
 
     private void loadReucrsosEscolhidos() {
-        dlmRecursosExistentes.clear();
+        dlmRecursosSelecionados.clear();
         for(Recurso r:this.m_controller.getRecursosSelecionados()){
             dlmRecursosSelecionados.addElement(r);
         }
-        jList2.setModel(dlmRecursosExistentes);
+        jList2.setModel(dlmRecursosSelecionados);
     }
 }

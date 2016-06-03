@@ -25,6 +25,11 @@ public class ListaRecurso {
 	}
 
 	public void adicionaRecurso(Recurso recurso) {
+            for(Recurso r:this.listaRecursos){
+                if(r.equals(recurso)){
+                    throw new IllegalArgumentException("Já existe o recurso selecionado.");
+                }
+            }
 		this.listaRecursos.add(recurso);
 	}
 

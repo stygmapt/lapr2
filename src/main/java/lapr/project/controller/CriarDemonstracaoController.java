@@ -5,6 +5,7 @@
  */
 package lapr.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Demonstracao;
@@ -21,7 +22,7 @@ import lapr.project.states.ExposicaoStateDemonstracaoSemFAE;
 public class CriarDemonstracaoController {
 
 	private Demonstracao m_demonstraçao;
-	private CentroExposicoes m_centro;
+	private final CentroExposicoes m_centro;
 	private Exposicao m_exposicao;
 
 	public CriarDemonstracaoController(CentroExposicoes centro) {
@@ -29,8 +30,14 @@ public class CriarDemonstracaoController {
 	}
 
 	public List<Exposicao> getListaExposicoesDoOrganizador(Utilizador user) {
-		return this.m_centro.getRegistoExposicoes().
-			getListaExposicoesDoOrganizador(user);
+            List<Exposicao> lst = new ArrayList<>();
+            for(Exposicao e: this.m_centro.getRegistoExposicoes().getListaExposicoesDoOrganizador(user)){
+                if(e.isCompleta() || e.isDemonstracaoSemFAE() || e.isInFAESemDemonstracao() || e.isInCriada()){
+                    lst.add(e);
+                }
+            }
+            return lst;
+                
 	}
 
 	public Demonstracao novaDemonstracao(Exposicao expo) {
@@ -56,14 +63,11 @@ public class CriarDemonstracaoController {
         public List<Recurso> getRecursosSelecionados(){
             return this.m_demonstraçao.getListaRecurso().getListaRecursos();
         }
-	public Boolean RegistaDemonstracao(Demonstracao demonstraçao) {
-		this.m_demonstraçao = demonstraçao;
+	public Boolean RegistaDemonstracao() {
 		if (this.m_demonstraçao.valida()) {
+                        ChangeState();
 			this.m_exposicao.getListaDemonstracao().
-				adicionarDemonstracao(demonstraçao);
-                        for(Recurso r:this.m_centro.getM_regRecursos().getListaRecursos()){
-                            System.out.println(r.toString());
-                        }
+				adicionarDemonstracao(this.m_demonstraçao);
 			return true;
 		} else {
 			return false;
@@ -71,11 +75,10 @@ public class CriarDemonstracaoController {
 	}
 
 	public void ChangeState() {
-		if (m_exposicao.vereficaEstado()) {
-			m_exposicao.setState(new ExposicaoStateCompleto(m_exposicao));
-		} else {
-			m_exposicao.
-				setState(new ExposicaoStateDemonstracaoSemFAE(m_exposicao));
+		if (m_exposicao.isInFAESemDemonstracao()) {
+                    m_exposicao.setState(new ExposicaoStateCompleto(m_exposicao));
+		} else if(m_exposicao.isInCriada() || m_exposicao.isDemonstracaoSemFAE()){
+			m_exposicao.setState(new ExposicaoStateDemonstracaoSemFAE(m_exposicao));
 		}
 	}
 }

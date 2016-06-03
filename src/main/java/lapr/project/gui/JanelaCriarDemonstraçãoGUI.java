@@ -33,6 +33,7 @@ public class JanelaCriarDemonstraçãoGUI extends javax.swing.JFrame {
 		
 		this.dlm = new DefaultListModel();
 		initComponents();
+                
 		for (Exposicao exposicao : this.m_cController.
 			getListaExposicoesDoOrganizador(user)) {
 			dlm.addElement(exposicao);
@@ -61,7 +62,7 @@ public class JanelaCriarDemonstraçãoGUI extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jList1);
 
-        jLabel1.setText("Lista de Exposições a qual pode Criar uma Demonstração");
+        jLabel1.setText("Lista de Exposições as quais é possível criar demonstrações:");
 
         jButton1.setText("Seleccionar Exposição");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -80,29 +81,25 @@ public class JanelaCriarDemonstraçãoGUI extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(47, 47, 47)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(60, 60, 60))))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
@@ -111,7 +108,7 @@ public class JanelaCriarDemonstraçãoGUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 		Exposicao expo = (Exposicao) jList1.getSelectedValue();
 		Demonstracao demonstraçao = this.m_cController.novaDemonstracao(expo);
-		JanelaRegistarDemonstracao janela = new JanelaRegistarDemonstracao(m_centro, m_cController, demonstraçao, m_user);
+		JanelaRegistarDemonstracao janela = new JanelaRegistarDemonstracao(m_centro, m_cController, m_user);
 		dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

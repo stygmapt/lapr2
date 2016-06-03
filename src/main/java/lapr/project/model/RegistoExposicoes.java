@@ -58,16 +58,12 @@ public class RegistoExposicoes {
 	public List<Exposicao> getListaExposicoesDoOrganizador(Utilizador user) {
 		List<Exposicao> listaExpoOrg = new ArrayList<>();
 		for (Exposicao exposicao : listaExposições) {
-			if (exposicao.isInCriada() || exposicao.isInFAESemDemonstracao()) {
 				for (Organizador org : exposicao.getListaOrganizador().
 					getLista()) {
-					if (org.getUtilizador().getUsername().equalsIgnoreCase(org.
-						getUtilizador().getUsername())) {
-						System.out.println("entrou");
+					if (org.getUtilizador().getUsername().equalsIgnoreCase(org.getUtilizador().getUsername())) {
 						listaExpoOrg.add(exposicao);
 					}
-				}
-			}
+				}			
 		}
 		return listaExpoOrg;
 	}
