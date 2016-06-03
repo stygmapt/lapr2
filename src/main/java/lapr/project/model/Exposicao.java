@@ -23,11 +23,14 @@ public class Exposicao {
 	private Date dataFimSubmissão;
 	private Date dataLimiteAvaliacoes;
 	private String local;
-	private ListaOrganizadores listaOrganizador;
-	private ListaFAE listaFae;
-	private ExposicaoState m_state;
-	private ListaDemonstracao listaDemonstracao;
-
+        private ExposicaoState m_state;
+	private final ListaOrganizadores listaOrganizador;
+	private final ListaFAE listaFae;
+	private final ListaDemonstracao listaDemonstracao;
+	private final RegistoCandidaturas registoCandidaturas;
+	private final RegistoCandidaturasRemovidas registoCandidaturasRemovidas;
+        
+        
 	private Exposicao(String titulo, String desc, Date dataInicio, Date dataFim,
 					  Date DataInicioSub, Date dataFimsub, String local,
 					  Date dataAvaliacoes) {
@@ -42,6 +45,8 @@ public class Exposicao {
 		this.listaOrganizador = new ListaOrganizadores();
 		this.listaFae = new ListaFAE();
 		this.listaDemonstracao = new ListaDemonstracao();
+                this.registoCandidaturas = new RegistoCandidaturas();
+                this.registoCandidaturasRemovidas = new RegistoCandidaturasRemovidas();
 	}
 
 	public Exposicao() {
@@ -49,6 +54,8 @@ public class Exposicao {
 		this.listaOrganizador = new ListaOrganizadores();
 		this.listaDemonstracao = new ListaDemonstracao();
 		this.m_state = new ExposicaoStateCriada(this);
+                this.registoCandidaturas = new RegistoCandidaturas();
+                this.registoCandidaturasRemovidas = new RegistoCandidaturasRemovidas();
 	}
 
 	public String getTitulo() {
@@ -184,6 +191,14 @@ public class Exposicao {
         str+="\tDescrição: "+this.descricao;
 
         return str;
+    }
+
+    boolean isCandidaturasAbertas() {
+        return this.m_state.setCandidaturaAberta();
+    }
+
+    public RegistoCandidaturas getRegistoCandidaturas() {
+        return this.registoCandidaturas;
     }
         
 

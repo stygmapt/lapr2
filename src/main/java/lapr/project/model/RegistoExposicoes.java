@@ -67,4 +67,18 @@ public class RegistoExposicoes {
 		}
 		return listaExpoOrg;
 	}
+        
+        public List<Exposicao> getExposicoesCandidaturasAbertas(Utilizador user){
+            List<Exposicao> listaExpoOrg = new ArrayList<>();
+		for (Exposicao exposicao : listaExposições) {
+                    if(exposicao.isCandidaturasAbertas()){
+			for (Organizador org : exposicao.getListaOrganizador().getLista()) {
+                            if (org.getUtilizador().getUsername().equalsIgnoreCase(org.getUtilizador().getUsername())) {
+						listaExpoOrg.add(exposicao);
+                            }
+			}
+                    }
+		}
+		return listaExpoOrg;
+        }
 }
