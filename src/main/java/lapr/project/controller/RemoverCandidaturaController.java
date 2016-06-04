@@ -5,7 +5,13 @@
  */
 package lapr.project.controller;
 
+import java.util.List;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Exposicao;
+import lapr.project.model.RegistoCandidaturas;
+import lapr.project.model.RegistoCandidaturasRemovidas;
+import lapr.project.model.RegistoExposicoes;
+import lapr.project.model.Utilizador;
 
 /**
  *
@@ -13,9 +19,19 @@ import lapr.project.model.CentroExposicoes;
  */
 public class RemoverCandidaturaController {
     
-    private CentroExposicoes centro;
+    private CentroExposicoes m_ce;
+    private RegistoExposicoes regExp;
+    private Exposicao exp;
+    private RegistoCandidaturas regCand;
+    private RegistoCandidaturasRemovidas regCandRemovidas;
     
     public RemoverCandidaturaController(CentroExposicoes c){
-        this.centro = c;
+        this.m_ce = c;
     }
+    
+    public List<Exposicao> getListExposicoes(Utilizador user){
+        return  this.m_ce.getRegistoExposicoes().getExposicoesCandidaturasAbertas(user);            
+    }
+    
+    
 }
