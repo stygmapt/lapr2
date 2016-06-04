@@ -148,11 +148,11 @@ public class UtilizadorTest {
 	 * Test of setPassword method, of class Utilizador.
 	 */
 	@Test
-	public void testSetPassword() {
+	public void testSetPassword() throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		System.out.println("setPassword");
 		String password = "pass";
 		Utilizador instance = new Utilizador();
-		//instance.setPassword(password);
+		instance.setPassword(password);
 		String exp = instance.getPassword();
 		assertEquals(exp, password);
 	}

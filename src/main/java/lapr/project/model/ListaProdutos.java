@@ -22,5 +22,15 @@ public class ListaProdutos {
     public List<Produto> getLista(){
         return this.lista;
     }
-    
+
+    public Produto novoProduto() {
+        return new Produto();
+    }
+
+    public void adicionaProduto(Produto produto) {
+        if(produto.getNrPalavrasChaves()>2){
+            throw  new IllegalArgumentException("O produto tem de ter pelo menos duas palavras-chave associadas.");
+        }
+        this.lista.add(produto);
+    } 
 }

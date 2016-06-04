@@ -72,11 +72,7 @@ public class RegistoExposicoes {
             List<Exposicao> listaExpoOrg = new ArrayList<>();
 		for (Exposicao exposicao : listaExposições) {
                     if(exposicao.isCandidaturasAbertas()){
-			for (Organizador org : exposicao.getListaOrganizador().getLista()) {
-                            if (org.getUtilizador().getUsername().equalsIgnoreCase(org.getUtilizador().getUsername())) {
-						listaExpoOrg.add(exposicao);
-                            }
-			}
+			listaExpoOrg.add(exposicao);
                     }
 		}
 		return listaExpoOrg;
