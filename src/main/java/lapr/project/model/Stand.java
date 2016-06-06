@@ -54,8 +54,7 @@ public class Stand implements Serializable{
             return false; 
     }
         Stand outroStand = (Stand) outroObjeto;
-        return this.id == outroStand.id 
-                && this.area == outroStand.area;
+        return this.id == outroStand.id;
     
 }
     

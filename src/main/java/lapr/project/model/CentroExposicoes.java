@@ -54,8 +54,17 @@ public class CentroExposicoes implements Serializable{
         }
         
 	private boolean validaUtilizador(Utilizador u) {
-            if(m_regUtilizadores.getLista().contains(u)||m_lUtilizadoresNConfirmados.contains(u)){
-                throw new IllegalArgumentException("já existe esse utilizador no sistema.");
+            for(Utilizador ut:this.getUtilizadoresRegistados().getLista()){
+                if(ut.equals(u)){
+                    throw new IllegalArgumentException("já existe esse utilizador no sistema.");
+            
+                }
+            }
+            for(Utilizador ut:this.m_lUtilizadoresNConfirmados){
+                if(ut.equals(u)){
+                    throw new IllegalArgumentException("já existe esse utilizador no sistema.");
+            
+                }
             }
 		
             return true;

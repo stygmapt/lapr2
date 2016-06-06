@@ -110,11 +110,11 @@ public class Utilizador implements Serializable{
 	}
 
 	public boolean equals(Utilizador u) {
-		if (this == u) {
-			return true;
+		if (this == null) {
+			return false;
 		}
 		if (u != null) {
-			return hasID(u.m_sUserName);
+			return u.getUsername().equalsIgnoreCase(this.getUsername());
 		}
 		return false;
 	}

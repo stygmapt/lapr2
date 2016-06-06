@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
 import lapr.project.states.CandidaturaState;
 import lapr.project.states.CandidaturaStateEmSubmissao;
 
@@ -12,7 +13,7 @@ import lapr.project.states.CandidaturaStateEmSubmissao;
  *
  * @author Gabriel
  */
-public class Candidatura {
+public class Candidatura implements Serializable{
 
 	private Utilizador representante;
 	private String nome_Empresa;
@@ -54,6 +55,9 @@ public class Candidatura {
 	}
 
 	public void setNome_Empresa(String nome_Empresa) {
+            if(nome_Empresa.isEmpty()||nome_Empresa==null){
+                throw new IllegalArgumentException("Introduza o nome da empresa.");
+            }
 		this.nome_Empresa = nome_Empresa;
 	}
 
@@ -62,6 +66,9 @@ public class Candidatura {
 	}
 
 	public void setMorada_Empresa(String morada_Empresa) {
+            if(morada_Empresa.isEmpty()||morada_Empresa==null){
+                throw new IllegalArgumentException("Introduza a morada.");
+            }
 		this.morada_Empresa = morada_Empresa;
 	}
 
@@ -70,6 +77,10 @@ public class Candidatura {
 	}
 
 	public void setTelemovel_Empresa(int telemovel_Empresa) {
+            int nrNumeros = String.valueOf(telemovel_Empresa).length();
+            if(nrNumeros!=9){
+                throw new IllegalArgumentException("O telefone tem que ter 9 digitos.");
+            }
 		this.telemovel_Empresa = telemovel_Empresa;
 	}
 
@@ -114,6 +125,18 @@ public class Candidatura {
 	public boolean valida() {
 		return true;
 	}
+
+    public boolean equals(Candidatura o) {
+        if(o==null){
+            return false;
+        }
+        if (o != null) {
+			return o.getRepresentante().equals(this.getRepresentante());
+		}
+        return false;
+    }
+        
+        
 
     public void setState(CandidaturaState candidaturaState) {
         this.estado_candidatura = candidaturaState;

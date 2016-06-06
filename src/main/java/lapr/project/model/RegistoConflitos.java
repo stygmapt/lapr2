@@ -41,7 +41,13 @@ public class RegistoConflitos {
     }
 
     public boolean addConflito(Conflito c) {
+        for(Conflito conf:this.listaConflitos){
+            if(conf.equals(c)){
+                throw new IllegalArgumentException("Conflito existente.");
+            }
+        }
         return this.listaConflitos.add(c);
+        
     }
 
 }

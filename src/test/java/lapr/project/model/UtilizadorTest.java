@@ -161,7 +161,7 @@ public class UtilizadorTest {
 	 * Test of toString method, of class Utilizador.
 	 */
 	@Test
-	public void testToString() {
+	public void testToString() throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		System.out.println("toString");
 		Utilizador instance = new Utilizador("tiago", "tiago", "tiago", "tiago");
 		String expResult = "[tiago,tiago,tiago,tiago]";
@@ -185,7 +185,7 @@ public class UtilizadorTest {
 	 * Test of equals method, of class Utilizador.
 	 */
 	@Test
-	public void testEquals() {
+	public void testEquals() throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		System.out.println("equals");
 		Utilizador instance1 = new Utilizador("tiago", "tiago", "tiago", "tiago");
 		Utilizador instance2 = new Utilizador("tiago", "tiago", "tiago", "tiago");
