@@ -177,6 +177,8 @@ public class JanelaSubmeterCandidatura3 extends javax.swing.JFrame {
         try {
             this.controller.setDesignacao(jTextField2.getText());
             this.controller.confirmaProduto();
+            JanelaSubmeterCandidatura4 j =new JanelaSubmeterCandidatura4(centro, controller, utilizadorLogado);
+            dispose();
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(this, e.toString());
         }

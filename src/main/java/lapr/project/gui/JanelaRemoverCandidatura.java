@@ -18,21 +18,26 @@ import lapr.project.model.Utilizador;
  */
 public class JanelaRemoverCandidatura extends javax.swing.JFrame {
 
-    private RemoverCandidaturaController m_rcController;
-    private CentroExposicoes centro;
-    private Utilizador representante;
+    private final RemoverCandidaturaController m_rcController;
+    private final CentroExposicoes centro;
+    private final Utilizador representante;
     private DefaultListModel dlm_listaCandidaturas;
     
     /**
      * Creates new form JanelaRemoverCandidatura
+     * @param c
+     * @param r
      */
     public JanelaRemoverCandidatura(CentroExposicoes c, Utilizador r) {
         this.centro = c;
         m_rcController = new RemoverCandidaturaController(this.centro);
         this.representante = r;
+        this.dlm_listaCandidaturas=new DefaultListModel();
         initComponents();
         
         loadList();
+        setVisible(true);
+        setLocationRelativeTo(null);
     }
     
     public void loadList(){
@@ -53,21 +58,17 @@ public class JanelaRemoverCandidatura extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        listaCandidaturas = new javax.swing.JList<Candidatura>();
+        listaCandidaturas = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         removerButton = new javax.swing.JButton();
         cancelarButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        listaCandidaturas.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(listaCandidaturas);
 
-        jLabel1.setText("Candidaturas");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Lista de Candidaturas Submetidas pelo utilizador:");
 
         removerButton.setText("Remover");
         removerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -88,34 +89,30 @@ public class JanelaRemoverCandidatura extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(removerButton)
-                            .addComponent(cancelarButton))))
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(removerButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cancelarButton, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addComponent(jLabel1))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(removerButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(cancelarButton)
-                        .addGap(75, 75, 75))))
+                        .addComponent(removerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cancelarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
@@ -132,6 +129,9 @@ public class JanelaRemoverCandidatura extends javax.swing.JFrame {
                 throw new IllegalArgumentException("Selecione uma candidatura");
             }
             this.m_rcController.getExposicaoPorCandidatura(listaCandidaturas.getSelectedValue());
+            JOptionPane.showMessageDialog(this,"Removeu a candidatura com sucesso.");
+            JanelaPrincipal j = new JanelaPrincipal(centro, representante);
+            dispose();
         }catch(IllegalArgumentException e){
             JOptionPane.showMessageDialog(this, e.toString());
         }

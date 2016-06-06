@@ -24,6 +24,7 @@ public class Candidatura {
 	private CandidaturaState estado_candidatura;
 
 	public Candidatura() {
+            this.lista_produtos=new ListaProdutos();
 	}
 
 	public Candidatura(Utilizador representante, String nome_Empresa,

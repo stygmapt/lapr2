@@ -27,6 +27,7 @@ public class JanelaListarCandidaturasRemovidas extends javax.swing.JFrame {
         this.centro=c;
         this.util_logado=u;
         this.controller=new ListarCandidaturasRemovidasController(this.centro);
+        this.dlm=new DefaultListModel();
         initComponents();
         loadList();
         setVisible(true);
@@ -107,9 +108,9 @@ public class JanelaListarCandidaturasRemovidas extends javax.swing.JFrame {
 
     private void loadList() {
         dlm.clear();
-        for(Candidatura c:this.controller.getCandidaturasRemovidas()){
-            dlm.addElement(c);
-        }
+            for(Candidatura c:this.controller.getCandidaturasRemovidas()){
+                dlm.addElement(c);
+            }
         jList1.setModel(dlm);
     }
 }
