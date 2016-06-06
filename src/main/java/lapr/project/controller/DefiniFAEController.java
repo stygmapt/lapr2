@@ -28,7 +28,6 @@ public class DefiniFAEController {
     private final CentroExposicoes m_ce;
     private final RegistoExposicoes registoExpos;
     private Exposicao expo;
-    
     public DefiniFAEController(CentroExposicoes ce){
         this.m_ce=ce;
         registoExpos=this.m_ce.getRegistoExposicoes();

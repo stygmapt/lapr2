@@ -100,4 +100,14 @@ public class RegistoExposicoes {
         }
         return null;
     }
+
+    public List<Candidatura> getCandidaRemovidas() {
+    List<Candidatura> lst = new ArrayList<>();
+    for(Exposicao expo:listaExposições){
+        for(Candidatura c:expo.getRegistoCandidaturas().getListaCandidaturas()){
+            lst.add(c);
+        }
+    }
+    return lst;
+    }
 }
