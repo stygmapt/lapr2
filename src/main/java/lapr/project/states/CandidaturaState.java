@@ -10,11 +10,12 @@ package lapr.project.states;
  * @author Gabriel
  */
 public interface CandidaturaState {
-        public boolean valida();
+
+	public boolean valida();
 
 	public boolean setEmSubmissao();
 
-	public boolean setEmAvaliaca();
+	public boolean setEmAvaliaçao();
 
 	public boolean setNaoAvaliada();
 
@@ -23,5 +24,5 @@ public interface CandidaturaState {
 	public boolean setAceite();
 
 	public boolean setRejeitada();
-    
+
 }
