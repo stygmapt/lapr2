@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author Gabriel
  */
-public class CentroExposicoes {
+public class CentroExposicoes implements Serializable{
 
 	private final List<Utilizador> m_lUtilizadoresNConfirmados;
 	private final RegistoUtilizadores m_regUtilizadores;

@@ -43,6 +43,7 @@ public class Exposicao {
         this.local = local;
         this.listaOrganizador = new ListaOrganizadores();
         this.listaFae = new ListaFAE();
+        this.m_state = new ExposicaoStateCriada(this);
         this.listaDemonstracao = new ListaDemonstracao();
         this.registoCandidaturas = new RegistoCandidaturas();
         this.registoCandidaturasRemovidas = new RegistoCandidaturasRemovidas();

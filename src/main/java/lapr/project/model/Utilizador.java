@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -15,7 +16,7 @@ import java.util.regex.Pattern;
  *
  * @author Gabriel
  */
-public class Utilizador {
+public class Utilizador implements Serializable{
 
 	private String m_sNome;
 	private String m_sEmail;

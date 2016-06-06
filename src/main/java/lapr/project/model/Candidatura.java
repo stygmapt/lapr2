@@ -25,6 +25,7 @@ public class Candidatura {
 
 	public Candidatura() {
             this.lista_produtos=new ListaProdutos();
+            this.estado_candidatura = new CandidaturaStateEmSubmissao(this);
 	}
 
 	public Candidatura(Utilizador representante, String nome_Empresa,
@@ -38,7 +39,6 @@ public class Candidatura {
 		this.qtd_convites = qtd_convites;
 		this.area_Empresa = area_Empresa;
 		this.lista_produtos = lista_produtos;
-		this.estado_candidatura = new CandidaturaStateEmSubmissao(this);
 	}
 
 	public Utilizador getRepresentante() {

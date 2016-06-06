@@ -80,12 +80,14 @@ public class RegistoExposicoes {
 
     public List<Candidatura> getListaCandidaturasRepresentante(Utilizador user) {
         List<Candidatura> listaCandidaturasRepresentante = new ArrayList<>();
-        for (Candidatura candidatura : listaCandidaturasRepresentante) {
+        for(Exposicao e:this.listaExposições){
+        for (Candidatura candidatura : e.getRegistoCandidaturas().getListaCandidaturas()) {
             if (candidatura.isInSubmissao()) {
-                if (candidatura.getRepresentante().getUsername().equalsIgnoreCase(user.getUsername())) {
+                if (candidatura.getRepresentante().equals(user)) {
                     listaCandidaturasRepresentante.add(candidatura);
                 }
             }
+        }
         }
         return listaCandidaturasRepresentante;
     }
@@ -104,7 +106,7 @@ public class RegistoExposicoes {
     public List<Candidatura> getCandidaRemovidas() {
     List<Candidatura> lst = new ArrayList<>();
     for(Exposicao expo:listaExposições){
-        for(Candidatura c:expo.getRegistoCandidaturas().getListaCandidaturas()){
+        for(Candidatura c:expo.getRegistoCandidaturasRemovidas().getListaCandidaturas()){
             lst.add(c);
         }
     }
