@@ -5,6 +5,8 @@
  */
 package lapr.project.model;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,7 +34,7 @@ public class ExposicaoTest {
 	private Utilizador utilizadorTest;
 	private FAE fae;
 
-	public ExposicaoTest() throws ParseException {
+	public ExposicaoTest() throws ParseException, NoSuchAlgorithmException, UnsupportedEncodingException {
 		exposicaoTest = new Exposicao();
 		SimpleDateFormat format = new SimpleDateFormat("dd-mm-yyyy");
 		Date dInicio = format.parse("04-06-2016");

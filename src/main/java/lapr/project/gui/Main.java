@@ -1,5 +1,7 @@
 package lapr.project.gui;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import lapr.project.gui.LoginGUI;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Utilizador;
@@ -19,7 +21,7 @@ class Main {
 	/**
 	 * @param args the command line arguments
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 
 //		CalculatorExample calculatorExample = new CalculatorExample();
 //		System.out.println(calculatorExample.sum(3, 5));
