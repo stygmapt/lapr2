@@ -21,7 +21,7 @@ public class JanelaRemoverCandidatura extends javax.swing.JFrame {
     private final RemoverCandidaturaController m_rcController;
     private final CentroExposicoes centro;
     private final Utilizador representante;
-    private DefaultListModel dlm_listaCandidaturas;
+    private final DefaultListModel dlm_listaCandidaturas;
     
     /**
      * Creates new form JanelaRemoverCandidatura

@@ -25,11 +25,19 @@ public class Utilizador {
 	public Utilizador() {
 	}
 
-	public Utilizador(String sNome, String userName,String sEmail, String pw) {
+	public Utilizador(String sNome, String userName,String sEmail, String pw) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		this.m_sNome = sNome;
 		this.m_sEmail = sEmail;
 		this.m_sUserName = userName;
-		this.m_sPassword = pw;
+                MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
+                byte messageDigest[] = algorithm.digest(pw.getBytes("UTF-8"));
+            
+                StringBuilder hexString = new StringBuilder();
+                for (byte b : messageDigest) {
+                hexString.append(String.format("%02X", 0xFF & b));
+                }
+                String senha = hexString.toString();
+                this.m_sPassword = senha;
 	}
 
 	public boolean hasID(String strId) {

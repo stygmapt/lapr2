@@ -6,6 +6,7 @@
 package lapr.project.gui;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import lapr.project.controller.DefiniFAEController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
@@ -118,8 +119,17 @@ public class JanelaDefinirFAE extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        controller.selectExpo(jList1.getSelectedValue());
-        JanelaDefinirFAE2 j=new JanelaDefinirFAE2(centro,controller,utilizadorLogado);
+        if(jList1.getSelectedValue()==null){
+            throw new IllegalArgumentException("Tem que selecionar uma exposição.");
+        }
+        try {
+            controller.selectExpo(jList1.getSelectedValue());
+            JanelaDefinirFAE2 j=new JanelaDefinirFAE2(centro,controller,utilizadorLogado);
+            dispose();  
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this, e.toString());
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

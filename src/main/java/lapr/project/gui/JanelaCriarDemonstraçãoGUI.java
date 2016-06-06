@@ -72,6 +72,11 @@ public class JanelaCriarDemonstraçãoGUI extends javax.swing.JFrame {
         });
 
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,6 +116,12 @@ public class JanelaCriarDemonstraçãoGUI extends javax.swing.JFrame {
 		JanelaRegistarDemonstracao janela = new JanelaRegistarDemonstracao(m_centro, m_cController, m_user);
 		dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        dispose();
+        JanelaPrincipal j = new JanelaPrincipal(m_centro, m_user);
+                
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

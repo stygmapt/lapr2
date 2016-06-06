@@ -22,7 +22,6 @@ import lapr.project.model.Utilizador;
 public class RemoverCandidaturaController {
     
     private CentroExposicoes m_ce;
-    private RegistoExposicoes regExp;
     private Exposicao exp;
     private RegistoCandidaturas regCand;
     private RegistoCandidaturasRemovidas regCandRemovidas;
@@ -31,14 +30,8 @@ public class RemoverCandidaturaController {
         this.m_ce = c;
     }
     
-    public List<Exposicao> getListExposicoes(Utilizador user){
-        return  this.m_ce.getRegistoExposicoes().getExposicoesCandidaturasAbertas(user);            
-    }
-    
     public List<Candidatura> getListCandidaturasPorRepres(Utilizador representante){
-        List<Candidatura> listaCandidaturasRepresentante = new ArrayList<>();
-        listaCandidaturasRepresentante = this.regExp.getListaCandidaturasRepresentante(representante);
-        return listaCandidaturasRepresentante;
+        return this.m_ce.getRegistoExposicoes().getListaCandidaturasRepresentante(representante);
     }
     
     public void getExposicaoPorCandidatura(Candidatura c){
