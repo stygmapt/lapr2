@@ -6,7 +6,9 @@
 package lapr.project.gui;
 
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Exposicao;
 import lapr.project.model.Utilizador;
+import lapr.project.states.ExposicaoStateCandidaturasAbertas;
 
 /**
  *
@@ -38,6 +40,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         UtilizadorMenu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -54,6 +57,13 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jButton2.setText("Force all states");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         UtilizadorMenu.setText("Utilizador");
 
@@ -127,11 +137,17 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(485, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(116, 116, 116))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 472, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(242, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(205, 205, 205))
         );
 
         pack();
@@ -166,10 +182,19 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         JanelaRemoverCandidatura j = new JanelaRemoverCandidatura(centro, utilizador_logado);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        for(Exposicao e : centro.getRegistoExposicoes().getListaExposições()){
+            if(e.isCompleta()){
+                e.setState(new ExposicaoStateCandidaturasAbertas(e));
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu UtilizadorMenu;
     private javax.swing.JMenu editMenu;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
