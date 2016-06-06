@@ -42,4 +42,8 @@ public class RegistoCandidaturas {
     private boolean addCandidatura(Candidatura c) {
         return this.listaCandidaturas.add(c);
     }
+    
+    public boolean remove(Candidatura c){
+        return this.listaCandidaturas.remove(c);
+    }
 }

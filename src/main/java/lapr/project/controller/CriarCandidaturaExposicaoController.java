@@ -13,6 +13,7 @@ import lapr.project.model.Candidatura;
 import lapr.project.model.ListaProdutos;
 import lapr.project.model.Produto;
 import lapr.project.model.RegistoCandidaturas;
+import lapr.project.states.CandidaturaStateEmSubmissao;
 
 /**
  *
@@ -65,6 +66,7 @@ public class CriarCandidaturaExposicaoController {
     }
     
     public void registaCandidatura(){
+        this.novaCandidatura.setState(new CandidaturaStateEmSubmissao(novaCandidatura));
         this.regCandidaturas.registaCandidatura(this.novaCandidatura);
     }
     

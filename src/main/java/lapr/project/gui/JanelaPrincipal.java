@@ -109,6 +109,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItem5);
 
         jMenuItem6.setText("Remover Candidatura Submetida");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem6);
 
         jMenuItem7.setText("Listar Submissões Removidas");
@@ -156,6 +161,10 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         JanelaSubmeterCandidatura j = new JanelaSubmeterCandidatura(centro, utilizador_logado);
         dispose();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        JanelaRemoverCandidatura j = new JanelaRemoverCandidatura(centro, utilizador_logado);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu UtilizadorMenu;

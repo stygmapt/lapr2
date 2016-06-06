@@ -114,4 +114,8 @@ public class Candidatura {
 		return true;
 	}
 
+    public void setState(CandidaturaState candidaturaState) {
+        this.estado_candidatura = candidaturaState;
+    }
+
 }

@@ -5,7 +5,9 @@
  */
 package lapr.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import lapr.project.model.Candidatura;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.RegistoCandidaturas;
@@ -31,6 +33,21 @@ public class RemoverCandidaturaController {
     
     public List<Exposicao> getListExposicoes(Utilizador user){
         return  this.m_ce.getRegistoExposicoes().getExposicoesCandidaturasAbertas(user);            
+    }
+    
+    public List<Candidatura> getListCandidaturasPorRepres(Utilizador representante){
+        List<Candidatura> listaCandidaturasRepresentante = new ArrayList<>();
+        listaCandidaturasRepresentante = this.regExp.getListaCandidaturasRepresentante(representante);
+        return listaCandidaturasRepresentante;
+    }
+    
+    public void getExposicaoPorCandidatura(Candidatura c){
+        this.exp = this.m_ce.getRegistoExposicoes().getExposicaoPorCand(c);
+        this.regCand = this.exp.getRegistoCandidaturas();
+        this.regCand.remove(c);
+        this.regCandRemovidas = this.exp.getRegistoCandidaturasRemovidas();
+        this.regCandRemovidas.registaCandidaturaRemovida(c);
+        
     }
     
     

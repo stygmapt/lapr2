@@ -5,8 +5,12 @@
  */
 package lapr.project.gui;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import lapr.project.controller.RemoverCandidaturaController;
+import lapr.project.model.Candidatura;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Utilizador;
 
 /**
  *
@@ -16,14 +20,27 @@ public class JanelaRemoverCandidatura extends javax.swing.JFrame {
 
     private RemoverCandidaturaController m_rcController;
     private CentroExposicoes centro;
+    private Utilizador representante;
+    private DefaultListModel dlm_listaCandidaturas;
     
     /**
      * Creates new form JanelaRemoverCandidatura
      */
-    public JanelaRemoverCandidatura(CentroExposicoes c) {
+    public JanelaRemoverCandidatura(CentroExposicoes c, Utilizador r) {
         this.centro = c;
         m_rcController = new RemoverCandidaturaController(this.centro);
+        this.representante = r;
         initComponents();
+        
+        loadList();
+    }
+    
+    public void loadList(){
+        dlm_listaCandidaturas.clear();
+        for(Candidatura c : this.m_rcController.getListCandidaturasPorRepres(this.representante)){
+            dlm_listaCandidaturas.addElement(c);
+        }
+        listaCandidaturas.setModel(dlm_listaCandidaturas);
     }
 
     /**
@@ -36,19 +53,35 @@ public class JanelaRemoverCandidatura extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        listaCandidaturas = new javax.swing.JList<Candidatura>();
         jLabel1 = new javax.swing.JLabel();
+        removerButton = new javax.swing.JButton();
+        cancelarButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        listaCandidaturas.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listaCandidaturas);
 
         jLabel1.setText("Candidaturas");
+
+        removerButton.setText("Remover");
+        removerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removerButtonActionPerformed(evt);
+            }
+        });
+
+        cancelarButton.setText("Cancelar");
+        cancelarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,27 +94,56 @@ public class JanelaRemoverCandidatura extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(248, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(removerButton)
+                            .addComponent(cancelarButton))))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(39, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(removerButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(cancelarButton)
+                        .addGap(75, 75, 75))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
+        JanelaPrincipal j = new JanelaPrincipal(this.centro, this.representante);
+        dispose();
+    }//GEN-LAST:event_cancelarButtonActionPerformed
+
+    private void removerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerButtonActionPerformed
+        try{
+            if(listaCandidaturas.getSelectedValue() == null){
+                throw new IllegalArgumentException("Selecione uma candidatura");
+            }
+            this.m_rcController.getExposicaoPorCandidatura(listaCandidaturas.getSelectedValue());
+        }catch(IllegalArgumentException e){
+            JOptionPane.showMessageDialog(this, e.toString());
+        }
+    }//GEN-LAST:event_removerButtonActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelarButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<Candidatura> listaCandidaturas;
+    private javax.swing.JButton removerButton;
     // End of variables declaration//GEN-END:variables
 }
