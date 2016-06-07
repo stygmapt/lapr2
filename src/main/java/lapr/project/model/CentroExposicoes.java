@@ -13,19 +13,20 @@ import java.util.List;
  *
  * @author Gabriel
  */
-public class CentroExposicoes implements Serializable{
+public class CentroExposicoes implements Serializable {
 
 	private final List<Utilizador> m_lUtilizadoresNConfirmados;
 	private final RegistoUtilizadores m_regUtilizadores;
-        private final RegistoRecursos m_regRecursos;
-        private final RegistoExposicoes m_regExposicoes;
-        
+	private final RegistoRecursos m_regRecursos;
+	private final RegistoExposicoes m_regExposicoes;
+	private final RegistoMecanismos m_regMecanismos;
 
 	public CentroExposicoes() {
 		this.m_lUtilizadoresNConfirmados = new ArrayList<>();
 		this.m_regUtilizadores = new RegistoUtilizadores();
-                this.m_regRecursos= new RegistoRecursos();
-                this.m_regExposicoes = new RegistoExposicoes();
+		this.m_regRecursos = new RegistoRecursos();
+		this.m_regExposicoes = new RegistoExposicoes();
+		this.m_regMecanismos = new RegistoMecanismos();
 	}
 
 	public boolean registaUtilizador(Utilizador u) {
@@ -36,39 +37,38 @@ public class CentroExposicoes implements Serializable{
 		return false;
 	}
 
-        public RegistoRecursos getM_regRecursos() {
-            return m_regRecursos;
-        }
+	public RegistoRecursos getM_regRecursos() {
+		return m_regRecursos;
+	}
 
-    public RegistoExposicoes getRegistoExposicoes() {
-        return m_regExposicoes;
-    }
-        
-        
-        public boolean adicionaRecurso(String dscRecurso){
-            if(this.m_regRecursos.registaRecurso(dscRecurso)){
-                return true;
-            }else{
-                return false;
-            }
-        }
-        
+	public RegistoExposicoes getRegistoExposicoes() {
+		return m_regExposicoes;
+	}
+
+	public boolean adicionaRecurso(String dscRecurso) {
+		if (this.m_regRecursos.registaRecurso(dscRecurso)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	private boolean validaUtilizador(Utilizador u) {
-            for(Utilizador ut:this.getUtilizadoresRegistados().getLista()){
-                if(ut.equals(u)){
-                    throw new IllegalArgumentException("já existe esse utilizador no sistema.");
-            
-                }
-            }
-            for(Utilizador ut:this.m_lUtilizadoresNConfirmados){
-                if(ut.equals(u)){
-                    throw new IllegalArgumentException("já existe esse utilizador no sistema.");
-            
-                }
-            }
-		
-            return true;
-        }
+		for (Utilizador ut : this.getUtilizadoresRegistados().getLista()) {
+			if (ut.equals(u)) {
+				throw new IllegalArgumentException("já existe esse utilizador no sistema.");
+
+			}
+		}
+		for (Utilizador ut : this.m_lUtilizadoresNConfirmados) {
+			if (ut.equals(u)) {
+				throw new IllegalArgumentException("já existe esse utilizador no sistema.");
+
+			}
+		}
+
+		return true;
+	}
 
 	public RegistoUtilizadores getUtilizadoresRegistados() {
 		return this.m_regUtilizadores;
@@ -86,8 +86,8 @@ public class CentroExposicoes implements Serializable{
 		}
 		return null;
 	}
-        
-        public Utilizador getUtilizadorByUsernameListNConf(String uId) {
+
+	public Utilizador getUtilizadorByUsernameListNConf(String uId) {
 		for (Utilizador u : m_lUtilizadoresNConfirmados) {
 			if (uId.equalsIgnoreCase(u.getUsername())) {
 				return u;
@@ -95,10 +95,14 @@ public class CentroExposicoes implements Serializable{
 		}
 		return null;
 	}
-        
+
 	public void confirmaRegistoUtilizador(Utilizador u) {
 		this.m_regUtilizadores.addUtilizador(u);
 		this.m_lUtilizadoresNConfirmados.remove(u);
+	}
+
+	public RegistoMecanismos getM_regMecanismos() {
+		return m_regMecanismos;
 	}
 
 }

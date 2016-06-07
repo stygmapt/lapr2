@@ -11,40 +11,34 @@ package lapr.project.model;
  */
 public class FAE {
 
-    private Utilizador utilizador;
-    private RegistoConflitos registo;
+	private Utilizador utilizador;
 
-    public FAE() {
-        registo = new RegistoConflitos();
-    }
+	public FAE() {
 
-    public RegistoConflitos getRegistoConflitos() {
-        return this.registo;
-    }
+	}
 
-    public Utilizador getUtilizador() {
-        return this.utilizador;
-    }
+	public Utilizador getUtilizador() {
+		return this.utilizador;
+	}
 
-    public void setUtilizador(Utilizador u) {
-        this.utilizador = u;
-    }
+	public void setUtilizador(Utilizador u) {
+		this.utilizador = u;
+	}
 
-    public boolean equals(FAE o) {
-        if (this == null) {
+	public boolean equals(FAE o) {
+		if (this == null) {
 			return false;
 		}
 		if (o != null) {
 			return o.getUtilizador().equals(this.getUtilizador());
 		}
 		return false;
-    }
+	}
 
-    
-    public String toString() {
-        String str = "FAE:";
-        str += "\tUser: " + this.utilizador.getUsername();
+	public String toString() {
+		String str = "FAE:";
+		str += "\tUser: " + this.utilizador.getUsername();
 
-        return str;
-    }
+		return str;
+	}
 }
