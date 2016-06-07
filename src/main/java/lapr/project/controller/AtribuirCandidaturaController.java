@@ -8,10 +8,12 @@ package lapr.project.controller;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.Atribuicao;
+import lapr.project.model.Candidatura;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.MecanismoDeAtribuicao;
 import lapr.project.model.Utilizador;
+import lapr.project.states.CandidaturaStateEmAvaliacao;
 import lapr.project.states.ExposicaoStateCandidaturasAtribuidas;
 
 /**
@@ -58,6 +60,18 @@ public class AtribuirCandidaturaController {
 		if (this.m_exposicao.isInConflitosAlterados()) {
 			this.m_exposicao.
 				setState(new ExposicaoStateCandidaturasAtribuidas(this.m_exposicao));
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public boolean changeStateAvaliado() {
+		if (this.m_exposicao.isInConflitosAlterados()) {
+			for (Candidatura cand : this.m_exposicao.getRegistoCandidaturas().
+				getListaCandidaturas()) {
+				cand.setState(new CandidaturaStateEmAvaliacao(cand));
+			}
 			return true;
 		} else {
 			return false;

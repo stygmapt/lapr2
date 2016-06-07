@@ -41,17 +41,17 @@ public class CandidaturaStateAceite implements CandidaturaState {
 
 	@Override
 	public boolean setAvaliada() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return false;
 	}
 
 	@Override
 	public boolean setAceite() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return true;
 	}
 
 	@Override
 	public boolean setRejeitada() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return false;
 	}
 
 }

@@ -5,45 +5,53 @@
  */
 package lapr.project.states;
 
+import lapr.project.model.Candidatura;
+
 /**
  *
  * @author Gabriel
  */
 public class CandidaturaStateNaoAvaliada implements CandidaturaState {
 
+	private Candidatura m_candidatura;
+
+	public CandidaturaStateNaoAvaliada(Candidatura cand) {
+		this.m_candidatura = cand;
+	}
+
 	@Override
 	public boolean valida() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return this.m_candidatura.valida();
 	}
 
 	@Override
 	public boolean setEmSubmissao() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return false;
 	}
 
 	@Override
 	public boolean setEmAvaliaçao() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return false;
 	}
 
 	@Override
 	public boolean setNaoAvaliada() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return true;
 	}
 
 	@Override
 	public boolean setAvaliada() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return false;
 	}
 
 	@Override
 	public boolean setAceite() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return false;
 	}
 
 	@Override
 	public boolean setRejeitada() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return false;
 	}
 
 }
