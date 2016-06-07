@@ -63,4 +63,15 @@ public class Produto {
     public int getNrPalavrasChaves() {
         return this.nrPalavrasChave;
     }
+    
+    public boolean equals(Object outroObjeto){
+        if(this == outroObjeto){
+            return true;
+        }if (outroObjeto == null || this.getClass() != outroObjeto.getClass()) {
+            return false; 
+    }
+        Produto outroProduto = (Produto) outroObjeto;
+        return this.designacao_produto.equalsIgnoreCase(outroProduto.designacao_produto);
+    
+}
 }

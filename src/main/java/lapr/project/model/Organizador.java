@@ -31,5 +31,16 @@ public class Organizador {
 
         return str;
     }
+    
+    public boolean equals(Object outroObjeto){
+        if(this == outroObjeto){
+            return true;
+        }if (outroObjeto == null || this.getClass() != outroObjeto.getClass()) {
+            return false; 
+    }
+        Organizador outroOrganizador = (Organizador) outroObjeto;
+        return this.utilizador.equals(outroOrganizador.utilizador);
+    
+}
 
 }
