@@ -24,6 +24,9 @@ public class TipoConflito {
     }
 
     public void setDescricao(String descricao) {
+        if(descricao.isEmpty()||descricao==null){
+            throw new IllegalArgumentException("A descrição do tipo de conflito nao pode ser nula.");
+        }
         this.descricao = descricao;
     }
 

@@ -20,6 +20,7 @@ public class CentroExposicoes implements Serializable {
 	private final RegistoRecursos m_regRecursos;
 	private final RegistoExposicoes m_regExposicoes;
 	private final RegistoMecanismos m_regMecanismos;
+	private final RegistoTiposConflito m_regTipoConflito;
 
 	public CentroExposicoes() {
 		this.m_lUtilizadoresNConfirmados = new ArrayList<>();
@@ -27,6 +28,7 @@ public class CentroExposicoes implements Serializable {
 		this.m_regRecursos = new RegistoRecursos();
 		this.m_regExposicoes = new RegistoExposicoes();
 		this.m_regMecanismos = new RegistoMecanismos();
+                this.m_regTipoConflito = new RegistoTiposConflito();
 	}
 
 	public boolean registaUtilizador(Utilizador u) {
@@ -37,6 +39,9 @@ public class CentroExposicoes implements Serializable {
 		return false;
 	}
 
+        public RegistoTiposConflito getRegTiposConflito(){
+            return this.m_regTipoConflito;
+        }
 	public RegistoRecursos getM_regRecursos() {
 		return m_regRecursos;
 	}

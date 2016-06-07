@@ -81,6 +81,11 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
         accoesMenu.add(jMenuItem5);
 
         jMenuItem6.setText("Definir Tipo de Conflito");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         accoesMenu.add(jMenuItem6);
 
         jMenuBar1.add(accoesMenu);
@@ -152,6 +157,11 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
         JanelaCriarExposicao j = new JanelaCriarExposicao(this.centro);
         dispose();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        JanelaCriarTipoConflito j=new JanelaCriarTipoConflito(centro);
+        dispose();
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu accoesMenu;
