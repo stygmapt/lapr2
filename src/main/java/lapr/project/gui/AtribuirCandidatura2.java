@@ -5,17 +5,35 @@
  */
 package lapr.project.gui;
 
+import javax.swing.DefaultListModel;
+import lapr.project.controller.AtribuirCandidaturaController;
+import lapr.project.model.Atribuicao;
+import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Utilizador;
+
 /**
  *
  * @author Eduardo
  */
 public class AtribuirCandidatura2 extends javax.swing.JFrame {
 
+	private CentroExposicoes m_centro;
+	private Utilizador m_user;
+	private AtribuirCandidaturaController m_controller;
+	private DefaultListModel dlm;
+
 	/**
 	 * Creates new form AtribuirCandidatura2
 	 */
-	public AtribuirCandidatura2() {
+	public AtribuirCandidatura2(CentroExposicoes centro, Utilizador user,
+								AtribuirCandidaturaController controller) {
+		this.m_centro = centro;
+		this.m_user = user;
+		this.m_controller = controller;
+		this.dlm = new DefaultListModel();
 		initComponents();
+		fillList();
+
 	}
 
 	/**
@@ -45,8 +63,18 @@ public class AtribuirCandidatura2 extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         jButton1.setText("Atribuir Mecanismos");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Confirmar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,6 +113,19 @@ public class AtribuirCandidatura2 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+		m_controller.RegistaAtribuicao();
+		if (m_controller.alteraEstadoExposicao()) {
+			m_controller.changeStateAvaliado();
+		}
+		JanelaPrincipal janela = new JanelaPrincipal(m_centro, m_user);
+		dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+		dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -92,4 +133,11 @@ public class AtribuirCandidatura2 extends javax.swing.JFrame {
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+	private void fillList() {
+		for (Atribuicao xd : m_controller.getListaAtribuicoes()) {
+			dlm.addElement(xd);
+		}
+		jList1.setModel(dlm);
+	}
 }

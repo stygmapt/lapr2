@@ -56,6 +56,11 @@ public class AtribuirCandidaturaController {
 		return this.listaAtribuicoes;
 	}
 
+	public void RegistaAtribuicao() {
+		this.m_exposicao.getRegistoAtribuicoes().
+			registaAtribuicao(listaAtribuicoes);
+	}
+
 	public boolean alteraEstadoExposicao() {
 		if (this.m_exposicao.isInConflitosAlterados()) {
 			this.m_exposicao.
