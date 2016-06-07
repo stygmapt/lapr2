@@ -32,6 +32,7 @@ public class JanelaDefinirStand extends javax.swing.JFrame {
         this.centro = centro;
         this.utilizador = utilizador;
         this.control = new DefinirStandController(this.centro);
+        dlm=new DefaultListModel();
         initComponents();
         LoadList();
         setVisible(true);
@@ -50,7 +51,7 @@ public class JanelaDefinirStand extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        jList1 = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,11 +70,6 @@ public class JanelaDefinirStand extends javax.swing.JFrame {
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(jList1);
 
         jLabel1.setText("Lista de Exposições");
@@ -100,7 +96,7 @@ public class JanelaDefinirStand extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
+                .addContainerGap(44, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -120,7 +116,7 @@ public class JanelaDefinirStand extends javax.swing.JFrame {
                 throw new IllegalArgumentException("Selecione uma exposição");
             }
             //Atenção a isto nao sei se ta bem!
-            this.control.selectExpo((Exposicao) jList1.getSelectedValue());
+            this.control.selectExpo(jList1.getSelectedValue());
             JanelaDefinirStand2 js2 = new JanelaDefinirStand2(centro, utilizador, control);
             dispose();
         } catch (IllegalArgumentException e) {
@@ -138,7 +134,7 @@ public class JanelaDefinirStand extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList jList1;
+    private javax.swing.JList<Exposicao> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 

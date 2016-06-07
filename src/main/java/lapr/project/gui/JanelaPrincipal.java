@@ -49,10 +49,10 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
 
         jButton1.setText("jButton1");
@@ -112,6 +112,14 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
         editMenu.add(jMenuItem8);
 
+        jMenuItem7.setText("Listar Submissões Removidas");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        editMenu.add(jMenuItem7);
+
         jMenuBar1.add(editMenu);
 
         jMenu1.setText("Representante/Expositor");
@@ -131,14 +139,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem6);
-
-        jMenuItem7.setText("Listar Submissões Removidas");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem7);
 
         jMenuItem9.setText("Alterar Candidatura Submetida");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
@@ -222,6 +222,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         JanelaDefinirStand js = new JanelaDefinirStand(centro, utilizador_logado);
+        dispose();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
