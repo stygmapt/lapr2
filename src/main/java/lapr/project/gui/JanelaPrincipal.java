@@ -105,6 +105,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         editMenu.add(jMenuItem4);
 
         jMenuItem8.setText("Definir Stands");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         editMenu.add(jMenuItem8);
 
         jMenuBar1.add(editMenu);
@@ -214,6 +219,10 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         JanelaAlterarCandidatura j = new JanelaAlterarCandidatura(this.centro,this.utilizador_logado);
         dispose();
     }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        JanelaDefinirStand js = new JanelaDefinirStand(centro, utilizador_logado);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu UtilizadorMenu;

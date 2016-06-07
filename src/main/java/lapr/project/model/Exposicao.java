@@ -15,206 +15,213 @@ import lapr.project.states.ExposicaoStateCriada;
  */
 public class Exposicao {
 
-	private String titulo;
-	private String descricao;
-	private Date dataInicioRealização;
-	private Date dataFimRealização;
-	private Date dataInicioSubmissão;
-	private Date dataFimSubmissão;
-	private Date dataLimiteAvaliacoes;
-	private String local;
-	private ExposicaoState m_state;
-	private final ListaOrganizadores listaOrganizador;
-	private final ListaFAE listaFae;
-	private final ListaDemonstracao listaDemonstracao;
-	private final RegistoCandidaturas registoCandidaturas;
-	private final RegistoCandidaturasRemovidas registoCandidaturasRemovidas;
-	private final RegistoAtribuicoes registoAtribuicoes;
+    private String titulo;
+    private String descricao;
+    private Date dataInicioRealização;
+    private Date dataFimRealização;
+    private Date dataInicioSubmissão;
+    private Date dataFimSubmissão;
+    private Date dataLimiteAvaliacoes;
+    private String local;
+    private ExposicaoState m_state;
+    private final ListaOrganizadores listaOrganizador;
+    private final ListaFAE listaFae;
+    private final ListaDemonstracao listaDemonstracao;
+    private final RegistoCandidaturas registoCandidaturas;
+    private final RegistoCandidaturasRemovidas registoCandidaturasRemovidas;
+    private final RegistoAtribuicoes registoAtribuicoes;
+    private final RegistoStand registoStand;
 
-	private Exposicao(String titulo, String desc, Date dataInicio, Date dataFim,
-					  Date DataInicioSub, Date dataFimsub, String local,
-					  Date dataAvaliacoes) {
-		this.titulo = titulo;
-		this.descricao = desc;
-		this.dataInicioRealização = dataInicio;
-		this.dataFimRealização = dataFim;
-		this.dataInicioSubmissão = DataInicioSub;
-		this.dataFimSubmissão = dataFimsub;
-		this.dataLimiteAvaliacoes = dataAvaliacoes;
-		this.local = local;
-		this.listaOrganizador = new ListaOrganizadores();
-		this.listaFae = new ListaFAE();
-		this.m_state = new ExposicaoStateCriada(this);
-		this.listaDemonstracao = new ListaDemonstracao();
-		this.registoCandidaturas = new RegistoCandidaturas();
-		this.registoCandidaturasRemovidas = new RegistoCandidaturasRemovidas();
-		this.registoAtribuicoes = new RegistoAtribuicoes();
-	}
+    private Exposicao(String titulo, String desc, Date dataInicio, Date dataFim,
+            Date DataInicioSub, Date dataFimsub, String local,
+            Date dataAvaliacoes) {
+        this.titulo = titulo;
+        this.descricao = desc;
+        this.dataInicioRealização = dataInicio;
+        this.dataFimRealização = dataFim;
+        this.dataInicioSubmissão = DataInicioSub;
+        this.dataFimSubmissão = dataFimsub;
+        this.dataLimiteAvaliacoes = dataAvaliacoes;
+        this.local = local;
+        this.listaOrganizador = new ListaOrganizadores();
+        this.listaFae = new ListaFAE();
+        this.m_state = new ExposicaoStateCriada(this);
+        this.listaDemonstracao = new ListaDemonstracao();
+        this.registoCandidaturas = new RegistoCandidaturas();
+        this.registoCandidaturasRemovidas = new RegistoCandidaturasRemovidas();
+        this.registoAtribuicoes = new RegistoAtribuicoes();
+        this.registoStand = new RegistoStand();
+    }
 
-	public Exposicao() {
-		this.listaFae = new ListaFAE();
-		this.listaOrganizador = new ListaOrganizadores();
-		this.listaDemonstracao = new ListaDemonstracao();
-		this.m_state = new ExposicaoStateCriada(this);
-		this.registoCandidaturas = new RegistoCandidaturas();
-		this.registoCandidaturasRemovidas = new RegistoCandidaturasRemovidas();
-		this.registoAtribuicoes = new RegistoAtribuicoes();
-	}
+    public Exposicao() {
+        this.listaFae = new ListaFAE();
+        this.listaOrganizador = new ListaOrganizadores();
+        this.listaDemonstracao = new ListaDemonstracao();
+        this.m_state = new ExposicaoStateCriada(this);
+        this.registoCandidaturas = new RegistoCandidaturas();
+        this.registoCandidaturasRemovidas = new RegistoCandidaturasRemovidas();
+        this.registoAtribuicoes = new RegistoAtribuicoes();
+        this.registoStand = new RegistoStand();
+    }
 
-	public RegistoCandidaturasRemovidas getRegistoCandidaturasRemovidas() {
-		return registoCandidaturasRemovidas;
-	}
+    public RegistoCandidaturasRemovidas getRegistoCandidaturasRemovidas() {
+        return registoCandidaturasRemovidas;
+    }
 
-	public RegistoAtribuicoes getRegistoAtribuicoes() {
-		return registoAtribuicoes;
-	}
+    public RegistoAtribuicoes getRegistoAtribuicoes() {
+        return registoAtribuicoes;
+    }
 
-	public String getTitulo() {
-		return titulo;
-	}
+    public RegistoStand getRegistoStand() {
+        return registoStand;
+    }
 
-	public void setTitulo(String titulo) {
-		if (titulo == null || titulo.trim().isEmpty()) {
-			throw new IllegalArgumentException("O titulo da exposição nao pode ser vazio.!");
-		}
-		this.titulo = titulo;
-	}
+    public String getTitulo() {
+        return titulo;
+    }
 
-	public String getDescricao() {
-		return descricao;
-	}
+    public void setTitulo(String titulo) {
+        if (titulo == null || titulo.trim().isEmpty()) {
+            throw new IllegalArgumentException("O titulo da exposição nao pode ser vazio.!");
+        }
+        this.titulo = titulo;
+    }
 
-	public void setDescricao(String descricao) {
-		if (descricao == null || descricao.trim().isEmpty()) {
-			throw new IllegalArgumentException("A descrição da exposição nao pode ser vazio.!");
-		}
-		this.descricao = descricao;
-	}
+    public String getDescricao() {
+        return descricao;
+    }
 
-	public Date getDataInicioRealização() {
-		return dataInicioRealização;
-	}
+    public void setDescricao(String descricao) {
+        if (descricao == null || descricao.trim().isEmpty()) {
+            throw new IllegalArgumentException("A descrição da exposição nao pode ser vazio.!");
+        }
+        this.descricao = descricao;
+    }
 
-	public Date getDataFimRealização() {
-		return dataFimRealização;
-	}
+    public Date getDataInicioRealização() {
+        return dataInicioRealização;
+    }
 
-	public void setDatasRealização(Date dataInicioRealização,
-								   Date dataFimRealização) {
-		if (dataInicioRealização.after(dataFimRealização) || dataFimRealização.
-			equals(dataInicioRealização)) {
-			throw new IllegalArgumentException("A data de fim de exposição tem de ser posterior á data de inicio.");
-		}
-		this.dataInicioRealização = dataInicioRealização;
-		this.dataFimRealização = dataFimRealização;
-	}
+    public Date getDataFimRealização() {
+        return dataFimRealização;
+    }
 
-	public Date getDataInicioSubmissão() {
-		return dataInicioSubmissão;
-	}
+    public void setDatasRealização(Date dataInicioRealização,
+            Date dataFimRealização) {
+        if (dataInicioRealização.after(dataFimRealização) || dataFimRealização.
+                equals(dataInicioRealização)) {
+            throw new IllegalArgumentException("A data de fim de exposição tem de ser posterior á data de inicio.");
+        }
+        this.dataInicioRealização = dataInicioRealização;
+        this.dataFimRealização = dataFimRealização;
+    }
 
-	public Date getDataFimSubmissão() {
-		return dataFimSubmissão;
-	}
+    public Date getDataInicioSubmissão() {
+        return dataInicioSubmissão;
+    }
 
-	public void setPeriodoSubmissão(Date dataInicioSubmissão,
-									Date dataFimSubmissão) {
-		if (dataInicioSubmissão.after(dataFimSubmissão) || dataFimSubmissão.
-			equals(dataInicioSubmissão)) {
-			throw new IllegalArgumentException("A data limite de submissão de candidaturas tem de ser posterior á data de inicio.");
-		}
-		this.dataInicioSubmissão = dataInicioSubmissão;
-		this.dataFimSubmissão = dataFimSubmissão;
-	}
+    public Date getDataFimSubmissão() {
+        return dataFimSubmissão;
+    }
 
-	public String getLocal() {
-		return local;
-	}
+    public void setPeriodoSubmissão(Date dataInicioSubmissão,
+            Date dataFimSubmissão) {
+        if (dataInicioSubmissão.after(dataFimSubmissão) || dataFimSubmissão.
+                equals(dataInicioSubmissão)) {
+            throw new IllegalArgumentException("A data limite de submissão de candidaturas tem de ser posterior á data de inicio.");
+        }
+        this.dataInicioSubmissão = dataInicioSubmissão;
+        this.dataFimSubmissão = dataFimSubmissão;
+    }
 
-	public void setLocal(String local) {
-		if (local == null || local.trim().isEmpty()) {
-			throw new IllegalArgumentException("O local da exposição nao pode ser vazio.!");
-		}
-		this.local = local;
-	}
+    public String getLocal() {
+        return local;
+    }
 
-	public void setDataLimiteAvaliacoes(Date dataLimiteAvaliacoes) {
-		if (dataLimiteAvaliacoes.before(this.dataFimSubmissão)) {
-			throw new IllegalArgumentException("A data limite de avaliação de candidaturas tem de ser posterior á data limite de submissão.");
-		}
-		this.dataLimiteAvaliacoes = dataLimiteAvaliacoes;
-	}
+    public void setLocal(String local) {
+        if (local == null || local.trim().isEmpty()) {
+            throw new IllegalArgumentException("O local da exposição nao pode ser vazio.!");
+        }
+        this.local = local;
+    }
 
-	public Date getDataLimiteAvaliacoes() {
-		return dataLimiteAvaliacoes;
-	}
+    public void setDataLimiteAvaliacoes(Date dataLimiteAvaliacoes) {
+        if (dataLimiteAvaliacoes.before(this.dataFimSubmissão)) {
+            throw new IllegalArgumentException("A data limite de avaliação de candidaturas tem de ser posterior á data limite de submissão.");
+        }
+        this.dataLimiteAvaliacoes = dataLimiteAvaliacoes;
+    }
 
-	public ListaFAE getListaFae() {
-		return listaFae;
-	}
+    public Date getDataLimiteAvaliacoes() {
+        return dataLimiteAvaliacoes;
+    }
 
-	public ListaOrganizadores getListaOrganizador() {
-		return listaOrganizador;
-	}
+    public ListaFAE getListaFae() {
+        return listaFae;
+    }
 
-	public ExposicaoState getM_state() {
-		return m_state;
-	}
+    public ListaOrganizadores getListaOrganizador() {
+        return listaOrganizador;
+    }
 
-	public void setState(ExposicaoState state) {
-		this.m_state = state;
-	}
+    public ExposicaoState getM_state() {
+        return m_state;
+    }
 
-	public Boolean valida() {
-		return true;
-	}
+    public void setState(ExposicaoState state) {
+        this.m_state = state;
+    }
 
-	public Boolean isInFAESemDemonstracao() {
-		return this.m_state.setFAESemDemonstracao();
-	}
+    public Boolean valida() {
+        return true;
+    }
 
-	public Boolean isInCriada() {
-		return this.m_state.setCriada();
-	}
+    public Boolean isInFAESemDemonstracao() {
+        return this.m_state.setFAESemDemonstracao();
+    }
 
-	public Boolean isDemonstracaoSemFAE() {
-		return this.m_state.setDemonstracaoSemFAE();
-	}
+    public Boolean isInCriada() {
+        return this.m_state.setCriada();
+    }
 
-	public Boolean isCompleta() {
-		return this.m_state.setCompleta();
-	}
+    public Boolean isDemonstracaoSemFAE() {
+        return this.m_state.setDemonstracaoSemFAE();
+    }
 
-	public Boolean vereficaEstado() {
-		if (this.isDemonstracaoSemFAE() || this.isInFAESemDemonstracao()) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+    public Boolean isCompleta() {
+        return this.m_state.setCompleta();
+    }
 
-	public ListaDemonstracao getListaDemonstracao() {
-		return listaDemonstracao;
-	}
+    public Boolean vereficaEstado() {
+        if (this.isDemonstracaoSemFAE() || this.isInFAESemDemonstracao()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-	public String toString() {
-		String str = "Exposiçao:";
-		str += "\tTitulo: " + this.titulo;
-		str += "\tDescrição: " + this.descricao;
+    public ListaDemonstracao getListaDemonstracao() {
+        return listaDemonstracao;
+    }
 
-		return str;
-	}
+    public String toString() {
+        String str = "Exposiçao:";
+        str += "\tTitulo: " + this.titulo;
+        str += "\tDescrição: " + this.descricao;
 
-	public boolean isCandidaturasAbertas() {
-		return this.m_state.setCandidaturaAberta();
-	}
+        return str;
+    }
 
-	public RegistoCandidaturas getRegistoCandidaturas() {
-		return this.registoCandidaturas;
-	}
+    public boolean isCandidaturasAbertas() {
+        return this.m_state.setCandidaturaAberta();
+    }
 
-	public boolean isInConflitosAlterados() {
-		return this.m_state.setConflitoAlterados();
-	}
+    public RegistoCandidaturas getRegistoCandidaturas() {
+        return this.registoCandidaturas;
+    }
+
+    public boolean isInConflitosAlterados() {
+        return this.m_state.setConflitoAlterados();
+    }
 
 }

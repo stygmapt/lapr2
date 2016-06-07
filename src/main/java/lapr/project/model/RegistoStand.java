@@ -37,6 +37,10 @@ public class RegistoStand {
     public String toString() {
         return "Lista Stands: "+ lstStands;
     }
+
+    public void adicionarListaStands(Stand stand) {
+        this.lstStands.add(stand);
+    }
     
     
 
