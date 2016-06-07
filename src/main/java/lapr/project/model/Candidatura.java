@@ -131,7 +131,9 @@ public class Candidatura implements Serializable{
             return false;
         }
         if (o != null) {
-			return o.getRepresentante().equals(this.getRepresentante());
+			return o.getRepresentante().equals(this.getRepresentante())&&
+                                o.getNome_Empresa().equalsIgnoreCase(this.getNome_Empresa())&&
+                                o.getMorada_Empresa().equalsIgnoreCase(this.getMorada_Empresa());
 		}
         return false;
     }

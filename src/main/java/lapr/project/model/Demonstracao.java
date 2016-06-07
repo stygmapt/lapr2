@@ -42,6 +42,18 @@ public class Demonstracao {
 		return listaRecurso;
 	}
 
+    public boolean equals(Demonstracao o) {
+    if (this == null) {
+			return false;
+		}
+		if (o != null) {
+			return o.getCodigo()==this.getCodigo()&&
+                                o.getDescricao().equalsIgnoreCase(this.getDescricao());
+		}
+		return false;
+    }
+
+        
 	public boolean valida() {
 		return !this.listaRecurso.getListaRecursos().isEmpty();
 	}
