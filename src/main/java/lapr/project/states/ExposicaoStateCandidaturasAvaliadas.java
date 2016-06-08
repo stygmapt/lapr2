@@ -5,65 +5,73 @@
  */
 package lapr.project.states;
 
+import lapr.project.model.Exposicao;
+
 /**
  *
  * @author Gabriel
  */
 public class ExposicaoStateCandidaturasAvaliadas implements ExposicaoState {
 
+	private Exposicao m_expo;
+
+	public ExposicaoStateCandidaturasAvaliadas(Exposicao expo) {
+		this.m_expo = expo;
+	}
+
 	@Override
 	public boolean valida() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return this.m_expo.valida();
 	}
 
 	@Override
 	public boolean setCriada() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return false;
 	}
 
 	@Override
 	public boolean setFAESemDemonstracao() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return false;
 	}
 
 	@Override
 	public boolean setDemonstracaoSemFAE() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return false;
 	}
 
 	@Override
 	public boolean setCompleta() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return false;
 	}
 
 	@Override
 	public boolean setCandidaturaAberta() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return false;
 	}
 
 	@Override
 	public boolean setCandidaturaTerminada() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return false;
 	}
 
 	@Override
 	public boolean setConflitoDetetados() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return false;
 	}
 
 	@Override
 	public boolean setConflitoAlterados() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return false;
 	}
 
 	@Override
 	public boolean setCandidaturaAtribuidas() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return false;
 	}
 
 	@Override
 	public boolean setCandidaturaAvaliada() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return true;
 	}
 
 }
