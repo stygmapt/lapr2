@@ -41,6 +41,10 @@ public class AtribuirCandidaturaController {
 	public void setExposicao(Exposicao expo) {
 		this.m_exposicao = expo;
 	}
+        
+        public Exposicao getExposicao() {
+		return this.m_exposicao;
+	}
 
 	public List<MecanismoDeAtribuicao> getListaMecanismo() {
 		return this.m_centro.getM_regMecanismos().getListaMecanismo();
@@ -71,7 +75,7 @@ public class AtribuirCandidaturaController {
 		}
 	}
 
-	public boolean changeStateAvaliado() {
+	public boolean changeStateEmAvaliacao() {
 		if (this.m_exposicao.isInConflitosAlterados()) {
 			for (Candidatura cand : this.m_exposicao.getRegistoCandidaturas().
 				getListaCandidaturas()) {

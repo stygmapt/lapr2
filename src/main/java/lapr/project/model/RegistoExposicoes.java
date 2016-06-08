@@ -130,4 +130,16 @@ public class RegistoExposicoes {
 		}
 		return listaExposicao;
 	}
+
+    public List<Exposicao> getExposicoesByFAE(Utilizador u) {
+        List<Exposicao> listaExposicao = new ArrayList<>();
+        for(Exposicao e:this.listaExposições){
+            for(FAE fae:e.getListaFae().getLista()){
+                if(fae.getUtilizador().equals(u)){
+                    listaExposicao.add(e);
+                }
+            }
+        }
+        return listaExposicao;
+    }
 }

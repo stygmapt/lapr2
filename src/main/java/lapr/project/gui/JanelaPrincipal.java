@@ -49,6 +49,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -111,6 +112,14 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             }
         });
         editMenu.add(jMenuItem8);
+
+        jMenuItem10.setText("Atribuir Candidaturas para Avaliação");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        editMenu.add(jMenuItem10);
 
         jMenuItem7.setText("Listar Submissões Removidas");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
@@ -225,6 +234,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        AtribuirCandidatura j = new AtribuirCandidatura(centro, utilizador_logado);
+        dispose();
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu UtilizadorMenu;
     private javax.swing.JMenu editMenu;
@@ -233,6 +247,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

@@ -5,7 +5,6 @@
  */
 package lapr.project.model;
 
-import com.sun.org.apache.xml.internal.security.encryption.Serializer;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

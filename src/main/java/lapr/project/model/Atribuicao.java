@@ -13,14 +13,25 @@ import java.util.Objects;
  */
 public class Atribuicao {
 
-	private Candidatura m_candidatura;
-	private FAE m_FAE;
+	private final Candidatura m_candidatura;
+	private final FAE m_FAE;
 
 	public Atribuicao(Candidatura candidatura, FAE fae) {
 		this.m_candidatura = candidatura;
 		this.m_FAE = fae;
 	}
+        
+        
+        public Candidatura getCandidatura() {
+            return this.m_candidatura;
+        }
 
+        @Override
+        public String toString() {
+            return "Atribuição: da Candidatura: "+this.m_candidatura.getNome_Empresa() + " ao FAE: "+ this.m_FAE.getUtilizador().getUsername();
+        }
+
+        
 	@Override
 	public int hashCode() {
 		int hash = 5;
