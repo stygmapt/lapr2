@@ -24,6 +24,9 @@ public class RegistoTiposConflito implements Serializable{
         return new TipoConflito();
     }
     
+    public List<TipoConflito> getLista(){
+        return this.lst;
+    }
     public void registaTipoConflito(TipoConflito c){
         for(TipoConflito x:this.lst){
             if(x.equals(c)){

@@ -19,7 +19,8 @@ public class CentroExposicoes implements Serializable {
 	private final RegistoUtilizadores m_regUtilizadores;
 	private final RegistoRecursos m_regRecursos;
 	private final RegistoExposicoes m_regExposicoes;
-	private final RegistoMecanismos m_regMecanismos;
+	private final RegistoMecanismos m_regMecanismosAtribuicao;
+	private final RegistoMecanismosDetecaoConflitos m_regMecanismosDetecao;
 	private final RegistoTiposConflito m_regTipoConflito;
 
 	public CentroExposicoes() {
@@ -27,7 +28,8 @@ public class CentroExposicoes implements Serializable {
 		this.m_regUtilizadores = new RegistoUtilizadores();
 		this.m_regRecursos = new RegistoRecursos();
 		this.m_regExposicoes = new RegistoExposicoes();
-		this.m_regMecanismos = new RegistoMecanismos();
+                this.m_regMecanismosAtribuicao=new RegistoMecanismos();
+		this.m_regMecanismosDetecao = new RegistoMecanismosDetecaoConflitos();
                 this.m_regTipoConflito = new RegistoTiposConflito();
 	}
 
@@ -107,7 +109,7 @@ public class CentroExposicoes implements Serializable {
 	}
 
 	public RegistoMecanismos getM_regMecanismos() {
-		return m_regMecanismos;
+		return m_regMecanismosAtribuicao;
 	}
 
 }

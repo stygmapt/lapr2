@@ -5,7 +5,9 @@
  */
 package lapr.project.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import lapr.project.states.ExposicaoState;
 import lapr.project.states.ExposicaoStateCriada;
 
@@ -31,6 +33,7 @@ public class Exposicao {
     private final RegistoCandidaturasRemovidas registoCandidaturasRemovidas;
     private final RegistoAtribuicoes registoAtribuicoes;
     private final RegistoStand registoStand;
+    private final RegistoConflito registoconflito;
 
     private Exposicao(String titulo, String desc, Date dataInicio, Date dataFim,
             Date DataInicioSub, Date dataFimsub, String local,
@@ -51,6 +54,7 @@ public class Exposicao {
         this.registoCandidaturasRemovidas = new RegistoCandidaturasRemovidas();
         this.registoAtribuicoes = new RegistoAtribuicoes();
         this.registoStand = new RegistoStand();
+        this.registoconflito=new RegistoConflito();
     }
 
     public Exposicao() {
@@ -62,6 +66,7 @@ public class Exposicao {
         this.registoCandidaturasRemovidas = new RegistoCandidaturasRemovidas();
         this.registoAtribuicoes = new RegistoAtribuicoes();
         this.registoStand = new RegistoStand();
+        this.registoconflito=new RegistoConflito();
     }
 
     public RegistoCandidaturasRemovidas getRegistoCandidaturasRemovidas() {
@@ -222,6 +227,10 @@ public class Exposicao {
 
     public boolean isInConflitosAlterados() {
         return this.m_state.setConflitoAlterados();
+    }
+
+    public void setConflitosDetetados(List<Conflito> lst) {
+        this.registoconflito.setListaConflitos(lst);
     }
 
 }
