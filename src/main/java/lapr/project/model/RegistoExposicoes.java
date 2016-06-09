@@ -6,7 +6,6 @@
 package lapr.project.model;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 /**
@@ -132,15 +131,30 @@ public class RegistoExposicoes {
 		return listaExposicao;
 	}
 
-    public List<Exposicao> getExposicoesByFAE(Utilizador u) {
-        List<Exposicao> listaExposicao = new ArrayList<>();
-        for(Exposicao e:this.listaExposições){
-            for(FAE fae:e.getListaFae().getLista()){
-                if(fae.getUtilizador().equals(u)){
-                    listaExposicao.add(e);
-                }
-            }
-        }
-        return listaExposicao;
-    }
+	public List<Exposicao> getExposicoesByFAE(Utilizador u) {
+		List<Exposicao> listaExposicao = new ArrayList<>();
+		for (Exposicao e : this.listaExposições) {
+			for (FAE fae : e.getListaFae().getLista()) {
+				if (fae.getUtilizador().equals(u)) {
+					listaExposicao.add(e);
+				}
+			}
+		}
+		return listaExposicao;
+	}
+
+	public List<Exposicao> getListaExposicoesdoFae(Utilizador user) {
+		List<Exposicao> listaExposicaoFAE = new ArrayList<>();
+		for (Exposicao exposicao : listaExposicaoFAE) {
+			if (exposicao.isCandidaturaAtribuidas()) {
+				for (FAE exposicao1 : exposicao.getListaFae().getLista()) {
+					if (exposicao1.getUtilizador().equals(user)) {
+						listaExposicaoFAE.add(exposicao);
+					}
+				}
+			}
+		}
+		return listaExposicaoFAE;
+	}
+
 }

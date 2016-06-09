@@ -56,7 +56,8 @@ public class Exposicao {
         this.registoStand = new RegistoStand();
         this.registoconflito=new RegistoConflito();
     }
-
+    
+    
     public Exposicao() {
         this.listaFae = new ListaFAE();
         this.listaOrganizador = new ListaOrganizadores();
@@ -68,166 +69,170 @@ public class Exposicao {
         this.registoStand = new RegistoStand();
         this.registoconflito=new RegistoConflito();
     }
+        
+	public RegistoCandidaturasRemovidas getRegistoCandidaturasRemovidas() {
+		return registoCandidaturasRemovidas;
+	}
 
-    public RegistoCandidaturasRemovidas getRegistoCandidaturasRemovidas() {
-        return registoCandidaturasRemovidas;
-    }
+	public RegistoAtribuicoes getRegistoAtribuicoes() {
+		return registoAtribuicoes;
+	}
 
-    public RegistoAtribuicoes getRegistoAtribuicoes() {
-        return registoAtribuicoes;
-    }
+	public RegistoStand getRegistoStand() {
+		return registoStand;
+	}
 
-    public RegistoStand getRegistoStand() {
-        return registoStand;
-    }
+	public String getTitulo() {
+		return titulo;
+	}
 
-    public String getTitulo() {
-        return titulo;
-    }
+	public void setTitulo(String titulo) {
+		if (titulo == null || titulo.trim().isEmpty()) {
+			throw new IllegalArgumentException("O titulo da exposição nao pode ser vazio.!");
+		}
+		this.titulo = titulo;
+	}
 
-    public void setTitulo(String titulo) {
-        if (titulo == null || titulo.trim().isEmpty()) {
-            throw new IllegalArgumentException("O titulo da exposição nao pode ser vazio.!");
-        }
-        this.titulo = titulo;
-    }
+	public String getDescricao() {
+		return descricao;
+	}
 
-    public String getDescricao() {
-        return descricao;
-    }
+	public void setDescricao(String descricao) {
+		if (descricao == null || descricao.trim().isEmpty()) {
+			throw new IllegalArgumentException("A descrição da exposição nao pode ser vazio.!");
+		}
+		this.descricao = descricao;
+	}
 
-    public void setDescricao(String descricao) {
-        if (descricao == null || descricao.trim().isEmpty()) {
-            throw new IllegalArgumentException("A descrição da exposição nao pode ser vazio.!");
-        }
-        this.descricao = descricao;
-    }
+	public Date getDataInicioRealização() {
+		return dataInicioRealização;
+	}
 
-    public Date getDataInicioRealização() {
-        return dataInicioRealização;
-    }
+	public Date getDataFimRealização() {
+		return dataFimRealização;
+	}
 
-    public Date getDataFimRealização() {
-        return dataFimRealização;
-    }
+	public void setDatasRealização(Date dataInicioRealização,
+								   Date dataFimRealização) {
+		if (dataInicioRealização.after(dataFimRealização) || dataFimRealização.
+			equals(dataInicioRealização)) {
+			throw new IllegalArgumentException("A data de fim de exposição tem de ser posterior á data de inicio.");
+		}
+		this.dataInicioRealização = dataInicioRealização;
+		this.dataFimRealização = dataFimRealização;
+	}
 
-    public void setDatasRealização(Date dataInicioRealização,
-            Date dataFimRealização) {
-        if (dataInicioRealização.after(dataFimRealização) || dataFimRealização.
-                equals(dataInicioRealização)) {
-            throw new IllegalArgumentException("A data de fim de exposição tem de ser posterior á data de inicio.");
-        }
-        this.dataInicioRealização = dataInicioRealização;
-        this.dataFimRealização = dataFimRealização;
-    }
+	public Date getDataInicioSubmissão() {
+		return dataInicioSubmissão;
+	}
 
-    public Date getDataInicioSubmissão() {
-        return dataInicioSubmissão;
-    }
+	public Date getDataFimSubmissão() {
+		return dataFimSubmissão;
+	}
 
-    public Date getDataFimSubmissão() {
-        return dataFimSubmissão;
-    }
+	public void setPeriodoSubmissão(Date dataInicioSubmissão,
+									Date dataFimSubmissão) {
+		if (dataInicioSubmissão.after(dataFimSubmissão) || dataFimSubmissão.
+			equals(dataInicioSubmissão)) {
+			throw new IllegalArgumentException("A data limite de submissão de candidaturas tem de ser posterior á data de inicio.");
+		}
+		this.dataInicioSubmissão = dataInicioSubmissão;
+		this.dataFimSubmissão = dataFimSubmissão;
+	}
 
-    public void setPeriodoSubmissão(Date dataInicioSubmissão,
-            Date dataFimSubmissão) {
-        if (dataInicioSubmissão.after(dataFimSubmissão) || dataFimSubmissão.
-                equals(dataInicioSubmissão)) {
-            throw new IllegalArgumentException("A data limite de submissão de candidaturas tem de ser posterior á data de inicio.");
-        }
-        this.dataInicioSubmissão = dataInicioSubmissão;
-        this.dataFimSubmissão = dataFimSubmissão;
-    }
+	public String getLocal() {
+		return local;
+	}
 
-    public String getLocal() {
-        return local;
-    }
+	public void setLocal(String local) {
+		if (local == null || local.trim().isEmpty()) {
+			throw new IllegalArgumentException("O local da exposição nao pode ser vazio.!");
+		}
+		this.local = local;
+	}
 
-    public void setLocal(String local) {
-        if (local == null || local.trim().isEmpty()) {
-            throw new IllegalArgumentException("O local da exposição nao pode ser vazio.!");
-        }
-        this.local = local;
-    }
+	public void setDataLimiteAvaliacoes(Date dataLimiteAvaliacoes) {
+		if (dataLimiteAvaliacoes.before(this.dataFimSubmissão)) {
+			throw new IllegalArgumentException("A data limite de avaliação de candidaturas tem de ser posterior á data limite de submissão.");
+		}
+		this.dataLimiteAvaliacoes = dataLimiteAvaliacoes;
+	}
 
-    public void setDataLimiteAvaliacoes(Date dataLimiteAvaliacoes) {
-        if (dataLimiteAvaliacoes.before(this.dataFimSubmissão)) {
-            throw new IllegalArgumentException("A data limite de avaliação de candidaturas tem de ser posterior á data limite de submissão.");
-        }
-        this.dataLimiteAvaliacoes = dataLimiteAvaliacoes;
-    }
+	public Date getDataLimiteAvaliacoes() {
+		return dataLimiteAvaliacoes;
+	}
 
-    public Date getDataLimiteAvaliacoes() {
-        return dataLimiteAvaliacoes;
-    }
+	public ListaFAE getListaFae() {
+		return listaFae;
+	}
 
-    public ListaFAE getListaFae() {
-        return listaFae;
-    }
+	public ListaOrganizadores getListaOrganizador() {
+		return listaOrganizador;
+	}
 
-    public ListaOrganizadores getListaOrganizador() {
-        return listaOrganizador;
-    }
+	public ExposicaoState getM_state() {
+		return m_state;
+	}
 
-    public ExposicaoState getM_state() {
-        return m_state;
-    }
-
-    public void setState(ExposicaoState state) {
-        this.m_state = state;
-    }
+	public void setState(ExposicaoState state) {
+		this.m_state = state;
+	}
 
     public Boolean valida() {
-        return true;
-    }
+		return true;
+	}
 
     public Boolean isInFAESemDemonstracao() {
-        return this.m_state.setFAESemDemonstracao();
-    }
+		return this.m_state.setFAESemDemonstracao();
+	}
 
     public Boolean isInCriada() {
-        return this.m_state.setCriada();
-    }
+		return this.m_state.setCriada();
+	}
 
     public Boolean isDemonstracaoSemFAE() {
-        return this.m_state.setDemonstracaoSemFAE();
-    }
+		return this.m_state.setDemonstracaoSemFAE();
+	}
 
-    public Boolean isCompleta() {
-        return this.m_state.setCompleta();
-    }
+	public boolean isCandidaturaAtribuidas() {
+		return this.m_state.setCandidaturaAtribuidas();
+	}
 
-    public Boolean vereficaEstado() {
-        if (this.isDemonstracaoSemFAE() || this.isInFAESemDemonstracao()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+	public Boolean isCompleta() {
+		return this.m_state.setCompleta();
+	}
 
-    public ListaDemonstracao getListaDemonstracao() {
-        return listaDemonstracao;
-    }
+	public Boolean vereficaEstado() {
+		if (this.isDemonstracaoSemFAE() || this.isInFAESemDemonstracao()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-    public String toString() {
-        String str = "Exposiçao:";
-        str += "\tTitulo: " + this.titulo;
-        str += "\tDescrição: " + this.descricao;
+	public ListaDemonstracao getListaDemonstracao() {
+		return listaDemonstracao;
+	}
 
-        return str;
-    }
+	public String toString() {
+		String str = "Exposiçao:";
+		str += "\tTitulo: " + this.titulo;
+		str += "\tDescrição: " + this.descricao;
 
-    public boolean isCandidaturasAbertas() {
-        return this.m_state.setCandidaturaAberta();
-    }
+		return str;
+	}
 
-    public RegistoCandidaturas getRegistoCandidaturas() {
-        return this.registoCandidaturas;
-    }
+	public boolean isCandidaturasAbertas() {
+		return this.m_state.setCandidaturaAberta();
+	}
 
-    public boolean isInConflitosAlterados() {
-        return this.m_state.setConflitoAlterados();
-    }
+	public RegistoCandidaturas getRegistoCandidaturas() {
+		return this.registoCandidaturas;
+	}
+
+	public boolean isInConflitosAlterados() {
+		return this.m_state.setConflitoAlterados();
+	}
 
     public void setConflitosDetetados(List<Conflito> lst) {
         this.registoconflito.setListaConflitos(lst);

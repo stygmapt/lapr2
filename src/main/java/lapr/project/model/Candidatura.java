@@ -6,7 +6,6 @@
 package lapr.project.model;
 
 import java.io.Serializable;
-import java.util.List;
 import lapr.project.states.CandidaturaState;
 import lapr.project.states.CandidaturaStateEmSubmissao;
 
@@ -14,7 +13,7 @@ import lapr.project.states.CandidaturaStateEmSubmissao;
  *
  * @author Gabriel
  */
-public class Candidatura implements Serializable{
+public class Candidatura implements Serializable {
 
 	private Utilizador representante;
 	private String nome_Empresa;
@@ -25,11 +24,11 @@ public class Candidatura implements Serializable{
 	private ListaProdutos lista_produtos;
 	private RegistoAvaliacoes registo_avaliacoes;
 	private CandidaturaState estado_candidatura;
-        
+	private Avaliacao m_avaliacao;
 
 	public Candidatura() {
-            this.lista_produtos=new ListaProdutos();
-            this.estado_candidatura = new CandidaturaStateEmSubmissao(this);
+		this.lista_produtos = new ListaProdutos();
+		this.estado_candidatura = new CandidaturaStateEmSubmissao(this);
 	}
 
 	public Candidatura(Utilizador representante, String nome_Empresa,
@@ -58,9 +57,9 @@ public class Candidatura implements Serializable{
 	}
 
 	public void setNome_Empresa(String nome_Empresa) {
-            if(nome_Empresa.isEmpty()||nome_Empresa==null){
-                throw new IllegalArgumentException("Introduza o nome da empresa.");
-            }
+		if (nome_Empresa.isEmpty() || nome_Empresa == null) {
+			throw new IllegalArgumentException("Introduza o nome da empresa.");
+		}
 		this.nome_Empresa = nome_Empresa;
 	}
 
@@ -69,9 +68,9 @@ public class Candidatura implements Serializable{
 	}
 
 	public void setMorada_Empresa(String morada_Empresa) {
-            if(morada_Empresa.isEmpty()||morada_Empresa==null){
-                throw new IllegalArgumentException("Introduza a morada.");
-            }
+		if (morada_Empresa.isEmpty() || morada_Empresa == null) {
+			throw new IllegalArgumentException("Introduza a morada.");
+		}
 		this.morada_Empresa = morada_Empresa;
 	}
 
@@ -80,10 +79,10 @@ public class Candidatura implements Serializable{
 	}
 
 	public void setTelemovel_Empresa(int telemovel_Empresa) {
-            int nrNumeros = String.valueOf(telemovel_Empresa).length();
-            if(nrNumeros!=9){
-                throw new IllegalArgumentException("O telefone tem que ter 9 digitos.");
-            }
+		int nrNumeros = String.valueOf(telemovel_Empresa).length();
+		if (nrNumeros != 9) {
+			throw new IllegalArgumentException("O telefone tem que ter 9 digitos.");
+		}
 		this.telemovel_Empresa = telemovel_Empresa;
 	}
 
@@ -106,6 +105,7 @@ public class Candidatura implements Serializable{
 	public ListaProdutos getLista_produtos() {
 		return lista_produtos;
 	}
+
 	public RegistoAvaliacoes getRegistoAtribuicoes() {
 		return registo_avaliacoes;
 	}
@@ -132,22 +132,25 @@ public class Candidatura implements Serializable{
 		return true;
 	}
 
-    public boolean equals(Candidatura o) {
-        if(o==null){
-            return false;
-        }
-        if (o != null) {
-			return o.getRepresentante().equals(this.getRepresentante())&&
-                                o.getNome_Empresa().equalsIgnoreCase(this.getNome_Empresa())&&
-                                o.getMorada_Empresa().equalsIgnoreCase(this.getMorada_Empresa());
+	public boolean equals(Candidatura o) {
+		if (o == null) {
+			return false;
 		}
-        return false;
-    }
-        
-        
+		if (o != null) {
+			return o.getRepresentante().equals(this.getRepresentante())
+				&& o.getNome_Empresa().equalsIgnoreCase(this.getNome_Empresa())
+				&& o.getMorada_Empresa().equalsIgnoreCase(this.
+					getMorada_Empresa());
+		}
+		return false;
+	}
 
-    public void setState(CandidaturaState candidaturaState) {
-        this.estado_candidatura = candidaturaState;
-    }
+	public void setState(CandidaturaState candidaturaState) {
+		this.estado_candidatura = candidaturaState;
+	}
+
+	public void novaAvaliacao() {
+		this.m_avaliacao = new Avaliacao();
+	}
 
 }
