@@ -6,6 +6,7 @@
 package lapr.project.model;
 
 import java.io.Serializable;
+import java.util.List;
 import lapr.project.states.CandidaturaState;
 import lapr.project.states.CandidaturaStateEmSubmissao;
 
