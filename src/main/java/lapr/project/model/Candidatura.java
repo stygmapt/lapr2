@@ -22,7 +22,9 @@ public class Candidatura implements Serializable{
 	private int qtd_convites;
 	private float area_Empresa;
 	private ListaProdutos lista_produtos;
+	private RegistoAvaliacoes registo_avaliacoes;
 	private CandidaturaState estado_candidatura;
+        
 
 	public Candidatura() {
             this.lista_produtos=new ListaProdutos();
@@ -102,6 +104,9 @@ public class Candidatura implements Serializable{
 
 	public ListaProdutos getLista_produtos() {
 		return lista_produtos;
+	}
+	public RegistoAvaliacoes getRegistoAtribuicoes() {
+		return registo_avaliacoes;
 	}
 
 	public void setLista_produtos(ListaProdutos lista_produtos) {
