@@ -6,6 +6,7 @@
 package lapr.project.model;
 
 import java.io.Serializable;
+import java.util.List;
 import lapr.project.states.CandidaturaState;
 import lapr.project.states.CandidaturaStateEmSubmissao;
 
@@ -22,9 +23,11 @@ public class Candidatura implements Serializable {
 	private int qtd_convites;
 	private float area_Empresa;
 	private ListaProdutos lista_produtos;
+	private ListaKeywords lista_keywords;
 	private RegistoAvaliacoes registo_avaliacoes;
 	private CandidaturaState estado_candidatura;
 	private Avaliacao m_avaliacao;
+        
 
 	public Candidatura() {
 		this.lista_produtos = new ListaProdutos();
@@ -42,6 +45,7 @@ public class Candidatura implements Serializable {
 		this.qtd_convites = qtd_convites;
 		this.area_Empresa = area_Empresa;
 		this.lista_produtos = lista_produtos;
+                this.lista_keywords=new ListaKeywords();
 	}
 
 	public Utilizador getRepresentante() {
@@ -152,5 +156,9 @@ public class Candidatura implements Serializable {
 	public void novaAvaliacao() {
 		this.m_avaliacao = new Avaliacao();
 	}
+
+    public ListaKeywords getListaKeywords() {
+        return this.lista_keywords;
+    }
 
 }

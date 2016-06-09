@@ -8,6 +8,7 @@ package lapr.project.controller;
 import java.util.List;
 import lapr.project.model.Candidatura;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Keyword;
 import lapr.project.model.Produto;
 import lapr.project.model.Utilizador;
 
@@ -57,12 +58,12 @@ public class AlterarCandidaturaController {
         this.produtoAAlterar=p;
     }
     
-    public void addPalavraChave(String plvr){
-        produtoAAlterar.addPalavraChave(plvr);
-    }
-    
     public void setDescricaoProdSelected(String dsc){
         produtoAAlterar.setDesignacao_produto(dsc);
+    }
+
+    public void addPalavraChave(String text) {
+        this.candidaturaAAlterar.getListaKeywords().registaKeyWord(new Keyword(text));
     }
     
 }

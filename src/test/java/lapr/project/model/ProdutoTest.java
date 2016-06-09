@@ -26,10 +26,6 @@ public class ProdutoTest {
 
 	public ProdutoTest() {
 		this.produtoTest = new Produto("Engenharia");
-		i = "Isep";
-		z = "Porto";
-		this.produtoTest.addPalavraChave(z);
-		this.produtoTest.addPalavraChave(i);
 	}
 
 	@BeforeClass
@@ -58,21 +54,6 @@ public class ProdutoTest {
 		String result = produtoTest.getDesignacao_produto();
 		assertEquals(expResult, result);
 	}
-
-	/**
-	 * Test of getPalavras_chave_produto method, of class Produto.
-	 */
-	@Test
-	public void testGetPalavras_chave_produto() {
-		System.out.println("getPalavras_chave_produto");
-		List<String> expResult = new ArrayList<>();
-		expResult.add(i);
-		expResult.add(z);
-		List<String> result = produtoTest.getPalavras_chave_produto();
-		System.out.println("The size of the list, should be 2 !!!");
-		assertEquals(expResult.size(), result.size());
-	}
-
 	/**
 	 * Test of setDesignacao_produto method, of class Produto.
 	 */
@@ -82,37 +63,6 @@ public class ProdutoTest {
 		String designacao_produto = "Porto";
 		produtoTest.setDesignacao_produto(designacao_produto);
 		assertEquals(produtoTest.getDesignacao_produto(), designacao_produto);
-	}
-
-	/**
-	 * Test of setPalavras_chave_produto method, of class Produto.
-	 */
-	@Test
-	public void testSetPalavras_chave_produto() {
-		System.out.println("setPalavras_chave_produto");
-		String a = "Semana da Enganharia";
-		String b = "CP";
-		List<String> palavras_chave_produto = new ArrayList<>();
-		palavras_chave_produto.add(a);
-		palavras_chave_produto.add(b);
-		produtoTest.setPalavras_chave_produto(palavras_chave_produto);
-		System.out.println("The size of the List should be 2 !!!");
-		assertEquals(palavras_chave_produto.size(), produtoTest.
-					 getPalavras_chave_produto().size());
-	}
-
-	/**
-	 * Test of addPalavraChave method, of class Produto.
-	 */
-	@Test
-	public void testAddPalavraChave() {
-		System.out.println("addPalavraChave");
-		String plvr = "Espinho";
-		produtoTest.addPalavraChave(plvr);
-		int size = 3;
-		System.out.
-			println("The sizeee of the list should be 3 because we add a new 'Palavra Chave'");
-		assertEquals(produtoTest.getPalavras_chave_produto().size(), size);
 	}
 
 //	/**

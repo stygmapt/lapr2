@@ -45,10 +45,7 @@ public class CandidaturaTest {
 		this.candidaturaTest.setMorada_Empresa("Rua 10");
 		this.candidaturaTest.setArea_Empresa(15);
 		this.produto = new Produto("Engenharia");
-		String i = "Isep";
-		String z = "Porto";
-		this.produto.addPalavraChave(z);
-		this.produto.addPalavraChave(i);
+		
 		this.listaProdutos = new ListaProdutos();
 		listaProdutos.adicionaProduto(produto);
 		this.candidaturaTest.setLista_produtos(listaProdutos);
@@ -230,8 +227,6 @@ public class CandidaturaTest {
 		System.out.println("setLista_produtos");
 		ListaProdutos lista_produtos = new ListaProdutos();
 		Produto p = new Produto();
-		p.addPalavraChave("test");
-		p.addPalavraChave("file");
 		lista_produtos.adicionaProduto(p);
 		candidaturaTest.setLista_produtos(lista_produtos);
 		assertEquals(lista_produtos, candidaturaTest.getLista_produtos());

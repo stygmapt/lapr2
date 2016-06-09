@@ -22,7 +22,7 @@ public class CandidaturaExample implements Importable<CandidaturaExample>, Expor
 	private static final String ROOT_ELEMENT_NAME = "candidatura";
 	private static final String DESCRIPTION_ELEMENT_NAME = "description";
 	private static final String KEYWORDS_ELEMENT_NAME = "keywords";
-	private final List<KeywordExample> keywordList = new ArrayList<>();
+	private final List<Keyword> keywordList = new ArrayList<>();
 	private String description = "";
 
 	/**
@@ -31,7 +31,7 @@ public class CandidaturaExample implements Importable<CandidaturaExample>, Expor
 	 * @param description CandidaturaDescription
 	 * @param keywordList Keyword List
 	 */
-	public CandidaturaExample(String description, List<KeywordExample> keywordList) {
+	public CandidaturaExample(String description, List<Keyword> keywordList) {
 		this.description = description;
 		this.keywordList.addAll(keywordList);
 	}
@@ -57,7 +57,7 @@ public class CandidaturaExample implements Importable<CandidaturaExample>, Expor
 	 *
 	 * @param keyword Keyword to be added.
 	 */
-	public void addKeyword(KeywordExample keyword) {
+	public void addKeyword(Keyword keyword) {
 		getKeywordList().add(keyword);
 	}
 
@@ -66,7 +66,7 @@ public class CandidaturaExample implements Importable<CandidaturaExample>, Expor
 	 *
 	 * @return A list of existing keywords.
 	 */
-	public List<KeywordExample> getKeywordList() {
+	public List<Keyword> getKeywordList() {
 		return keywordList;
 
 	}
@@ -101,7 +101,7 @@ public class CandidaturaExample implements Importable<CandidaturaExample>, Expor
 			elementCandidatura.appendChild(elementKeywords);
 
 			//iterate over keywords
-			for (KeywordExample keyword : getKeywordList()
+			for (Keyword keyword : getKeywordList()
 					) {
 				Node keywordNode = keyword.exportContentToXMLNode();
 				elementKeywords.appendChild(document.importNode(keywordNode, true));
@@ -144,7 +144,7 @@ public class CandidaturaExample implements Importable<CandidaturaExample>, Expor
 			NodeList keywords = elementsKeywords.item(0).getChildNodes();
 			for (int position = 0; position < keywords.getLength(); position++) {
 				Node keyword = keywords.item(position);
-				KeywordExample keywordExample = new KeywordExample();
+				Keyword keywordExample = new Keyword();
 
 				keywordExample = keywordExample.importContentFromXMLNode(keyword);
 				addKeyword(keywordExample);

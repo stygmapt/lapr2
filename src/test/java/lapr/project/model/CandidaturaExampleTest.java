@@ -11,6 +11,9 @@ import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * Class to demonstrate a Candidatura simple example.
@@ -21,13 +24,13 @@ public class CandidaturaExampleTest {
 
 	@Test
 	public void ensureAddKeywordIsWorking() throws Exception {
-		List<KeywordExample> expectedKeywordExampleList = new ArrayList<>();
-		expectedKeywordExampleList.add(new KeywordExample("Doors"));
+		List<Keyword> expectedKeywordExampleList = new ArrayList<>();
+		expectedKeywordExampleList.add(new Keyword("Doors"));
 
 		CandidaturaExample candidatura = new CandidaturaExample("MyCandidatura", new ArrayList<>());
-		candidatura.addKeyword(new KeywordExample("Doors"));
+		candidatura.addKeyword(new Keyword("Doors"));
 
-		List<KeywordExample> resultList = candidatura.getKeywordList();
+		List<Keyword> resultList = candidatura.getKeywordList();
 
 		assertArrayEquals(expectedKeywordExampleList.toArray(), resultList.
 						  toArray());
@@ -48,9 +51,9 @@ public class CandidaturaExampleTest {
 			+ "</keywords>\n"
 			+ "</candidatura>\n";
 
-		List<KeywordExample> keywordList = new ArrayList<>();
-		keywordList.add(new KeywordExample("Doors"));
-		keywordList.add(new KeywordExample("Windows"));
+		List<Keyword> keywordList = new ArrayList<>();
+		keywordList.add(new Keyword("Doors"));
+		keywordList.add(new Keyword("Windows"));
 		CandidaturaExample candidaturaExample = new CandidaturaExample("MyCandidatura", keywordList);
 		String result = candidaturaExample.exportContentToString();
 		assertEquals(expected, result);
@@ -58,9 +61,9 @@ public class CandidaturaExampleTest {
 
 	@Test
 	public void ensureImportFromXMLElementNodeIsValid() throws Exception {
-		List<KeywordExample> keywordExampleList = new ArrayList<>();
-		keywordExampleList.add(new KeywordExample("Doors"));
-		keywordExampleList.add(new KeywordExample("Windows"));
+		List<Keyword> keywordExampleList = new ArrayList<>();
+		keywordExampleList.add(new Keyword("Doors"));
+		keywordExampleList.add(new Keyword("Windows"));
 
 		CandidaturaExample expected = new CandidaturaExample("MyCandidatura", keywordExampleList);
 
@@ -89,7 +92,7 @@ public class CandidaturaExampleTest {
 		Element elementKeywords = document.createElement("keywords");
 
 		//iterate over keywords
-		for (KeywordExample keyword : keywordExampleList) {
+		for (Keyword keyword : keywordExampleList) {
 			Node keywordNode = keyword.exportContentToXMLNode();
 			elementKeywords.appendChild(document.importNode(keywordNode, true));
 		}
@@ -109,9 +112,9 @@ public class CandidaturaExampleTest {
 	public void ensureSameContentObjectsAreEqual() {
 		String description = "MyCandidatura";
 
-		List<KeywordExample> keywords = new ArrayList<>();
-		keywords.add(new KeywordExample("Doors"));
-		keywords.add(new KeywordExample("Windows"));
+		List<Keyword> keywords = new ArrayList<>();
+		keywords.add(new Keyword("Doors"));
+		keywords.add(new Keyword("Windows"));
 
 		CandidaturaExample expected = new CandidaturaExample(description, keywords);
 		CandidaturaExample result = new CandidaturaExample(description, keywords);
@@ -123,9 +126,9 @@ public class CandidaturaExampleTest {
 	public void ensureSameObjectIsEqual() {
 		String description = "MyCandidatura";
 
-		List<KeywordExample> keywords = new ArrayList<>();
-		keywords.add(new KeywordExample("Doors"));
-		keywords.add(new KeywordExample("Windows"));
+		List<Keyword> keywords = new ArrayList<>();
+		keywords.add(new Keyword("Doors"));
+		keywords.add(new Keyword("Windows"));
 
 		CandidaturaExample expected = new CandidaturaExample(description, keywords);
 
@@ -136,9 +139,9 @@ public class CandidaturaExampleTest {
 	public void ensureDifferentObjectsAreNotEqual() {
 		String description = "MyCandidatura";
 
-		List<KeywordExample> keywords = new ArrayList<>();
-		keywords.add(new KeywordExample("Doors"));
-		keywords.add(new KeywordExample("Windows"));
+		List<Keyword> keywords = new ArrayList<>();
+		keywords.add(new Keyword("Doors"));
+		keywords.add(new Keyword("Windows"));
 
 		CandidaturaExample expected = new CandidaturaExample(description, keywords);
 
@@ -151,9 +154,9 @@ public class CandidaturaExampleTest {
 		String description1 = "MyCandidatura1";
 		String description2 = "MyCandidatura2";
 
-		List<KeywordExample> keywords = new ArrayList<>();
-		keywords.add(new KeywordExample("Doors"));
-		keywords.add(new KeywordExample("Windows"));
+		List<Keyword> keywords = new ArrayList<>();
+		keywords.add(new Keyword("Doors"));
+		keywords.add(new Keyword("Windows"));
 
 		CandidaturaExample expected = new CandidaturaExample(description1, keywords);
 		CandidaturaExample result = new CandidaturaExample(description2, keywords);
@@ -165,9 +168,9 @@ public class CandidaturaExampleTest {
 	public void ensureHashCodeIsCorrect() {
 		String description = "MyCandidatura";
 
-		List<KeywordExample> keywords = new ArrayList<>();
-		keywords.add(new KeywordExample("Doors"));
-		keywords.add(new KeywordExample("Windows"));
+		List<Keyword> keywords = new ArrayList<>();
+		keywords.add(new Keyword("Doors"));
+		keywords.add(new Keyword("Windows"));
 
 		CandidaturaExample candidaturaExample = new CandidaturaExample(description, keywords);
 

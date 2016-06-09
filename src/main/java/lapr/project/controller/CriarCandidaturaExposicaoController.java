@@ -57,10 +57,6 @@ public class CriarCandidaturaExposicaoController {
         this.produto.setDesignacao_produto(desc);
     }
     
-    public void addPalavraChave(String plvr){
-        this.produto.addPalavraChave(plvr);
-    }
-    
     public void confirmaProduto(){
         this.regprodutos.adicionaProduto(this.produto);   
     }

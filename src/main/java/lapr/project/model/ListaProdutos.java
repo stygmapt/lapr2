@@ -29,9 +29,6 @@ public class ListaProdutos {
     }
 
     public void adicionaProduto(Produto produto) {
-        if(produto.getNrPalavrasChaves()<2){
-            throw  new IllegalArgumentException("O produto tem de ter pelo menos duas palavras-chave associadas.");
-        }
         this.lista.add(produto);
     } 
 }

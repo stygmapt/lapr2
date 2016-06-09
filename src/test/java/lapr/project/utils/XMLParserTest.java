@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.model.KeywordExample;
+import lapr.project.model.Keyword;
 import org.custommonkey.xmlunit.XMLUnit;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -12,6 +12,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXParseException;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Nuno Bettencourt [nmb@isep.ipp.pt] on 29/05/16.
@@ -24,7 +25,7 @@ public class XMLParserTest {
 			+ "<value>Doors</value>\n"
 			+ "</keyword>\n";
 
-		KeywordExample keyword = new KeywordExample("Doors");
+		Keyword keyword = new Keyword("Doors");
 		Node node = keyword.exportContentToXMLNode();
 
 		XMLParser xmlParser = new XMLParser();

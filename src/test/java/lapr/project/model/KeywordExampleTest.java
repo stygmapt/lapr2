@@ -19,27 +19,27 @@ import static org.junit.Assert.*;
 public class KeywordExampleTest {
 	@Test
 	public void ensureSameContentObjectsAreEqual() {
-		KeywordExample expected = new KeywordExample("Doors");
-		KeywordExample result = new KeywordExample("Doors");
+		Keyword expected = new Keyword("Doors");
+		Keyword result = new Keyword("Doors");
 		assertEquals(expected, result);
 	}
 
 	@Test
 	public void ensureSameObjectIsEqual() {
-		KeywordExample expected = new KeywordExample("Doors");
+		Keyword expected = new Keyword("Doors");
 		assertEquals(expected, expected);
 	}
 
 	@Test
 	public void ensureDifferentObjectsAreNotEqual() {
-		KeywordExample expected = new KeywordExample("Doors");
+		Keyword expected = new Keyword("Doors");
 		Object result = new Object();
 		assertNotEquals(expected, result);
 	}
 
 	@Test
 	public void ensureHashCodeIsCorrect() {
-		KeywordExample firstKeywordExample = new KeywordExample("Doors");
+		Keyword firstKeywordExample = new Keyword("Doors");
 
 		int expected = 66216549;
 		int result = firstKeywordExample.hashCode();
@@ -51,7 +51,7 @@ public class KeywordExampleTest {
 		String expected = "<keyword>\n" +
 				"<value>Doors</value>\n" +
 				"</keyword>\n";
-		KeywordExample keyword = new KeywordExample("Doors");
+		Keyword keyword = new Keyword("Doors");
 		String result = keyword.exportContentToString();
 		assertEquals(expected, result);
 	}
@@ -90,7 +90,7 @@ public class KeywordExampleTest {
 			e.printStackTrace();
 		}
 
-		KeywordExample keyword = new KeywordExample("Doors");
+		Keyword keyword = new Keyword("Doors");
 
 		Node result = keyword.exportContentToXMLNode();
 		assertTrue(expected.isEqualNode(result));
@@ -98,7 +98,7 @@ public class KeywordExampleTest {
 
 	@Test
 	public void ensureImportFromXMLElementNodeIsValid() throws Exception {
-		KeywordExample expected = new KeywordExample("Doors");
+		Keyword expected = new Keyword("Doors");
 
 		DocumentBuilderFactory factory =
 				DocumentBuilderFactory.newInstance();
@@ -124,9 +124,9 @@ public class KeywordExampleTest {
 		//Add root element to document
 		document.appendChild(elementKeyword);
 
-		KeywordExample keyword = new KeywordExample("Doors");
+		Keyword keyword = new Keyword("Doors");
 
-		KeywordExample result = keyword.importContentFromXMLNode(elementKeyword);
+		Keyword result = keyword.importContentFromXMLNode(elementKeyword);
 
 		assertEquals(expected, result);
 	}
@@ -134,7 +134,7 @@ public class KeywordExampleTest {
 	@Test
 	public void testCreateExportImport() throws Exception {
 		String filename = "target/test-classes/TestKeywordImportExport.xml";
-		KeywordExample expected = new KeywordExample("Doors");
+		Keyword expected = new Keyword("Doors");
 
 		Node memoryNode = expected.exportContentToXMLNode();
 
@@ -143,7 +143,7 @@ public class KeywordExampleTest {
 
 		Node fileNode = xmlParser.readXMLElementFromFile(filename);
 
-		KeywordExample result = new KeywordExample();
+		Keyword result = new Keyword();
 		result = result.importContentFromXMLNode(fileNode);
 
 		assertEquals(expected, result);

@@ -16,7 +16,7 @@ import javax.xml.parsers.ParserConfigurationException;
  *
  * @author by Nuno Bettencourt [nmb@isep.ipp.pt] on 29/05/16.
  */
-public class KeywordExample implements Exportable, Importable<KeywordExample> {
+public class Keyword implements Exportable, Importable<Keyword> {
 
 	private static final String ROOT_ELEMENT_NAME = "keyword";
 	private static final String VALUE_ELEMENT_NAME = "value";
@@ -29,7 +29,7 @@ public class KeywordExample implements Exportable, Importable<KeywordExample> {
 	/**
 	 * Default empty constructor.
 	 */
-	public KeywordExample() {
+	public Keyword() {
 
 	}
 
@@ -38,7 +38,7 @@ public class KeywordExample implements Exportable, Importable<KeywordExample> {
 	 *
 	 * @param keyword Keyword being used.
 	 */
-	public KeywordExample(String keyword) {
+	public Keyword(String keyword) {
 		this.value = keyword;
 	}
 
@@ -50,6 +50,12 @@ public class KeywordExample implements Exportable, Importable<KeywordExample> {
 	private String getValue() {
 		return this.value;
 	}
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+        
+        
 
 	@Override
 	public Node exportContentToXMLNode() {
@@ -88,7 +94,7 @@ public class KeywordExample implements Exportable, Importable<KeywordExample> {
 	}
 
 	@Override
-	public KeywordExample importContentFromXMLNode(Node node) {
+	public Keyword importContentFromXMLNode(Node node) {
 		try {
 			DocumentBuilderFactory factory =
 					DocumentBuilderFactory.newInstance();
@@ -118,11 +124,11 @@ public class KeywordExample implements Exportable, Importable<KeywordExample> {
 		if (this == o) {
 			return true;
 		}
-		if (!(o instanceof KeywordExample)) {
+		if (!(o instanceof Keyword)) {
 			return false;
 		}
 
-		KeywordExample that = (KeywordExample) o;
+		Keyword that = (Keyword) o;
 
 		return getValue().equals(that.getValue());
 
