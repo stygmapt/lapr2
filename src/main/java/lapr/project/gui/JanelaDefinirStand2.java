@@ -118,7 +118,9 @@ public class JanelaDefinirStand2 extends javax.swing.JFrame {
         try {
            this.standController.setArea(Integer.parseInt(jTextField1.getText()));
            this.standController.confirmaRegisto();
-           JOptionPane.showConfirmDialog(this, "Inserir?", null, JOptionPane.INFORMATION_MESSAGE);
+           JOptionPane.showMessageDialog(this, "introduziu o Stand com sucesso");
+           dispose();
+           JanelaPrincipal j = new JanelaPrincipal(centro, utilizador);
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(this, e.toString());
             

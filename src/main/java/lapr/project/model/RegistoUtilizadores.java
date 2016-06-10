@@ -37,7 +37,7 @@ public class RegistoUtilizadores {
 			if (usr.equalsIgnoreCase(u.getUsername())) {
 				return u;
 			}
-		}
-		return null;
+	}
+	return null;
     }
 }
