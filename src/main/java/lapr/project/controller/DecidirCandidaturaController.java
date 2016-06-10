@@ -41,6 +41,6 @@ public class DecidirCandidaturaController {
 	}
 
 	public void novaAvaliacao() {
-		this.atribuicao.getCandidatura().novaAvaliacao();
+            
 	}
 }

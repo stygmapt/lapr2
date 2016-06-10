@@ -19,7 +19,6 @@ import lapr.project.model.Utilizador;
 public class AlterarCandidaturaController {
     private final CentroExposicoes m_ce;
     private Candidatura candidaturaAAlterar;
-    private Produto produtoAAlterar;
     
     
     public AlterarCandidaturaController(CentroExposicoes ce){
@@ -38,9 +37,6 @@ public class AlterarCandidaturaController {
         return this.candidaturaAAlterar;
     }
     
-    public Produto getDadosProdutoSelected(){
-        return this.produtoAAlterar;
-    }
     public void setDados(String nome_Empresa, Utilizador representante, float area, String morada_Empresa, int tlm, int qtdCnvt){
         this.candidaturaAAlterar.setNome_Empresa(nome_Empresa);
         this.candidaturaAAlterar.setRepresentante(representante);
@@ -53,17 +49,18 @@ public class AlterarCandidaturaController {
     public List<Produto> getListProdutos(){
         return this.candidaturaAAlterar.getLista_produtos().getLista();
     }
-   
-    public void SelectProduto(Produto p){
-        this.produtoAAlterar=p;
-    }
     
-    public void setDescricaoProdSelected(String dsc){
-        produtoAAlterar.setDesignacao_produto(dsc);
-    }
+    
 
     public void addPalavraChave(String text) {
+        if(this.candidaturaAAlterar.getListaKeywords().getNrPalavrasLista()>=6){
+            throw  new IllegalArgumentException("Não podem existir mais de 6 palavras chave na candidatura.");
+        }
         this.candidaturaAAlterar.getListaKeywords().registaKeyWord(new Keyword(text));
+    }
+    
+    public void addProduto(String text) {
+        this.candidaturaAAlterar.getLista_produtos().adicionaProduto(new Produto(text));
     }
     
 }

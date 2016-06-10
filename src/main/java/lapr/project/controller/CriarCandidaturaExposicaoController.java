@@ -10,6 +10,7 @@ import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.Utilizador;
 import lapr.project.model.Candidatura;
+import lapr.project.model.Keyword;
 import lapr.project.model.ListaProdutos;
 import lapr.project.model.Produto;
 import lapr.project.model.RegistoCandidaturas;
@@ -57,6 +58,10 @@ public class CriarCandidaturaExposicaoController {
         this.produto.setDesignacao_produto(desc);
     }
     
+    public List<Keyword> getListPalavrasChave(){
+        return this.novaCandidatura.getListaKeywords().getLista();
+    }
+    
     public void confirmaProduto(){
         this.regprodutos.adicionaProduto(this.produto);   
     }
@@ -72,5 +77,12 @@ public class CriarCandidaturaExposicaoController {
 
     public List<Produto> getListProdutos() {
         return this.novaCandidatura.getLista_produtos().getLista();
+    }
+
+    public void adicionarPalavra(Keyword n) {
+        if(this.novaCandidatura.getListaKeywords().getNrPalavrasLista()>=6){
+            throw  new IllegalArgumentException("Não podem existir mais de 6 palavras chave na candidatura.");
+        }
+        this.novaCandidatura.getListaKeywords().registaKeyWord(n);
     }
 }

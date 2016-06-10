@@ -29,6 +29,11 @@ public class ListaProdutos {
     }
 
     public void adicionaProduto(Produto produto) {
+        for(Produto p:this.lista){
+            if(p.equals(produto)){
+                throw new IllegalArgumentException("Já existe um produto com essa designaçao.");
+            }
+        }
         this.lista.add(produto);
     } 
 }

@@ -138,4 +138,11 @@ public class Keyword implements Exportable, Importable<Keyword> {
 	public int hashCode() {
 		return getValue().hashCode();
 	}
+
+    @Override
+    public String toString() {
+        return "Keyword: " + this.value;
+    }
+        
+        
 }

@@ -26,11 +26,12 @@ public class Candidatura implements Serializable {
 	private ListaKeywords lista_keywords;
 	private RegistoAvaliacoes registo_avaliacoes;
 	private CandidaturaState estado_candidatura;
-	private Avaliacao m_avaliacao;
         
 
 	public Candidatura() {
 		this.lista_produtos = new ListaProdutos();
+                this.lista_keywords = new ListaKeywords();
+                this.registo_avaliacoes=new RegistoAvaliacoes();
 		this.estado_candidatura = new CandidaturaStateEmSubmissao(this);
 	}
 
@@ -90,6 +91,10 @@ public class Candidatura implements Serializable {
 		this.telemovel_Empresa = telemovel_Empresa;
 	}
 
+        public ListaKeywords getListaKeywords() {
+            return this.lista_keywords;
+        }
+        
 	public int getQtd_convites() {
 		return qtd_convites;
 	}
@@ -152,13 +157,4 @@ public class Candidatura implements Serializable {
 	public void setState(CandidaturaState candidaturaState) {
 		this.estado_candidatura = candidaturaState;
 	}
-
-	public void novaAvaliacao() {
-		this.m_avaliacao = new Avaliacao();
-	}
-
-    public ListaKeywords getListaKeywords() {
-        return this.lista_keywords;
-    }
-
 }

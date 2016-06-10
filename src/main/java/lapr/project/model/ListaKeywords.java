@@ -15,11 +15,15 @@ import java.util.List;
 public class ListaKeywords {
     List<Keyword> lst;
     private int nrKeys;
+    
     public ListaKeywords() {
         this.lst=new ArrayList<>();
         this.nrKeys=0;
     }
     
+    public int getNrPalavrasLista(){
+        return this.nrKeys;
+    }
     public List<Keyword> getLista(){
         return this.lst;
     }
