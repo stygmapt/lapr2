@@ -15,6 +15,9 @@ import lapr.project.states.CandidaturaStateEmSubmissao;
  * @author Gabriel
  */
 public class Candidatura implements Serializable {
+        private static final String ROOT_ELEMENT_NAME = "candidatura";
+	private static final String DESCRIPTION_ELEMENT_NAME = "description";
+	private static final String KEYWORDS_ELEMENT_NAME = "keywords";
 
 	private Utilizador representante;
 	private String nome_Empresa;

@@ -122,8 +122,7 @@ public class RegistoExposicoes {
 		List<Exposicao> listaExposicao = new ArrayList<>();
 		for (Exposicao expo : listaExposições) {
 			for (Organizador org : expo.getListaOrganizador().getLista()) {
-				if (org.getUtilizador().getUsername().equalsIgnoreCase(user.
-					getUsername()) || expo.isInConflitosAlterados()) {
+				if (org.getUtilizador().getUsername().equalsIgnoreCase(user.getUsername()) && expo.isInConflitosAlterados()) {
 					listaExposicao.add(expo);
 				}
 			}

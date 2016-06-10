@@ -5,7 +5,6 @@
  */
 package lapr.project.model;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import lapr.project.states.ExposicaoState;
@@ -69,6 +68,7 @@ public class Exposicao {
         this.registoStand = new RegistoStand();
         this.registoconflito=new RegistoConflito();
     }
+    
         
 	public RegistoCandidaturasRemovidas getRegistoCandidaturasRemovidas() {
 		return registoCandidaturasRemovidas;
@@ -178,19 +178,23 @@ public class Exposicao {
 		this.m_state = state;
 	}
 
-    public Boolean valida() {
+        public Boolean valida() {
 		return true;
 	}
 
-    public Boolean isInFAESemDemonstracao() {
+        public Boolean isInFAESemDemonstracao() {
 		return this.m_state.setFAESemDemonstracao();
 	}
 
-    public Boolean isInCriada() {
+        public boolean isCandidaturasTerminadas() {
+            return this.m_state.setCandidaturaTerminada();
+        }
+        
+        public Boolean isInCriada() {
 		return this.m_state.setCriada();
 	}
 
-    public Boolean isDemonstracaoSemFAE() {
+        public Boolean isDemonstracaoSemFAE() {
 		return this.m_state.setDemonstracaoSemFAE();
 	}
 
@@ -201,6 +205,19 @@ public class Exposicao {
 	public Boolean isCompleta() {
 		return this.m_state.setCompleta();
 	}
+        
+        public boolean isCandidaturasAbertas() {
+		return this.m_state.setCandidaturaAberta();
+	}
+
+	public boolean isInConflitosAlterados() {
+		return this.m_state.setConflitoAlterados();
+	}
+        
+        public boolean isInConflitosDetetados() {
+            return this.m_state.setConflitoDetetados();
+        }
+
 
 	public Boolean vereficaEstado() {
 		if (this.isDemonstracaoSemFAE() || this.isInFAESemDemonstracao()) {
@@ -222,20 +239,12 @@ public class Exposicao {
 		return str;
 	}
 
-	public boolean isCandidaturasAbertas() {
-		return this.m_state.setCandidaturaAberta();
-	}
-
 	public RegistoCandidaturas getRegistoCandidaturas() {
 		return this.registoCandidaturas;
 	}
-
-	public boolean isInConflitosAlterados() {
-		return this.m_state.setConflitoAlterados();
-	}
-
-    public void setConflitosDetetados(List<Conflito> lst) {
-        this.registoconflito.setListaConflitos(lst);
-    }
-
+        
+        
+        public void setConflitosDetetados(List<Conflito> lst) {
+            this.registoconflito.setListaConflitos(lst);
+        }
 }

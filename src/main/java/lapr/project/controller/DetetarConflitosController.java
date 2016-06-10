@@ -12,6 +12,7 @@ import lapr.project.model.Exposicao;
 import lapr.project.model.MecanismoDetecao1;
 import lapr.project.model.RegistoExposicoes;
 import lapr.project.model.RegistoTiposConflito;
+import lapr.project.states.ExposicaoStateConflitosDetetados;
 
 /**
  *
@@ -34,6 +35,7 @@ public class DetetarConflitosController {
                 this.exposicao.getRegistoCandidaturas().getListaCandidaturas(),
                 this.exposicao.getListaFae().getLista());
                 this.exposicao.setConflitosDetetados(lst);
+                this.exposicao.setState(new ExposicaoStateConflitosDetetados(this.exposicao));
      }
     
 }

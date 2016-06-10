@@ -22,7 +22,7 @@ import lapr.project.states.ExposicaoStateCandidaturasAtribuidas;
  */
 public class AtribuirCandidaturaController {
 
-	private CentroExposicoes m_centro;
+	private final CentroExposicoes m_centro;
 	private Exposicao m_exposicao;
 	private MecanismoDeAtribuicao m_atribuicao;
 	private List<Atribuicao> listaAtribuicoes;

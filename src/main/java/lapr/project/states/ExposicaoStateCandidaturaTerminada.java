@@ -15,7 +15,7 @@ public class ExposicaoStateCandidaturaTerminada implements ExposicaoState {
 
 	private Exposicao m_exposicao;
 
-	private ExposicaoStateCandidaturaTerminada(Exposicao expo) {
+	public ExposicaoStateCandidaturaTerminada(Exposicao expo) {
 		this.m_exposicao = expo;
 	}
 
