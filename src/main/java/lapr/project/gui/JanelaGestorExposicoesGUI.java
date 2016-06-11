@@ -10,6 +10,8 @@ import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import lapr.project.model.CentroExposicoes;
+import lapr.project.model.Exposicao;
+import lapr.project.model.Recurso;
 import lapr.project.model.Utilizador;
 import lapr.project.utils.XMLParser;
 import org.w3c.dom.Document;
@@ -47,6 +49,8 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,6 +120,18 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
 
         jMenuBar1.add(listagensMenu);
 
+        jMenu1.setText("Ficheiro");
+
+        jMenuItem8.setText("Exportaçao");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem8);
+
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -153,14 +169,6 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
 		JanelaDefinirRecurso j = new JanelaDefinirRecurso(this.centro);
-		try {
-			ExportarUtilizador();
-		} catch (Exception ex) {
-			Logger.getLogger(JanelaGestorExposicoesGUI.class.getName()).
-				log(Level.SEVERE, null, ex);
-		}
-
-		dispose();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -178,9 +186,19 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
 		dispose();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+		try {
+			Export();
+		} catch (Exception ex) {
+			Logger.getLogger(JanelaGestorExposicoesGUI.class.getName()).
+				log(Level.SEVERE, null, ex);
+		}
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu accoesMenu;
     private javax.swing.JButton jButton1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -189,10 +207,11 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenu listagensMenu;
     // End of variables declaration//GEN-END:variables
 
-	private void ExportarUtilizador() throws Exception {
+	private void Export() throws Exception {
 		String caminho = "C:\\Users\\Eduardo\\Desktop\\LAPR2\\LAPR2CLONE\\lapr2-2015-2016-g66\\new 1.xml";
 		DocumentBuilderFactory factory
 			= DocumentBuilderFactory.newInstance();
@@ -204,11 +223,18 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
 		Document document = builder.newDocument();
 		XMLParser xml = new XMLParser();
 		Element t = document.createElement("Centro");
-		Element elementUtilizadores = document.createElement("Utilizador");
-		t.appendChild(elementUtilizadores);
 		for (Utilizador object : centro.getUtilizadoresRegistados().getLista()) {
 			Node nodeUtil = object.exportContentToXMLNode();
-			elementUtilizadores.appendChild(document.importNode(nodeUtil, true));
+			t.appendChild(document.importNode(nodeUtil, true));
+		}
+		for (Recurso object : centro.getM_regRecursos().getListaRecursos()) {
+			Node nodeUtil = object.exportContentToXMLNode();
+			t.appendChild(document.importNode(nodeUtil, true));
+		}
+		for (Exposicao lppexposicao : centro.getRegistoExposicoes().
+			getListaExposições()) {
+			Node nodeUtil = lppexposicao.exportContentToXMLNode();
+			t.appendChild(document.importNode(nodeUtil, true));
 		}
 		document.appendChild(t);
 		Node rootNode = t;

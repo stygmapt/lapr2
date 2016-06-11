@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><Centro>
 <Utilizador>
-<Utilizador>
 <username>choura</username>
 <nome>choura</nome>
 <email>choura@isep.ipp.pt</email>
@@ -24,5 +23,24 @@
 <email>choura4@isep.ipp.pt</email>
 <password>FAD81194315A495134CE7C5ECA6A02D4011E4FC158FD630ECFB794993D2C3588</password>
 </Utilizador>
-</Utilizador>
+<Exposicao>
+<Titulo>Espinho</Titulo>
+<Descricao>Espinho2</Descricao>
+<DataInicioRealizacao>Tue Jan 12 00:06:00 GMT 2016</DataInicioRealizacao>
+<DataFimRealizacao>Sat Jan 30 00:06:00 GMT 2016</DataFimRealizacao>
+<DataInicioSubmissao>Wed Jan 13 00:06:00 GMT 2016</DataInicioSubmissao>
+<DataFimSubmissao>Tue Jan 19 00:06:00 GMT 2016</DataFimSubmissao>
+<DataLimiteAvaliacao>Wed Jan 20 00:06:00 GMT 2016</DataLimiteAvaliacao>
+<Local>Espinho2</Local>
+<FAE/>
+<Candidatura/>
+<Organizador>
+<Organizador>
+<Username>choura</Username>
+</Organizador>
+<Organizador>
+<Username>choura2</Username>
+</Organizador>
+</Organizador>
+</Exposicao>
 </Centro>

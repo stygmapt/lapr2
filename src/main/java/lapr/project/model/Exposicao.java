@@ -5,71 +5,78 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.states.ExposicaoState;
 import lapr.project.states.ExposicaoStateCriada;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  *
  * @author Tiago
  */
-public class Exposicao {
+public class Exposicao implements Exportable, Importable<Exposicao>, Serializable {
 
-    private String titulo;
-    private String descricao;
-    private Date dataInicioRealização;
-    private Date dataFimRealização;
-    private Date dataInicioSubmissão;
-    private Date dataFimSubmissão;
-    private Date dataLimiteAvaliacoes;
-    private String local;
-    private ExposicaoState m_state;
-    private final ListaOrganizadores listaOrganizador;
-    private final ListaFAE listaFae;
-    private final ListaDemonstracao listaDemonstracao;
-    private final RegistoCandidaturas registoCandidaturas;
-    private final RegistoCandidaturasRemovidas registoCandidaturasRemovidas;
-    private final RegistoAtribuicoes registoAtribuicoes;
-    private final RegistoStand registoStand;
-    private final RegistoConflito registoconflito;
+	private String titulo;
+	private String descricao;
+	private Date dataInicioRealização;
+	private Date dataFimRealização;
+	private Date dataInicioSubmissão;
+	private Date dataFimSubmissão;
+	private Date dataLimiteAvaliacoes;
+	private String local;
+	private ExposicaoState m_state;
+	private final ListaOrganizadores listaOrganizador;
+	private final ListaFAE listaFae;
+	private final ListaDemonstracao listaDemonstracao;
+	private final RegistoCandidaturas registoCandidaturas;
+	private final RegistoCandidaturasRemovidas registoCandidaturasRemovidas;
+	private final RegistoAtribuicoes registoAtribuicoes;
+	private final RegistoStand registoStand;
+	private final RegistoConflito registoconflito;
 
-    private Exposicao(String titulo, String desc, Date dataInicio, Date dataFim,
-            Date DataInicioSub, Date dataFimsub, String local,
-            Date dataAvaliacoes) {
-        this.titulo = titulo;
-        this.descricao = desc;
-        this.dataInicioRealização = dataInicio;
-        this.dataFimRealização = dataFim;
-        this.dataInicioSubmissão = DataInicioSub;
-        this.dataFimSubmissão = dataFimsub;
-        this.dataLimiteAvaliacoes = dataAvaliacoes;
-        this.local = local;
-        this.listaOrganizador = new ListaOrganizadores();
-        this.listaFae = new ListaFAE();
-        this.m_state = new ExposicaoStateCriada(this);
-        this.listaDemonstracao = new ListaDemonstracao();
-        this.registoCandidaturas = new RegistoCandidaturas();
-        this.registoCandidaturasRemovidas = new RegistoCandidaturasRemovidas();
-        this.registoAtribuicoes = new RegistoAtribuicoes();
-        this.registoStand = new RegistoStand();
-        this.registoconflito=new RegistoConflito();
-    }
-    
-    
-    public Exposicao() {
-        this.listaFae = new ListaFAE();
-        this.listaOrganizador = new ListaOrganizadores();
-        this.listaDemonstracao = new ListaDemonstracao();
-        this.m_state = new ExposicaoStateCriada(this);
-        this.registoCandidaturas = new RegistoCandidaturas();
-        this.registoCandidaturasRemovidas = new RegistoCandidaturasRemovidas();
-        this.registoAtribuicoes = new RegistoAtribuicoes();
-        this.registoStand = new RegistoStand();
-        this.registoconflito=new RegistoConflito();
-    }
-    
-        
+	private Exposicao(String titulo, String desc, Date dataInicio, Date dataFim,
+					  Date DataInicioSub, Date dataFimsub, String local,
+					  Date dataAvaliacoes) {
+		this.titulo = titulo;
+		this.descricao = desc;
+		this.dataInicioRealização = dataInicio;
+		this.dataFimRealização = dataFim;
+		this.dataInicioSubmissão = DataInicioSub;
+		this.dataFimSubmissão = dataFimsub;
+		this.dataLimiteAvaliacoes = dataAvaliacoes;
+		this.local = local;
+		this.listaOrganizador = new ListaOrganizadores();
+		this.listaFae = new ListaFAE();
+		this.m_state = new ExposicaoStateCriada(this);
+		this.listaDemonstracao = new ListaDemonstracao();
+		this.registoCandidaturas = new RegistoCandidaturas();
+		this.registoCandidaturasRemovidas = new RegistoCandidaturasRemovidas();
+		this.registoAtribuicoes = new RegistoAtribuicoes();
+		this.registoStand = new RegistoStand();
+		this.registoconflito = new RegistoConflito();
+	}
+
+	public Exposicao() {
+		this.listaFae = new ListaFAE();
+		this.listaOrganizador = new ListaOrganizadores();
+		this.listaDemonstracao = new ListaDemonstracao();
+		this.m_state = new ExposicaoStateCriada(this);
+		this.registoCandidaturas = new RegistoCandidaturas();
+		this.registoCandidaturasRemovidas = new RegistoCandidaturasRemovidas();
+		this.registoAtribuicoes = new RegistoAtribuicoes();
+		this.registoStand = new RegistoStand();
+		this.registoconflito = new RegistoConflito();
+	}
+
 	public RegistoCandidaturasRemovidas getRegistoCandidaturasRemovidas() {
 		return registoCandidaturasRemovidas;
 	}
@@ -178,23 +185,23 @@ public class Exposicao {
 		this.m_state = state;
 	}
 
-        public Boolean valida() {
+	public Boolean valida() {
 		return true;
 	}
 
-        public Boolean isInFAESemDemonstracao() {
+	public Boolean isInFAESemDemonstracao() {
 		return this.m_state.setFAESemDemonstracao();
 	}
 
-        public boolean isCandidaturasTerminadas() {
-            return this.m_state.setCandidaturaTerminada();
-        }
-        
-        public Boolean isInCriada() {
+	public boolean isCandidaturasTerminadas() {
+		return this.m_state.setCandidaturaTerminada();
+	}
+
+	public Boolean isInCriada() {
 		return this.m_state.setCriada();
 	}
 
-        public Boolean isDemonstracaoSemFAE() {
+	public Boolean isDemonstracaoSemFAE() {
 		return this.m_state.setDemonstracaoSemFAE();
 	}
 
@@ -205,19 +212,18 @@ public class Exposicao {
 	public Boolean isCompleta() {
 		return this.m_state.setCompleta();
 	}
-        
-        public boolean isCandidaturasAbertas() {
+
+	public boolean isCandidaturasAbertas() {
 		return this.m_state.setCandidaturaAberta();
 	}
 
 	public boolean isInConflitosAlterados() {
 		return this.m_state.setConflitoAlterados();
 	}
-        
-        public boolean isInConflitosDetetados() {
-            return this.m_state.setConflitoDetetados();
-        }
 
+	public boolean isInConflitosDetetados() {
+		return this.m_state.setConflitoDetetados();
+	}
 
 	public Boolean vereficaEstado() {
 		if (this.isDemonstracaoSemFAE() || this.isInFAESemDemonstracao()) {
@@ -242,9 +248,102 @@ public class Exposicao {
 	public RegistoCandidaturas getRegistoCandidaturas() {
 		return this.registoCandidaturas;
 	}
-        
-        
-        public void setConflitosDetetados(List<Conflito> lst) {
-            this.registoconflito.setListaConflitos(lst);
-        }
+
+	public void setConflitosDetetados(List<Conflito> lst) {
+		this.registoconflito.setListaConflitos(lst);
+	}
+
+	@Override
+	public Node exportContentToXMLNode() {
+		Node rootNode = null;
+
+		try {
+			DocumentBuilderFactory factory
+				= DocumentBuilderFactory.newInstance();
+			//Create document builder
+			DocumentBuilder builder = factory.newDocumentBuilder();
+
+			//Obtain a new document
+			Document document = builder.newDocument();
+
+			//Create root element
+			Element elementUtilizador = document.
+				createElement("Exposicao");
+
+			//Create a sub-element
+			Element elementDescription = document.
+				createElement("Titulo");
+			Element elementName = document.createElement("Descricao");
+			Element elementData = document.createElement("DataInicioRealizacao");
+			Element elementPass = document.createElement("DataFimRealizacao");
+			Element elementInicioSubmissao = document.
+				createElement("DataInicioSubmissao");
+			Element elementFimSubmissao = document.
+				createElement("DataFimSubmissao");
+			Element elementLElement = document.
+				createElement("DataLimiteAvaliacao");
+			Element Local = document.createElement("Local");
+			//Set the sub-element value
+			elementDescription.setTextContent(getTitulo());
+			elementName.setTextContent(getDescricao());
+			elementData.setTextContent(getDataInicioRealização().toString());
+			elementPass.setTextContent(getDataFimRealização().toString());
+			elementInicioSubmissao.setTextContent(getDataInicioSubmissão().
+				toString());
+			elementFimSubmissao.setTextContent(getDataFimSubmissão().toString());
+			elementLElement.setTextContent(getDataLimiteAvaliacoes().toString());
+			Local.setTextContent(getLocal());
+			//Add sub-element to root element
+			elementUtilizador.appendChild(elementDescription);
+			elementUtilizador.appendChild(elementName);
+			elementUtilizador.appendChild(elementData);
+			elementUtilizador.appendChild(elementPass);
+			elementUtilizador.appendChild(elementInicioSubmissao);
+			elementUtilizador.appendChild(elementFimSubmissao);
+			elementUtilizador.appendChild(elementLElement);
+			elementUtilizador.appendChild(Local);
+			Element listaOrg = document.createElement("Organizador");
+			Element listaFAE = document.createElement("FAE");
+			Element listaCand = document.createElement("Candidatura");
+			Element listaDeElement = document.createElement("Demonstracao");
+			for (Organizador object : listaOrganizador.getLista()) {
+				Node nodeOrg = object.exportContentToXMLNode();
+				listaOrg.appendChild(document.importNode(nodeOrg, true));
+			}
+			for (FAE object : listaFae.getLista()) {
+				Node nodeFAE = object.exportContentToXMLNode();
+				listaFAE.appendChild(document.importNode(nodeFAE, true));
+			}
+			for (Candidatura cand : registoCandidaturas.getListaCandidaturas()) {
+				Node nodeCandidatura = cand.exportContentToXMLNode();
+				listaCand.
+					appendChild(document.importNode(nodeCandidatura, true));
+			}
+			for (Demonstracao object : listaDemonstracao.getListaDemonstracao()) {
+				Node nodeDemonstracao = object.exportContentToXMLNode();
+				listaDeElement.appendChild(document.
+					importNode(nodeDemonstracao, true));
+			}
+			elementUtilizador.appendChild(listaDeElement);
+			elementUtilizador.appendChild(listaFAE);
+			elementUtilizador.appendChild(listaCand);
+			//Create a sub-element
+			elementUtilizador.appendChild(listaOrg);
+			//Add root element to document
+			document.appendChild(elementUtilizador);
+
+			//It exports only the element representation to XMÇ, ommiting the XML header
+			rootNode = elementUtilizador;
+
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		return rootNode;
+	}
+
+	@Override
+	public Exposicao importContentFromXMLNode(Node node) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
 }

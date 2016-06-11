@@ -6,16 +6,24 @@
 package lapr.project.model;
 
 import java.io.Serializable;
-import java.util.List;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.states.CandidaturaState;
 import lapr.project.states.CandidaturaStateEmSubmissao;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  *
  * @author Gabriel
  */
-public class Candidatura implements Serializable {
-        private static final String ROOT_ELEMENT_NAME = "candidatura";
+public class Candidatura implements Exportable, Importable<Candidatura>, Serializable {
+
+	private static final String ROOT_ELEMENT_NAME = "candidatura";
 	private static final String DESCRIPTION_ELEMENT_NAME = "description";
 	private static final String KEYWORDS_ELEMENT_NAME = "keywords";
 
@@ -29,12 +37,11 @@ public class Candidatura implements Serializable {
 	private ListaKeywords lista_keywords;
 	private RegistoAvaliacoes registo_avaliacoes;
 	private CandidaturaState estado_candidatura;
-        
 
 	public Candidatura() {
 		this.lista_produtos = new ListaProdutos();
-                this.lista_keywords = new ListaKeywords();
-                this.registo_avaliacoes=new RegistoAvaliacoes();
+		this.lista_keywords = new ListaKeywords();
+		this.registo_avaliacoes = new RegistoAvaliacoes();
 		this.estado_candidatura = new CandidaturaStateEmSubmissao(this);
 	}
 
@@ -49,7 +56,7 @@ public class Candidatura implements Serializable {
 		this.qtd_convites = qtd_convites;
 		this.area_Empresa = area_Empresa;
 		this.lista_produtos = lista_produtos;
-                this.lista_keywords=new ListaKeywords();
+		this.lista_keywords = new ListaKeywords();
 	}
 
 	public Utilizador getRepresentante() {
@@ -94,10 +101,10 @@ public class Candidatura implements Serializable {
 		this.telemovel_Empresa = telemovel_Empresa;
 	}
 
-        public ListaKeywords getListaKeywords() {
-            return this.lista_keywords;
-        }
-        
+	public ListaKeywords getListaKeywords() {
+		return this.lista_keywords;
+	}
+
 	public int getQtd_convites() {
 		return qtd_convites;
 	}
@@ -159,5 +166,66 @@ public class Candidatura implements Serializable {
 
 	public void setState(CandidaturaState candidaturaState) {
 		this.estado_candidatura = candidaturaState;
+	}
+
+	@Override
+	public Node exportContentToXMLNode() {
+		Node rootNode = null;
+
+		try {
+			DocumentBuilderFactory factory
+				= DocumentBuilderFactory.newInstance();
+			//Create document builder
+			DocumentBuilder builder = factory.newDocumentBuilder();
+
+			//Obtain a new document
+			Document document = builder.newDocument();
+
+			//Create root element
+			Element elementUtilizador = document.
+				createElement("Candidatura");
+
+			//Create a sub-element
+			Element elementDescription = document.
+				createElement("Representante");
+			Element elementName = document.createElement("Nome Empresa");
+			Element elementData = document.createElement("Morada");
+			Element elementPass = document.createElement("Telemovel");
+			Element elementInicioSubmissao = document.createElement("Convites");
+			Element elementFimSubmissao = document.createElement("Area");
+			//Set the sub-element value
+			elementDescription.setTextContent(getRepresentante().getUsername());
+			elementName.setTextContent(getNome_Empresa());
+			elementData.setTextContent(getMorada_Empresa());
+			elementPass.setTextContent(Integer.toString(getTelemovel_Empresa()));
+			elementInicioSubmissao.setTextContent(Integer.
+				toString(getQtd_convites()));
+			elementFimSubmissao.
+				setTextContent(Float.toString(getArea_Empresa()));
+			//Add sub-element to root element
+			elementUtilizador.appendChild(elementDescription);
+			elementUtilizador.appendChild(elementName);
+			elementUtilizador.appendChild(elementData);
+			elementUtilizador.appendChild(elementPass);
+			elementUtilizador.appendChild(elementInicioSubmissao);
+			elementUtilizador.appendChild(elementFimSubmissao);
+			//Create a sub-element
+
+			//Add root element to document
+			document.appendChild(elementUtilizador);
+
+			//It exports only the element representation to XMÇ, ommiting the XML header
+			rootNode = elementUtilizador;
+
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		return rootNode;
+	}
+
+	@Override
+	public Candidatura importContentFromXMLNode(Node node) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 }
