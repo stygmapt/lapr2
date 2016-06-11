@@ -14,6 +14,7 @@ import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -21,97 +22,123 @@ import org.w3c.dom.Node;
  */
 public class Demonstracao implements Exportable, Importable<Demonstracao>, Serializable {
 
-	private static int codigo;
-	private String descricao;
-	private ListaRecurso listaRecurso;
+    private static final String ROOT_ELEMENT_NAME = "Demonstracao";
+    
+    private String value = "";
 
-	public Demonstracao() {
-		this.listaRecurso = new ListaRecurso();
-	}
+    private static int codigo;
+    private String descricao;
+    private ListaRecurso listaRecurso;
 
-	public int getCodigo() {
-		return codigo;
-	}
+    public Demonstracao() {
+        this.listaRecurso = new ListaRecurso();
+    }
 
-	public void setCodigo() {
-		codigo++;
-	}
+    public String getValue(){
+        return value;
+    }
+    
+    public int getCodigo() {
+        return codigo;
+    }
 
-	public String getDescricao() {
-		return descricao;
-	}
+    public void setCodigo() {
+        codigo++;
+    }
 
-	public void setDescricao(String descricao) throws IllegalArgumentException {
-		if (descricao.isEmpty()) {
-			throw new IllegalArgumentException("A descricacao da Demonstracao esta vazia");
-		}
-		this.descricao = descricao;
-	}
+    public String getDescricao() {
+        return descricao;
+    }
 
-	public ListaRecurso getListaRecurso() {
-		return listaRecurso;
-	}
+    public void setDescricao(String descricao) throws IllegalArgumentException {
+        if (descricao.isEmpty()) {
+            throw new IllegalArgumentException("A descricacao da Demonstracao esta vazia");
+        }
+        this.descricao = descricao;
+    }
 
-	public boolean equals(Demonstracao o) {
-		if (this == null) {
-			return false;
-		}
-		if (o != null) {
-			return o.getCodigo() == this.getCodigo()
-				&& o.getDescricao().equalsIgnoreCase(this.getDescricao());
-		}
-		return false;
-	}
+    public ListaRecurso getListaRecurso() {
+        return listaRecurso;
+    }
 
-	public boolean valida() {
-		return !this.listaRecurso.getListaRecursos().isEmpty();
-	}
+    public boolean equals(Demonstracao o) {
+        if (this == null) {
+            return false;
+        }
+        if (o != null) {
+            return o.getCodigo() == this.getCodigo()
+                    && o.getDescricao().equalsIgnoreCase(this.getDescricao());
+        }
+        return false;
+    }
 
-	@Override
-	public Node exportContentToXMLNode() {
-		Node rootNode = null;
+    public boolean valida() {
+        return !this.listaRecurso.getListaRecursos().isEmpty();
+    }
 
-		try {
-			DocumentBuilderFactory factory
-				= DocumentBuilderFactory.newInstance();
-			//Create document builder
-			DocumentBuilder builder = factory.newDocumentBuilder();
+    @Override
+    public Node exportContentToXMLNode() {
+        Node rootNode = null;
 
-			//Obtain a new document
-			Document document = builder.newDocument();
+        try {
+            DocumentBuilderFactory factory
+                    = DocumentBuilderFactory.newInstance();
+            //Create document builder
+            DocumentBuilder builder = factory.newDocumentBuilder();
 
-			//Create root element
-			Element elementUtilizador = document.
-				createElement("Demonstracao");
+            //Obtain a new document
+            Document document = builder.newDocument();
 
+            //Create root element
+            Element elementUtilizador = document.
+                    createElement("Demonstracao");
+
+            //Create a sub-element
+            Element elementDescription = document.
+                    createElement("Codigo");
+            Element elementName = document.createElement("Descricao");
+            //Set the sub-element value
+            elementDescription.setTextContent(Integer.toString(getCodigo()));
+            elementName.setTextContent(getDescricao());
+            //Add sub-element to root element
+            elementUtilizador.appendChild(elementDescription);
+            elementUtilizador.appendChild(elementName);
 			//Create a sub-element
-			Element elementDescription = document.
-				createElement("Codigo");
-			Element elementName = document.createElement("Descricao");
-			//Set the sub-element value
-			elementDescription.setTextContent(Integer.toString(getCodigo()));
-			elementName.setTextContent(getDescricao());
-			//Add sub-element to root element
-			elementUtilizador.appendChild(elementDescription);
-			elementUtilizador.appendChild(elementName);
-			//Create a sub-element
 
-			//Add root element to document
-			document.appendChild(elementUtilizador);
+            //Add root element to document
+            document.appendChild(elementUtilizador);
 
-			//It exports only the element representation to XMÇ, ommiting the XML header
-			rootNode = elementUtilizador;
+            //It exports only the element representation to XMÇ, ommiting the XML header
+            rootNode = elementUtilizador;
 
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
-		return rootNode;
-	}
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return rootNode;
+    }
 
-	@Override
-	public Demonstracao importContentFromXMLNode(Node node) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
+    @Override
+    public Demonstracao importContentFromXMLNode(Node node) {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            //Create document builder
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            //Obtain a new document
+            Document document = builder.newDocument();
+            document.appendChild(document.importNode(node, true));
+            NodeList demonstracoes = document.getElementsByTagName(ROOT_ELEMENT_NAME);
+            Node demonstracao = demonstracoes.item(0);
+
+            //Get value
+            this.value = demonstracao.getFirstChild().getNodeValue();
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+        return this;
+    }
 
 }
