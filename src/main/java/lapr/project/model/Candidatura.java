@@ -6,8 +6,6 @@
 package lapr.project.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -34,7 +32,7 @@ public class Candidatura implements Exportable, Importable<Candidatura>, Seriali
      * Candidatura representation.
      */
     private String value = "";
-    private String description = "";
+
     private Utilizador representante;
     private String nome_Empresa;
     private String morada_Empresa;
@@ -67,10 +65,10 @@ public class Candidatura implements Exportable, Importable<Candidatura>, Seriali
         this.lista_keywords = new ListaKeywords();
     }
 
-    public String getValue() {
+    public String getValue(){
         return value;
     }
-
+    
     public Utilizador getRepresentante() {
         return representante;
     }
@@ -245,23 +243,12 @@ public class Candidatura implements Exportable, Importable<Candidatura>, Seriali
             //Obtain a new document
             Document document = builder.newDocument();
             document.appendChild(document.importNode(node, true));
-
             NodeList candidaturas = document.getElementsByTagName(ROOT_ELEMENT_NAME);
             Node candidatura = candidaturas.item(0);
 
-            //Get representante
-            this.description = candidatura.getFirstChild().getFirstChild().getNodeValue();
+            //Get value
+            this.value = candidatura.getFirstChild().getNodeValue();
 
-            //keywords
-            NodeList elementsKeywords = document.getElementsByTagName(KEYWORDS_ELEMENT_NAME);
-            NodeList keywords = elementsKeywords.item(0).getChildNodes();
-            for (int position = 0; position < keywords.getLength(); position++) {
-                Node keyword = keywords.item(position);
-                Keyword keywordExample = new Keyword();
-
-                keywordExample = keywordExample.importContentFromXMLNode(keyword);
-                lista_keywords.registaKeyWord(keywordExample);
-            }
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
