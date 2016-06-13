@@ -35,9 +35,9 @@ public class AvaliarCandidaturaController {
             this.m_exposicao=expo;
         }
         
-        public List<Atribuicao> getListaAtribuicaoesPorAvaliar(){
-            //Not Implemented 
-            return null;
+        public List<Atribuicao> getListaAtribuicaoesPorAvaliar(Utilizador u){
+            return this.m_exposicao.getRegistoAtribuicoes().getAtribuicoesPorAvaliarByFAE(u);
+            
         }
         
         

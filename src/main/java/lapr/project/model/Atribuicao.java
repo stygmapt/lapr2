@@ -28,6 +28,10 @@ public class Atribuicao {
             return this.m_candidatura;
         }
         
+        public FAE getFAE() {
+            return this.m_FAE;
+        }
+        
         public boolean isAlreadyAvaliada() {
             return this.avaliada;
         }

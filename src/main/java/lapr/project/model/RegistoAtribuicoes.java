@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Eduardo
  */
-public class RegistoAtribuicoes implements MecanismoDeAtribuicao {
+public class RegistoAtribuicoes{
 
 	private List<Atribuicao> m_listaAtribuicao;
 
@@ -28,24 +28,19 @@ public class RegistoAtribuicoes implements MecanismoDeAtribuicao {
 		return m_listaAtribuicao;
 	}
 
-	public List<Atribuicao> novaAssosiacao(Exposicao e, int i) {
-		List<Candidatura> listaCandidatura = e.getRegistoCandidaturas().
-			getListaCandidaturas();
-		List<FAE> listaFAE = e.getListaFae().getLista();
-		for (Candidatura cand : listaCandidatura) {
-			while (i != 0) {
-				for (FAE fae : listaFAE) {
-					Atribuicao atribuicao = new Atribuicao(cand, fae);
-					i--;
-					m_listaAtribuicao.add(atribuicao);
-				}
-
-			}
-		}
-		return m_listaAtribuicao;
-	}
-
 	public void registaAtribuicao(List<Atribuicao> lista) {
 		this.m_listaAtribuicao = lista;
 	}
+
+    public List<Atribuicao> getAtribuicoesPorAvaliarByFAE(Utilizador u) {
+        List<Atribuicao> lst=new ArrayList<>();
+        for(Atribuicao atr:this.m_listaAtribuicao){
+            if(atr.isAlreadyAvaliada()==false){
+                if(u.equals(atr.getFAE().getUtilizador())){
+                    lst.add(atr);
+                }
+            }
+        }
+        return lst;
+    }
 }

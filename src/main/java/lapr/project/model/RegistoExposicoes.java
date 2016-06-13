@@ -135,11 +135,13 @@ public class RegistoExposicoes {
 	public List<Exposicao> getExposicoesByFAE(Utilizador u) {
 		List<Exposicao> listaExposicao = new ArrayList<>();
 		for (Exposicao e : this.listaExposições) {
+                    if(e.isCandidaturaAtribuidas()){
 			for (FAE fae : e.getListaFae().getLista()) {
 				if (fae.getUtilizador().equals(u)) {
 					listaExposicao.add(e);
 				}
 			}
+                    }
 		}
 		return listaExposicao;
 	}
