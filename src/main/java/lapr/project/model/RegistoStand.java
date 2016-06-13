@@ -33,10 +33,6 @@ public class RegistoStand {
         this.lstStands = lstStands;
     }
 
-    @Override
-    public String toString() {
-        return "Lista Stands: "+ lstStands;
-    }
 
     public void adicionarListaStands(Stand stand) {
         this.lstStands.add(stand);
