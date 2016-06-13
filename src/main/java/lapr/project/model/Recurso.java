@@ -14,6 +14,7 @@ import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -21,73 +22,94 @@ import org.w3c.dom.Node;
  */
 public class Recurso implements Exportable, Importable<Recurso>, Serializable {
 
-	private String descricao;
+    private static final String ROOT_ELEMENT_NAME = "Produto";
 
-	public Recurso(String descricao) {
-		if (descricao.isEmpty()) {
-			throw new IllegalArgumentException("A descrição nao pode ser nula!");
-		}
-		this.descricao = descricao;
-	}
+    private String value = "";
+    private String descricao;
 
-	public Recurso() {
-	}
+    public Recurso(String descricao) {
+        if (descricao.isEmpty()) {
+            throw new IllegalArgumentException("A descrição nao pode ser nula!");
+        }
+        this.descricao = descricao;
+    }
 
-	public String getDescricao() {
-		return descricao;
-	}
+    public Recurso() {
+    }
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
+    public String getDescricao() {
+        return descricao;
+    }
 
-	@Override
-	public String toString() {
-		return "recurso: " + this.descricao;
-	}
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
-	@Override
-	public Node exportContentToXMLNode() {
-		Node rootNode = null;
+    @Override
+    public String toString() {
+        return "recurso: " + this.descricao;
+    }
 
-		try {
-			DocumentBuilderFactory factory
-				= DocumentBuilderFactory.newInstance();
-			//Create document builder
-			DocumentBuilder builder = factory.newDocumentBuilder();
+    @Override
+    public Node exportContentToXMLNode() {
+        Node rootNode = null;
 
-			//Obtain a new document
-			Document document = builder.newDocument();
+        try {
+            DocumentBuilderFactory factory
+                    = DocumentBuilderFactory.newInstance();
+            //Create document builder
+            DocumentBuilder builder = factory.newDocumentBuilder();
 
-			//Create root element
-			Element elementUtilizador = document.
-				createElement("Recurso");
+            //Obtain a new document
+            Document document = builder.newDocument();
 
+            //Create root element
+            Element elementUtilizador = document.
+                    createElement("Recurso");
+
+            //Create a sub-element
+            Element elementDescription = document.
+                    createElement("Descricao");
+            //Set the sub-element value
+            elementDescription.setTextContent(getDescricao());
+            //Add sub-element to root element
+            elementUtilizador.appendChild(elementDescription);
 			//Create a sub-element
-			Element elementDescription = document.
-				createElement("Descricao");
-			//Set the sub-element value
-			elementDescription.setTextContent(getDescricao());
-			//Add sub-element to root element
-			elementUtilizador.appendChild(elementDescription);
-			//Create a sub-element
 
-			//Add root element to document
-			document.appendChild(elementUtilizador);
+            //Add root element to document
+            document.appendChild(elementUtilizador);
 
-			//It exports only the element representation to XMÇ, ommiting the XML header
-			rootNode = elementUtilizador;
+            //It exports only the element representation to XMÇ, ommiting the XML header
+            rootNode = elementUtilizador;
 
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
-		return rootNode;
-	}
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return rootNode;
+    }
 
-	@Override
-	public Recurso importContentFromXMLNode(Node node) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
+    @Override
+    public Recurso importContentFromXMLNode(Node node) {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            //Create document builder
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            //Obtain a new document
+            Document document = builder.newDocument();
+            document.appendChild(document.importNode(node, true));
+            NodeList recursos = document.getElementsByTagName(ROOT_ELEMENT_NAME);
+            Node recurso = recursos.item(0);
+
+            //Get value
+            this.value = recurso.getFirstChild().getNodeValue();
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+        return this;
+    }
 
 }
