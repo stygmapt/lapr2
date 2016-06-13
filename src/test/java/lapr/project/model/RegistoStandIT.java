@@ -53,7 +53,7 @@ public class RegistoStandIT {
     @Test
     public void testNovoStand() {
         System.out.println("novoStand");
-        RegistoStand rs = new RegistoStand();
+        Stand rs = new Stand();
         Stand expResult = registoStandTest.novoStand();
         assertEquals(rs, expResult);
         

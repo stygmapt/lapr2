@@ -17,22 +17,25 @@ import static org.junit.Assert.*;
  * @author Tiago
  */
 public class StandIT {
-    
+
+    private Stand stand;
+
     public StandIT() {
+        this.stand = new Stand();
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -43,11 +46,10 @@ public class StandIT {
     @Test
     public void testSetId() {
         System.out.println("setId");
+        Stand rs = new Stand();
         int id = 0;
-        Stand instance = new Stand();
-        instance.setId(id);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        rs.setId(id);
+        assertEquals(id, this.stand.getId());
     }
 
     /**
@@ -56,11 +58,10 @@ public class StandIT {
     @Test
     public void testSetArea() {
         System.out.println("setArea");
-        float area = 0.0F;
-        Stand instance = new Stand();
-        instance.setArea(area);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Stand rs = new Stand();
+        float area = 0.0f;
+        rs.setArea(area);
+        assertEquals(area, this.stand.getArea(),area);
     }
 
     /**
@@ -73,8 +74,7 @@ public class StandIT {
         int expResult = 0;
         int result = instance.getId();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -87,8 +87,7 @@ public class StandIT {
         float expResult = 0.0F;
         float result = instance.getArea();
         assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -97,12 +96,11 @@ public class StandIT {
     @Test
     public void testToString() {
         System.out.println("toString");
-        Stand instance = new Stand();
-        String expResult = "";
+        Stand instance = new Stand(1, 2.5f);
+        String expResult = "ID: 1 Area: 2.5";
         String result = instance.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -116,8 +114,7 @@ public class StandIT {
         boolean expResult = false;
         boolean result = instance.equals(outroObjeto);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
-    
+
 }

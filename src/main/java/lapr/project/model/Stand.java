@@ -44,7 +44,7 @@ public class Stand implements Serializable{
 
     @Override
     public String toString() {
-        return "ID: " + id + " Area: " + area + '}';
+        return "ID: " + id + " Area: " + area;
     }
     
     public boolean equals(Object outroObjeto){
