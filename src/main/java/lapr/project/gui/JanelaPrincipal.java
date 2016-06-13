@@ -45,6 +45,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jMenu2 = new javax.swing.JMenu();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -60,6 +61,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -68,6 +71,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jButton1.setText("jButton1");
 
         jButton4.setText("jButton4");
+
+        jMenu2.setText("jMenu2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,6 +105,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
 
         jLabel1.setText("Botões para forçar estados de esposições:");
+
+        jMenuBar1.setBackground(new java.awt.Color(240, 200, 200));
 
         UtilizadorMenu.setText("Utilizador");
 
@@ -164,6 +171,18 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         editMenu.add(jMenuItem7);
 
         jMenuBar1.add(editMenu);
+
+        jMenu3.setText("FAE");
+
+        jMenuItem11.setText("Avaliar Candidaturas");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem11);
+
+        jMenuBar1.add(jMenu3);
 
         jMenu1.setText("Representante/Expositor");
 
@@ -313,6 +332,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+       JanelaAvaliarCandidatura janela = new JanelaAvaliarCandidatura(this.centro,this.utilizador_logado);
+       dispose();
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu UtilizadorMenu;
     private javax.swing.JMenu editMenu;
@@ -324,9 +348,12 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

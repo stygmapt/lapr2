@@ -31,6 +31,7 @@ class Main {
 		Utilizador u2 =new Utilizador("choura2", "choura2", "chour2a@isep.ipp.pt", "meteorito");
 		Utilizador u3 =new Utilizador("choura3", "choura3", "cho3ura@isep.ipp.pt", "meteorito");
 		Utilizador u4 =new Utilizador("choura4", "choura4", "choura4@isep.ipp.pt", "meteorito");
+                
                 centro.registaUtilizador(u1);
                 centro.registaUtilizador(u2);
                 centro.registaUtilizador(u3);

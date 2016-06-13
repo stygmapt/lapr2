@@ -15,20 +15,26 @@ public class Atribuicao {
 
 	private final Candidatura m_candidatura;
 	private final FAE m_FAE;
+	private boolean avaliada;
 
 	public Atribuicao(Candidatura candidatura, FAE fae) {
 		this.m_candidatura = candidatura;
 		this.m_FAE = fae;
+                this.avaliada=false;
 	}
         
         
         public Candidatura getCandidatura() {
             return this.m_candidatura;
         }
+        
+        public boolean isAlreadyAvaliada() {
+            return this.avaliada;
+        }
 
         @Override
         public String toString() {
-            return "Atribuição: da Candidatura: "+this.m_candidatura.getNome_Empresa() + " ao FAE: "+ this.m_FAE.getUtilizador().getUsername();
+            return "Atribuição: da Candidatura: "+this.m_candidatura.getNome_Empresa() + " ao FAE: "+ this.m_FAE.getUtilizador().getUsername()+" Avaliada? " + this.avaliada;
         }
 
         

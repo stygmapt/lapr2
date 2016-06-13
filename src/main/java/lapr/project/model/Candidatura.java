@@ -45,6 +45,7 @@ public class Candidatura implements Exportable, Importable<Candidatura>, Seriali
     private ListaKeywords lista_keywords;
     private RegistoAvaliacoes registo_avaliacoes;
     private CandidaturaState estado_candidatura;
+    private boolean decisaoFinal;
 
     public Candidatura() {
         this.lista_produtos = new ListaProdutos();
