@@ -302,34 +302,26 @@ public class Exposicao implements Exportable, Importable<Exposicao>, Serializabl
 			elementUtilizador.appendChild(elementFimSubmissao);
 			elementUtilizador.appendChild(elementLElement);
 			elementUtilizador.appendChild(Local);
-			Element listaOrg = document.createElement("Organizador");
-			Element listaFAE = document.createElement("FAE");
-			Element listaCand = document.createElement("Candidatura");
-			Element listaDeElement = document.createElement("Demonstracao");
 			for (Organizador object : listaOrganizador.getLista()) {
 				Node nodeOrg = object.exportContentToXMLNode();
-				listaOrg.appendChild(document.importNode(nodeOrg, true));
+				elementUtilizador.
+					appendChild(document.importNode(nodeOrg, true));
 			}
 			for (FAE object : listaFae.getLista()) {
 				Node nodeFAE = object.exportContentToXMLNode();
-				listaFAE.appendChild(document.importNode(nodeFAE, true));
+				elementUtilizador.
+					appendChild(document.importNode(nodeFAE, true));
 			}
 			for (Candidatura cand : registoCandidaturas.getListaCandidaturas()) {
 				Node nodeCandidatura = cand.exportContentToXMLNode();
-				listaCand.
+				elementUtilizador.
 					appendChild(document.importNode(nodeCandidatura, true));
 			}
 			for (Demonstracao object : listaDemonstracao.getListaDemonstracao()) {
 				Node nodeDemonstracao = object.exportContentToXMLNode();
-				listaDeElement.appendChild(document.
+				elementUtilizador.appendChild(document.
 					importNode(nodeDemonstracao, true));
 			}
-			elementUtilizador.appendChild(listaDeElement);
-			elementUtilizador.appendChild(listaFAE);
-			elementUtilizador.appendChild(listaCand);
-			//Create a sub-element
-			elementUtilizador.appendChild(listaOrg);
-			//Add root element to document
 			document.appendChild(elementUtilizador);
 
 			//It exports only the element representation to XMÇ, ommiting the XML header

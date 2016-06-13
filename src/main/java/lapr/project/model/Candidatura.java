@@ -68,7 +68,7 @@ public class Candidatura implements Exportable, Importable<Candidatura>, Seriali
     public String getValue(){
         return value;
     }
-    
+
     public Utilizador getRepresentante() {
         return representante;
     }
@@ -198,7 +198,7 @@ public class Candidatura implements Exportable, Importable<Candidatura>, Seriali
             //Create a sub-element
             Element elementDescription = document.
                     createElement("Representante");
-            Element elementName = document.createElement("Nome Empresa");
+            Element elementName = document.createElement("NomeEmpresa");
             Element elementData = document.createElement("Morada");
             Element elementPass = document.createElement("Telemovel");
             Element elementInicioSubmissao = document.createElement("Convites");
