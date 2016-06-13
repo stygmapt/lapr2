@@ -36,8 +36,7 @@ public class AvaliarCandidaturaController {
         }
         
         public List<Atribuicao> getListaAtribuicaoesPorAvaliar(Utilizador u){
-            return this.m_exposicao.getRegistoAtribuicoes().getAtribuicoesPorAvaliarByFAE(u);
-            
+            return this.m_exposicao.getRegistoAtribuicoes().getAtribuicoesPorAvaliarByFAE(u);    
         }
         
         
