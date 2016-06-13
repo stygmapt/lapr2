@@ -20,7 +20,7 @@ public class Conflito {
         this.candidatura = candidatura;
         this.tipoConflito = tipoConflito;
     }
-    
+
     public Conflito() {
 
     }
@@ -50,19 +50,20 @@ public class Conflito {
     }
 
     public boolean equals(Conflito u) {
-		if (this == null) {
-			return false;
-		}
-		if (u != null) {
-			return u.getCandidatura().equals(this.candidatura)&&
-                                u.getFae().equals(this.getFae())&&
-                                u.getTipoConflito().equals(this.getTipoConflito());
-		}
-		return false;
-	}
-
-    boolean valida() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this == null) {
+            return false;
+        }
+        if (u != null) {
+            return u.getCandidatura().equals(this.candidatura)
+                    && u.getFae().equals(this.getFae())
+                    && u.getTipoConflito().equals(this.getTipoConflito());
+        }
+        return false;
     }
+
+    public boolean valida(){
+        return true;
+    }
+    
 
 }
