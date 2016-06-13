@@ -31,21 +31,11 @@ public class ExposicaoStateCriada implements ExposicaoState {
 
 	@Override
 	public boolean setFAESemDemonstracao() {
-		if (valida()) {
-			this.m_expo.setState(new ExposicaoStateDemonstracaoSemFAE(m_expo));
-		} else {
-			return false;
-		}
 		return false;
 	}
 
 	@Override
 	public boolean setDemonstracaoSemFAE() {
-		if (valida()) {
-			this.m_expo.setState(new ExposicaoStateDemonstracaoSemFAE(m_expo));
-		} else {
-			return false;
-		}
 		return false;
 	}
 

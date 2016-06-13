@@ -32,6 +32,7 @@ public class AtribuirCandidatura1 extends javax.swing.JFrame {
 		this.m_centro = centro;
 		this.m_user = user;
 		this.m_Controller = controller;
+		this.dlm = new DefaultListModel();
 		initComponents();
 		fillList();
 		setVisible(true);

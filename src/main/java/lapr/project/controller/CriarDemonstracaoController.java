@@ -30,14 +30,15 @@ public class CriarDemonstracaoController {
 	}
 
 	public List<Exposicao> getListaExposicoesDoOrganizador(Utilizador user) {
-            List<Exposicao> lst = new ArrayList<>();
-            for(Exposicao e: this.m_centro.getRegistoExposicoes().getListaExposicoesDoOrganizador(user)){
-                if(e.isCompleta() || e.isDemonstracaoSemFAE() || e.isInFAESemDemonstracao() || e.isInCriada()){
-                    lst.add(e);
-                }
-            }
-            return lst;
-                
+		List<Exposicao> lst = new ArrayList<>();
+		for (Exposicao e : this.m_centro.getRegistoExposicoes().
+			getListaExposicoesDoOrganizador(user)) {
+			if (e.isInFAESemDemonstracao() || e.isInCriada() || e.isCompleta()) {
+				lst.add(e);
+			}
+		}
+		return lst;
+
 	}
 
 	public Demonstracao novaDemonstracao(Exposicao expo) {
@@ -60,12 +61,13 @@ public class CriarDemonstracaoController {
 		m_demonstraçao.getListaRecurso().adicionaRecurso(recurso);
 	}
 
-        public List<Recurso> getRecursosSelecionados(){
-            return this.m_demonstraçao.getListaRecurso().getListaRecursos();
-        }
+	public List<Recurso> getRecursosSelecionados() {
+		return this.m_demonstraçao.getListaRecurso().getListaRecursos();
+	}
+
 	public Boolean RegistaDemonstracao() {
 		if (this.m_demonstraçao.valida()) {
-                        ChangeState();
+			ChangeState();
 			this.m_exposicao.getListaDemonstracao().
 				adicionarDemonstracao(this.m_demonstraçao);
 			return true;
@@ -76,9 +78,11 @@ public class CriarDemonstracaoController {
 
 	public void ChangeState() {
 		if (m_exposicao.isInFAESemDemonstracao()) {
-                    m_exposicao.setState(new ExposicaoStateCompleto(m_exposicao));
-		} else if(m_exposicao.isInCriada() || m_exposicao.isDemonstracaoSemFAE()){
-			m_exposicao.setState(new ExposicaoStateDemonstracaoSemFAE(m_exposicao));
+			m_exposicao.setState(new ExposicaoStateCompleto(m_exposicao));
+		} else if (m_exposicao.isInCriada() || m_exposicao.
+			isDemonstracaoSemFAE()) {
+			m_exposicao.
+				setState(new ExposicaoStateDemonstracaoSemFAE(m_exposicao));
 		}
 	}
 }
