@@ -31,5 +31,4 @@ public class MecanismoDetecao1 implements MecaniscosDeDetecao{
             }
         return lista;
     }
-    
 }

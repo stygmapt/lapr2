@@ -12,7 +12,6 @@ import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Keyword;
 import lapr.project.model.Produto;
 import lapr.project.model.Utilizador;
-import sun.swing.DefaultLayoutStyle;
 
 /**
  *
