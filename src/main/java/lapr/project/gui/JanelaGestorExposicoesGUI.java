@@ -24,17 +24,17 @@ import org.w3c.dom.Node;
  */
 public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
 
-	private final CentroExposicoes centro;
+    private final CentroExposicoes centro;
 
-	/**
-	 * Creates new form JanelaGestorExposicoesGUI
-	 */
-	public JanelaGestorExposicoesGUI(CentroExposicoes centro) {
-		this.centro = centro;
-		initComponents();
-		setVisible(true);
-		setLocationRelativeTo(null);
-	}
+    /**
+     * Creates new form JanelaGestorExposicoesGUI
+     */
+    public JanelaGestorExposicoesGUI(CentroExposicoes centro) {
+        this.centro = centro;
+        initComponents();
+        setVisible(true);
+        setLocationRelativeTo(null);
+    }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -51,6 +51,7 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -134,6 +135,14 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
 
         jMenu1.setText("Ficheiro");
 
+        jMenuItem9.setText("Importação");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem9);
+
         jMenuItem8.setText("Exportaçao");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,42 +180,46 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_accoesMenuActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-		// TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-		JanelaConfirmarUtilizador janela = new JanelaConfirmarUtilizador(centro);
-		dispose();
+        JanelaConfirmarUtilizador janela = new JanelaConfirmarUtilizador(centro);
+        dispose();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-		JanelaDefinirRecurso j = new JanelaDefinirRecurso(this.centro);
-                dispose();
+        JanelaDefinirRecurso j = new JanelaDefinirRecurso(this.centro);
+        dispose();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-		LoginGUI j = new LoginGUI(centro);
-		dispose();
+        LoginGUI j = new LoginGUI(centro);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-		JanelaCriarExposicao j = new JanelaCriarExposicao(this.centro);
-		dispose();
+        JanelaCriarExposicao j = new JanelaCriarExposicao(this.centro);
+        dispose();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-		JanelaCriarTipoConflito j = new JanelaCriarTipoConflito(centro);
-		dispose();
+        JanelaCriarTipoConflito j = new JanelaCriarTipoConflito(centro);
+        dispose();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-		try {
-			Export();
-		} catch (Exception ex) {
-			Logger.getLogger(JanelaGestorExposicoesGUI.class.getName()).
-				log(Level.SEVERE, null, ex);
-		}
+        try {
+            Export();
+        } catch (Exception ex) {
+            Logger.getLogger(JanelaGestorExposicoesGUI.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu accoesMenu;
@@ -221,37 +234,42 @@ public class JanelaGestorExposicoesGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu listagensMenu;
     // End of variables declaration//GEN-END:variables
 
-	private void Export() throws Exception {
-		String caminho = "C:\\Users\\Eduardo\\Desktop\\LAPR2\\LAPR2CLONE\\lapr2-2015-2016-g66\\new 1.xml";
-		DocumentBuilderFactory factory
-			= DocumentBuilderFactory.newInstance();
+    private void Import() throws Exception {
 
-		//Create document builder
-		DocumentBuilder builder = factory.newDocumentBuilder();
+    }
 
-		//Obtain a new document
-		Document document = builder.newDocument();
-		XMLParser xml = new XMLParser();
-		Element t = document.createElement("Centro");
-		for (Utilizador object : centro.getUtilizadoresRegistados().getLista()) {
-			Node nodeUtil = object.exportContentToXMLNode();
-			t.appendChild(document.importNode(nodeUtil, true));
-		}
-		for (Recurso object : centro.getM_regRecursos().getListaRecursos()) {
-			Node nodeUtil = object.exportContentToXMLNode();
-			t.appendChild(document.importNode(nodeUtil, true));
-		}
-		for (Exposicao lppexposicao : centro.getRegistoExposicoes().
-			getListaExposições()) {
-			Node nodeUtil = lppexposicao.exportContentToXMLNode();
-			t.appendChild(document.importNode(nodeUtil, true));
-		}
-		document.appendChild(t);
-		Node rootNode = t;
-		xml.writeXMLElementToFile(rootNode, caminho);
-	}
+    private void Export() throws Exception {
+        String caminho = "C:\\Users\\Eduardo\\Desktop\\LAPR2\\LAPR2CLONE\\lapr2-2015-2016-g66\\new 1.xml";
+        DocumentBuilderFactory factory
+                = DocumentBuilderFactory.newInstance();
+
+        //Create document builder
+        DocumentBuilder builder = factory.newDocumentBuilder();
+
+        //Obtain a new document
+        Document document = builder.newDocument();
+        XMLParser xml = new XMLParser();
+        Element t = document.createElement("Centro");
+        for (Utilizador object : centro.getUtilizadoresRegistados().getLista()) {
+            Node nodeUtil = object.exportContentToXMLNode();
+            t.appendChild(document.importNode(nodeUtil, true));
+        }
+        for (Recurso object : centro.getM_regRecursos().getListaRecursos()) {
+            Node nodeUtil = object.exportContentToXMLNode();
+            t.appendChild(document.importNode(nodeUtil, true));
+        }
+        for (Exposicao lppexposicao : centro.getRegistoExposicoes().
+                getListaExposições()) {
+            Node nodeUtil = lppexposicao.exportContentToXMLNode();
+            t.appendChild(document.importNode(nodeUtil, true));
+        }
+        document.appendChild(t);
+        Node rootNode = t;
+        xml.writeXMLElementToFile(rootNode, caminho);
+    }
 }
