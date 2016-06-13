@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import lapr.project.controller.AtribuirCandidaturaController;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.MecanismoDeAtribuicao;
+import lapr.project.model.MecanismoDeAtribuicao1;
 import lapr.project.model.Utilizador;
 
 /**
@@ -33,8 +34,8 @@ public class AtribuirCandidatura1 extends javax.swing.JFrame {
 		this.m_Controller = controller;
 		initComponents();
 		fillList();
-                setVisible(true);
-                setLocationRelativeTo(null);
+		setVisible(true);
+		setLocationRelativeTo(null);
 	}
 
 	/**
@@ -115,22 +116,25 @@ public class AtribuirCandidatura1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            if(jList1.getSelectedValue()==null){
-                throw  new IllegalArgumentException("Tem que selecionar um mecanismo.");
-            }
-            this.m_Controller.setMecanismo((MecanismoDeAtribuicao) jList1.
-            getSelectedValue());
-            AtribuirCandidatura2 janela = new AtribuirCandidatura2(m_centro, m_user, m_Controller);
-            dispose();
-        } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(this, e.toString());
-        }
+		try {
+			if (jList1.getSelectedValue() == null) {
+				throw new IllegalArgumentException("Tem que selecionar um mecanismo.");
+			}
+			this.m_Controller.setMecanismo((MecanismoDeAtribuicao) jList1.
+				getSelectedValue());
+			if (jList1.getSelectedValue() instanceof MecanismoDeAtribuicao1) {
+
+			}
+			AtribuirCandidatura2 janela = new AtribuirCandidatura2(m_centro, m_user, m_Controller);
+			dispose();
+		} catch (IllegalArgumentException e) {
+			JOptionPane.showMessageDialog(this, e.toString());
+		}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-	JanelaPrincipal j =new JanelaPrincipal(m_centro, m_user);
-        dispose();
+		JanelaPrincipal j = new JanelaPrincipal(m_centro, m_user);
+		dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

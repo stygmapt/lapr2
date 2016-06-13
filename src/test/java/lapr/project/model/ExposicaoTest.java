@@ -235,9 +235,9 @@ public class ExposicaoTest {
 		SimpleDateFormat format = new SimpleDateFormat("dd-mm-yyyy");
 		Date expResult2;
 		try {
-			expResult2 = format.parse("16-06-2016");
+			expResult2 = format.parse("20-06-2016");
 			exposicaoTest.setDataLimiteAvaliacoes(expResult2);
-			assertEquals(expResult2, exposicaoTest.getDataFimRealização());
+			assertEquals(expResult2, exposicaoTest.getDataLimiteAvaliacoes());
 		} catch (ParseException ex) {
 			Logger.getLogger(ExposicaoTest.class.getName()).
 				log(Level.SEVERE, null, ex);

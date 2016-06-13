@@ -12,6 +12,8 @@ import lapr.project.model.Candidatura;
 import lapr.project.model.CentroExposicoes;
 import lapr.project.model.Exposicao;
 import lapr.project.model.MecanismoDeAtribuicao;
+import lapr.project.model.MecanismoDeAtribuicao1;
+import lapr.project.model.MecanismoDeAtribuicao2;
 import lapr.project.model.Utilizador;
 import lapr.project.states.CandidaturaStateEmAvaliacao;
 import lapr.project.states.ExposicaoStateCandidaturasAtribuidas;
@@ -41,8 +43,8 @@ public class AtribuirCandidaturaController {
 	public void setExposicao(Exposicao expo) {
 		this.m_exposicao = expo;
 	}
-        
-        public Exposicao getExposicao() {
+
+	public Exposicao getExposicao() {
 		return this.m_exposicao;
 	}
 
@@ -55,8 +57,13 @@ public class AtribuirCandidaturaController {
 	}
 
 	public List<Atribuicao> getListaAtribuicoes() {
-		this.listaAtribuicoes = this.m_exposicao.getRegistoAtribuicoes().
-			novaAssosiacao(this.m_exposicao, 5);
+		if (this.m_atribuicao instanceof MecanismoDeAtribuicao1) {
+			this.listaAtribuicoes = this.m_atribuicao.
+				novaAssosiacao(m_exposicao, 3);
+		} else if (this.m_atribuicao instanceof MecanismoDeAtribuicao2) {
+			this.listaAtribuicoes = this.m_atribuicao.
+				novaAssosiacao(m_exposicao, 5);
+		}
 		return this.listaAtribuicoes;
 	}
 

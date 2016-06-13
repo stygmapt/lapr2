@@ -6,6 +6,7 @@
 package lapr.project.model;
 
 import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -139,7 +140,15 @@ public class UtilizadorTest {
 		System.out.println("getPassword");
 		Utilizador instance = new Utilizador();
 		instance.setPassword("pww");
-		String expResult = "pww";
+		String senha = "pww";
+		MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
+		byte messageDigest[] = algorithm.digest(senha.getBytes("UTF-8"));
+
+		StringBuilder hexString = new StringBuilder();
+		for (byte b : messageDigest) {
+			hexString.append(String.format("%02X", 0xFF & b));
+		}
+		String expResult = hexString.toString();
 		String result = instance.getPassword();
 		assertEquals(expResult, result);
 	}
@@ -151,10 +160,17 @@ public class UtilizadorTest {
 	public void testSetPassword() throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		System.out.println("setPassword");
 		String password = "pass";
+		MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
+		byte messageDigest[] = algorithm.digest(password.getBytes("UTF-8"));
+
+		StringBuilder hexString = new StringBuilder();
+		for (byte b : messageDigest) {
+			hexString.append(String.format("%02X", 0xFF & b));
+		}
+		String senha = hexString.toString();
 		Utilizador instance = new Utilizador();
 		instance.setPassword(password);
-		String exp = instance.getPassword();
-		assertEquals(exp, password);
+		assertEquals(senha, instance.getPassword());
 	}
 
 	/**
@@ -164,7 +180,7 @@ public class UtilizadorTest {
 	public void testToString() throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		System.out.println("toString");
 		Utilizador instance = new Utilizador("tiago", "tiago", "tiago", "tiago");
-		String expResult = "[tiago,tiago,tiago,tiago]";
+		String expResult = "[tiago,tiago,tiago]";
 		String result = instance.toString();
 		assertEquals(expResult, result);
 	}
